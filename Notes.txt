@@ -1,0 +1,11 @@
+Component design architecture.
+Finite state machine for levels
+Design Patterns
+State
+Factory
+Decorator
+Builder
+Parent Game Object, every object has a parent
+
+Event handling for game
+messaging
