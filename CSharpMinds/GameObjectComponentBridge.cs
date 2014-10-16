@@ -26,11 +26,13 @@ namespace CSharpMinds {
         }
 
         public void AddComponent(Component comp) {
+            if (components.Contains(comp)) { return; }
             comp.Owner = this.Owner;
             Components.Add(comp);
         }
 
         public void RemoveComponent(Component c) {
+            c.Owner = null;
             Components.Remove(c);
         }
     }

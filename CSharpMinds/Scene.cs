@@ -5,14 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using CSharpMinds.Interfaces;
 using CSharpMinds.Managers;
+using CSharpMinds.Factories;
 
 namespace CSharpMinds {
-    public class SceneService : ISceneService {
+    public class Scene : IScene {
 
         ComponentManager compmanager;
 
-        public ComponentManager CompManager {
+        //TODO: Remove factory from the scene, or find a more flexible way to use.
+        GameObjectFactory factory;
+
+        public Scene()
+        {
+            compmanager = new ComponentManager();
+            factory = new GameObjectFactory(compmanager);
+        }
+
+        public ComponentManager CompManager
+        {
             get { return compmanager; }
+        }
+
+        public GameObjectFactory GOFactory
+        {
+            get { return factory; }
         }
 
         public void Update() {

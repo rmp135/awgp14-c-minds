@@ -17,7 +17,6 @@ namespace CSharpMinds
         List<GameObject> children;
 
         //Constructor
-
         public GameObject(string name)
         {
             Owner = this;

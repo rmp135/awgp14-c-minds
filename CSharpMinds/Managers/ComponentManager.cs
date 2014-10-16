@@ -8,7 +8,20 @@ using CSharpMinds.Interfaces;
 namespace CSharpMinds.Managers {
     public class ComponentManager : IComponentManager{
 
-        List<Component> components;
+        List<IComponent> components;
+
+        public List<IComponent> Components {
+            get { return components; }
+        }
+
+        public ComponentManager()
+        {
+            components = new List<IComponent>();
+        }
+
+        public void AddComponent(IComponent comp) {
+            components.Add(comp);
+        }
 
         public void Update(){
             foreach (IUpdatable updatable in components) {
@@ -22,8 +35,9 @@ namespace CSharpMinds.Managers {
             }
         }
 
-        public List<Component> Components {
-            get { return components; }
+        public IComponent FindWithName(string name)
+        {
+            return components.Find(p => p.Name == name);
         }
     }
 }

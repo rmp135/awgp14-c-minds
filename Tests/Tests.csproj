@@ -52,6 +52,10 @@
   <ItemGroup>
     <Compile Include="BasicTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ComponentTests.cs" />
+    <Compile Include="FactoryTests.cs" />
+    <Compile Include="SceneTests.cs" />
+    <Compile Include="GameObjectHierarchyTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharpMinds\CSharpMinds.csproj">
