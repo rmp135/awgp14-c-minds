@@ -42,21 +42,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Component.cs" />
-    <Compile Include="Components\TestComponent.cs" />
+    <Compile Include="Components\UpdatingComponent.cs" />
     <Compile Include="Components\TransformComponent.cs" />
     <Compile Include="Factories\GameObjectFactory.cs" />
     <Compile Include="Factories\UpdatingGameObjectFactory.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="GameObjectComponentBridge.cs" />
+    <Compile Include="GameObjectComponentCollection.cs" />
     <Compile Include="Interfaces\IComponent.cs" />
     <Compile Include="Interfaces\IComponentFactory.cs" />
-    <Compile Include="Interfaces\IFactory.cs" />
-    <Compile Include="Interfaces\IGameObjectComponentBridge.cs" />
+    <Compile Include="Interfaces\IGameObjectFactory.cs" />
+    <Compile Include="Interfaces\IComponentCollection.cs" />
     <Compile Include="Interfaces\IGameObject.cs" />
     <Compile Include="Interfaces\IScene.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IUpdatable.cs" />
-    <Compile Include="Interfaces\IComponentManager.cs" />
     <Compile Include="Managers\ComponentManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

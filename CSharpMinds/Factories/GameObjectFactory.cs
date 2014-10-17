@@ -9,11 +9,11 @@ using CSharpMinds.Managers;
 
 namespace CSharpMinds.Factories
 {
-    public class GameObjectFactory : IFactory
+    public class BasicGameObjectFactory : IGameObjectFactory
     {
-        protected ComponentManager compman;
+        private ComponentManager compman;
 
-        public GameObjectFactory(ComponentManager compman) {
+        public BasicGameObjectFactory(ComponentManager compman) {
             this.compman = compman;
         }
 

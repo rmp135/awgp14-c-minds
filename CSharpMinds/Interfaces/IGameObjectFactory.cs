@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpMinds.Interfaces
 {
-    public interface IFactory
+    public interface IGameObjectFactory
     {
         IGameObject Build();
     }

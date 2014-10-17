@@ -10,10 +10,10 @@ namespace Tests {
         [TestMethod]
         public void TestGameObjectFactory() {
             
-            GameObjectFactory gof = new GameObjectFactory(new ComponentManager());
+            BasicGameObjectFactory gof = new BasicGameObjectFactory(new ComponentManager());
             GameObject g = gof.Build() as GameObject;
 
-            Assert.AreEqual("Transform", g.GetComponentByName("Transform").Name);
+            Assert.AreEqual("Transform", g.FindByName("Transform").Name);
         }
     }
 }

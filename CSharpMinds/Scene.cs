@@ -12,23 +12,22 @@ namespace CSharpMinds {
 
         ComponentManager compmanager;
 
-        //TODO: Remove factory from the scene, or find a more flexible way to use.
-        GameObjectFactory factory;
-
         public Scene()
         {
             compmanager = new ComponentManager();
-            factory = new GameObjectFactory(compmanager);
+        }
+
+        public void AddGameObject(IGameObject go)
+        {
+            foreach (IComponent comp in go.Components)
+            {
+                compmanager.AddComponent(comp);
+            }
         }
 
         public ComponentManager CompManager
         {
             get { return compmanager; }
-        }
-
-        public GameObjectFactory GOFactory
-        {
-            get { return factory; }
         }
 
         public void Update() {

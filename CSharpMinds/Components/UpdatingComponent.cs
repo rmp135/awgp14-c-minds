@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpMinds {
-    public class TestComponent: Component {
+namespace CSharpMinds.Components {
+    public class UpdatingComponent: Component {
 
         int testint;
 
         public int TestInt { get { return testint; } }
 
-        public TestComponent(string name) : base(name) {
+        public UpdatingComponent(string name) : base(name) {
             testint = 0;
         }
 

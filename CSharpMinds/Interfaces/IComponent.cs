@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CSharpMinds.Interfaces
 {
-    public interface IComponent : IUpdatable
+    public interface IComponent
     {
-        GameObject Owner { get; }
-        string Name { get; }
+        GameObject Owner { get; set; }
+        string Name { get; set; }
     }
 }

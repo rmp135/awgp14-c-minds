@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CSharpMinds.Interfaces;
 
 namespace CSharpMinds.Components
 {
-    public class TransformComponent : Component
+    public class TransformComponent : IComponent
     {
+
+        public GameObject owner;
 
         public class TransformPosition {
             private int[] position;
             public TransformPosition() {
-                position = new[] { 0, 0 };
+                position = new[] { 0, 0, 0 };
             }
             public int X {
                 get { return position[0]; }
@@ -21,6 +24,10 @@ namespace CSharpMinds.Components
             public int Y {
                 get { return position[1]; }
                 set { position[1] = value; }
+            }
+            public int Z {
+                get { return position[2]; }
+                set { position[2] = value; }
             }
         }
 
@@ -31,8 +38,9 @@ namespace CSharpMinds.Components
 
         public TransformPosition Position
         {
-            get { return position; }
-            set { position = value; }
+            get {
+                return position; 
+            }
         }
 
         public float Scale
@@ -49,11 +57,20 @@ namespace CSharpMinds.Components
                 rotation = absvalue - 360 * (absvalue / 360);
             }
         }
-        public TransformComponent():this("Transform") { }
-        public TransformComponent(string name):base(name)
+        public TransformComponent()
         {
             position = new TransformPosition();
             this.Scale = 1;
+        }
+
+        public GameObject Owner {
+            get { return owner; }
+            set { owner = value; }
+        }
+
+        public string Name {
+            get { return "Transform"; }
+            set { }
         }
     }
 }
