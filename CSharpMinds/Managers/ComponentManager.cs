@@ -45,3 +45,6 @@ namespace CSharpMinds.Managers {
         }
     }
 }
+        public IComponent GetComponent<T>() where T : IComponent {
+            return components.Find(p => p.GetType() == typeof(T));
+        }
