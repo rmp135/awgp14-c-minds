@@ -40,3 +40,11 @@ namespace CSharpMinds.Tests {
 
     }
 }
+
+        [TestMethod]
+        public void TestVectorOperands() {
+            Vector v = new Vector(2f, 3f, 4f);
+            Vector v2 = new Vector(1f, 2f, 3f);
+            Assert.AreEqual(new Vector(3f, 5f, 7f), v + v2);
+        }
+

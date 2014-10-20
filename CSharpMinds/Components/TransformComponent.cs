@@ -12,31 +12,12 @@ namespace CSharpMinds.Components
 
         public GameObject owner;
 
-        public class TransformPosition {
-            private int[] position;
-            public TransformPosition() {
-                position = new[] { 0, 0, 0 };
-            }
-            public int X {
-                get { return position[0]; }
-                set { position[0] = value; }
-            }
-            public int Y {
-                get { return position[1]; }
-                set { position[1] = value; }
-            }
-            public int Z {
-                get { return position[2]; }
-                set { position[2] = value; }
-            }
-        }
-
-        TransformPosition position;
+        Vector position;
         float scale;
         int rotation;
 
 
-        public TransformPosition Position
+        public Vector Position
         {
             get {
                 return position; 
@@ -59,7 +40,7 @@ namespace CSharpMinds.Components
         }
         public TransformComponent()
         {
-            position = new TransformPosition();
+            position = new Vector(0f,0f,0f);
             this.Scale = 1;
         }
 
