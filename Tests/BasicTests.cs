@@ -20,7 +20,7 @@ namespace CSharpMinds.Tests {
         [TestMethod]
         public void TestCanGetComponentByName() {
             go.AddComponent(c);
-            IComponent s = go.FindByName("comp");
+            IComponent s = go.GetComponentByName("comp");
             Assert.AreEqual("comp", s.Name);
         }
 
@@ -34,12 +34,9 @@ namespace CSharpMinds.Tests {
         [TestMethod]
         public void TestCastingComponents() {
             go.AddComponent(c);
-            UpdatingComponent s = go.FindByName("comp") as UpdatingComponent;
+            UpdatingComponent s = go.GetComponentByName("comp") as UpdatingComponent;
             Assert.AreEqual(0, s.TestInt);
         }
-
-    }
-}
 
         [TestMethod]
         public void TestVectorOperands() {
@@ -48,3 +45,5 @@ namespace CSharpMinds.Tests {
             Assert.AreEqual(new Vector(3f, 5f, 7f), v + v2);
         }
 
+    }
+}

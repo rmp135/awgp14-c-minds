@@ -21,7 +21,7 @@ namespace CSharpMinds {
             set { owner = value; }
         }
 
-        public IComponent FindByName(string name) {
+        public IComponent GetComponentByName(string name) {
             return Components.Find(p => p.Name == name);
         }
 

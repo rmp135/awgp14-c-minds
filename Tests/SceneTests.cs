@@ -27,7 +27,7 @@ namespace Tests {
             scene.AddGameObject(go);
 
             scene.Update();
-            Assert.AreEqual(1, (go.FindByName("test") as UpdatingComponent).TestInt);
+            Assert.AreEqual(1, (go.GetComponentByName("test") as UpdatingComponent).TestInt);
         }
 
     }

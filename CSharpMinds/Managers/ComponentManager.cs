@@ -39,9 +39,12 @@ namespace CSharpMinds.Managers {
             }
         }
 
-        public IComponent FindByName(string name)
-        {
+        public IComponent GetComponentByName(string name) {
             return components.Find(p => p.Name == name);
+        }
+
+        public IComponent GetComponent<T>() where T : IComponent {
+            return components.Find(p => p.GetType() == typeof(T));
         }
     }
 }
