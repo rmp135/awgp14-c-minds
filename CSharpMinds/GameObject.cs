@@ -8,7 +8,7 @@ using CSharpMinds.Managers;
 
 namespace CSharpMinds
 {
-    public class GameObject : GameObjectComponentCollection, IGameObject
+    public class GameObject : GameObjectComponentCollection
     {
         //Private members.
 
@@ -24,6 +24,8 @@ namespace CSharpMinds
             Components = new List<IComponent>();
             children = new List<GameObject>();
         }
+
+        public GameObject() : this(new Guid().ToString()) { }
 
         //Public accessors.
 

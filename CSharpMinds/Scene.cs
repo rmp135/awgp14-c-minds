@@ -17,17 +17,18 @@ namespace CSharpMinds {
             compmanager = new ComponentManager();
         }
 
-        public void AddGameObject(IGameObject go)
-        {
-            foreach (IComponent comp in go.Components)
-            {
-                compmanager.AddComponent(comp);
             }
         }
 
         public ComponentManager CompManager
         {
             get { return compmanager; }
+        }
+
+        public void AddGameObject(GameObject go) {
+            foreach (IComponent child in go.ChildComponents) {
+                compmanager.AddComponent(child);
+            }
         }
 
         public void Update() {

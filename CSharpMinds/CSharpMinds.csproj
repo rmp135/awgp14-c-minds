@@ -49,9 +49,7 @@
     <Compile Include="GameObjectComponentCollection.cs" />
     <Compile Include="Interfaces\IComponent.cs" />
     <Compile Include="Interfaces\IComponentFactory.cs" />
-    <Compile Include="Interfaces\IGameObjectFactory.cs" />
     <Compile Include="Interfaces\IComponentCollection.cs" />
-    <Compile Include="Interfaces\IGameObject.cs" />
     <Compile Include="Interfaces\IScene.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IService.cs" />

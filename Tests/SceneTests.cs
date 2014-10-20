@@ -7,10 +7,17 @@ namespace Tests {
     [TestClass]
     public class SceneTests {
 
+        Scene scene;
+        GameObject go;
+
+        [TestInitialize]
+        public void Setup() {
+            scene = new Scene();
+            go = new GameObject();
+        }
+
         [TestMethod]
         public void TestGameObjectsAddToScene() {
-            Scene scene = new Scene();
-            GameObject go = new GameObject("go");
             TransformComponent tc = new TransformComponent();
             go.AddComponent(tc);
             scene.AddGameObject(go);
@@ -18,10 +25,45 @@ namespace Tests {
         }
 
         [TestMethod]
+        public void TestGameObjectsRemoveFromScene() {
+            TransformComponent tc = new TransformComponent();
+            go.AddComponent(tc);
+            scene.AddGameObject(go);
+            scene.RemoveGameObject(go);
+            Assert.AreEqual(0, scene.CompManager.Components.Count);
+        }
+
+        [TestMethod]
+        public void TestRemoveChildGameObjectsFromScene() {
+            GameObject child = new GameObject();
+            child.Parent = go;
+            child.AddComponent(new TransformComponent());
+            scene.AddGameObject(go);
+            Assert.AreEqual(1, scene.CompManager.Components.Count);
+
+            scene.RemoveGameObject(go);
+            Assert.AreEqual(0, scene.CompManager.Components.Count);
+
+        }
+
+        [TestMethod]
+        public void TestAddChildGameObjectsFromScene() {
+            GameObject child = new GameObject();
+            child.Parent = go;
+            child.AddComponent(new TransformComponent());
+            scene.AddGameObject(go);
+            Assert.AreEqual(1, scene.CompManager.Components.Count);
+
+            scene.RemoveGameObject(go);
+            Assert.AreEqual(0, scene.CompManager.Components.Count);
+
+        }
+
+        [TestMethod]
         public void TestSceneUpdates() {
             Scene scene = new Scene();
 
-            GameObject go = new GameObject("go");
+            GameObject go = new GameObject();
             UpdatingComponent tc = new UpdatingComponent("test");
             go.AddComponent(tc);
             scene.AddGameObject(go);

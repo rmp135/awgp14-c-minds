@@ -11,6 +11,16 @@ namespace CSharpMinds {
         List<IComponent> components;
         GameObject owner;
 
+        public List<IComponent> ChildComponents {
+            get {
+                List<IComponent> allcomps = components;
+                foreach (IComponentCollection child in owner.Children) {
+                    allcomps.AddRange(child.ChildComponents);
+                }
+                return allcomps;
+            }
+        }
+
         public List<IComponent> Components {
             get { return components; }
             set { components = value; }

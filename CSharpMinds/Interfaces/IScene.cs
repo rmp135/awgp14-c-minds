@@ -9,7 +9,7 @@ using CSharpMinds.Factories;
 namespace CSharpMinds.Interfaces {
     public interface IScene {
         ComponentManager CompManager { get; }
-        void AddGameObject(IGameObject go);
+        void AddGameObject(GameObject go);
         void LoadContent();
         void Initialise();
         void Update();

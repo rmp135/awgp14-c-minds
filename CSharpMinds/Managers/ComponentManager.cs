@@ -14,8 +14,11 @@ namespace CSharpMinds.Managers {
             get { return components; }
         }
 
-        public ComponentManager()
-        {
+        public List<IComponent> ChildComponents {
+            get { return Components; }
+        }
+
+        public ComponentManager() {
             components = new List<IComponent>();
         }
 

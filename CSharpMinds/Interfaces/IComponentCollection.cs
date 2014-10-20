@@ -9,6 +9,7 @@ namespace CSharpMinds.Interfaces {
         IComponent GetComponentByName(string name);
         IComponent GetComponent<T>() where T : IComponent;
         List<IComponent> Components { get; }
+        List<IComponent> ChildComponents { get; }
 
         void AddComponent(IComponent comp);
         void RemoveComponent(IComponent comp);
