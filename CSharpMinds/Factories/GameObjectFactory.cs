@@ -9,20 +9,16 @@ using CSharpMinds.Managers;
 
 namespace CSharpMinds.Factories
 {
-    public class BasicGameObjectFactory : IGameObjectFactory
+    public static class GameObjectFactory
     {
-        private ComponentManager compman;
 
-        public BasicGameObjectFactory(ComponentManager compman) {
-            this.compman = compman;
-        }
-
-        public virtual IGameObject Build()
+        public static GameObject Build(List<IComponent> components)
         {
             GameObject go = new GameObject(new Guid().ToString());
-            TransformComponent tc = new TransformComponent();
-            go.AddComponent(tc);
-            compman.AddComponent(tc);
+
+            foreach (IComponent comp in components) {
+                go.AddComponent(comp);
+            }
             return go;
         }
     }

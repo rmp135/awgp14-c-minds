@@ -45,7 +45,6 @@
     <Compile Include="Components\UpdatingComponent.cs" />
     <Compile Include="Components\TransformComponent.cs" />
     <Compile Include="Factories\GameObjectFactory.cs" />
-    <Compile Include="Factories\UpdatingGameObjectFactory.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjectComponentCollection.cs" />
     <Compile Include="Interfaces\IComponent.cs" />

@@ -1,19 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CSharpMinds.Factories;
 using CSharpMinds;
 using CSharpMinds.Managers;
+using CSharpMinds.Interfaces;
+using CSharpMinds.Components;
 
 namespace Tests {
     [TestClass]
     public class FactoryTests {
         [TestMethod]
         public void TestGameObjectFactory() {
-            
-            BasicGameObjectFactory gof = new BasicGameObjectFactory(new ComponentManager());
-            GameObject g = gof.Build() as GameObject;
 
-            Assert.AreEqual("Transform", g.FindByName("Transform").Name);
+            GameObject g = GameObjectFactory.Build(new List<IComponent>() {new TransformComponent() });
+
+            Assert.AreEqual("Transform", g.GetComponent<TransformComponent>().Name);
         }
     }
 }
