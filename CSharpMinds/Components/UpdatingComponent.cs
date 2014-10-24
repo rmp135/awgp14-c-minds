@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CSharpMinds.Components {
-    public class UpdatingComponent: Component {
+    public class UpdatingComponent: Component, IUpdatable {
 
         int testint;
 
@@ -19,8 +19,9 @@ namespace CSharpMinds.Components {
             return "test string";
         }
 
-        public override void Update() {
+        public void Update() {
             testint++;
         }
+
     }
 }
