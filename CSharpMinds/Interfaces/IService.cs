@@ -8,6 +8,6 @@ namespace CSharpMinds.Interfaces
 {
     public interface IService
     {
-        static readonly string name { get; }
+        string name { get; }
     }
 }

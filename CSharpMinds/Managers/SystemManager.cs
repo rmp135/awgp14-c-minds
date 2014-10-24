@@ -19,6 +19,7 @@ namespace CSharpMinds.Managers {
             systems.Add(system);
         }
         public static ISystem GetSystem<T>() {
+            if (systems == null) { systems = new List<ISystem>(); }
             return systems.Find(p => p.GetType() == typeof(T));
         }
 

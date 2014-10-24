@@ -29,5 +29,13 @@ namespace CSharpMinds.Managers
         {
             services.Remove(service);
         }
+
+        List<IService> IServiceManager.services {
+            get { throw new NotImplementedException(); }
+        }
+
+        public IService FindWtihName(string name) {
+            throw new NotImplementedException();
+        }
     }
 }
