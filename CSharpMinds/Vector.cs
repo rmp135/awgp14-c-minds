@@ -6,14 +6,28 @@ using System.Threading.Tasks;
 
 namespace CSharpMinds
 {
+
+    /// <summary>
+    /// Basic 3D vector.
+    /// </summary>
     public class Vector
     {
         public float X { get; set; }
         public float Y { get; set; }
         public float Z { get; set; }
 
+
+        /// <summary>
+        /// Construct a Vector at position 0.
+        /// </summary>
         public Vector() : this(0f, 0f, 0f) { }
 
+        /// <summary>
+        /// Construct a Vector with given coordinates. 
+        /// </summary>
+        /// <param name="x">X coord.</param>
+        /// <param name="y">Y coord.</param>
+        /// <param name="z">Z coord.</param>
         public Vector(float x, float y, float z)
         {
             X = x;
@@ -21,6 +35,11 @@ namespace CSharpMinds
             Z = z;
         }
 
+        /// <summary>
+        /// Add another Vector to this.
+        /// </summary>
+        /// <param name="v">The vector to add.</param>
+        /// <returns>The combined Vector.</returns>
         public Vector Add(Vector v) {
             return new Vector(X + v.X, Y + v.Y, Z + v.Z);
         }
@@ -29,6 +48,11 @@ namespace CSharpMinds
             return v1.Add(v2);
         }
 
+        /// <summary>
+        /// Subtract another Vector from this.
+        /// </summary>
+        /// <param name="v">The Vector to subtract.</param>
+        /// <returns>The calculated Vector.</returns>
         public Vector Subtract(Vector v) {
             return new Vector(X - v.X, Y - v.Y, Z - v.Z);
         }
