@@ -86,5 +86,11 @@ namespace Tests
             go.AddComponent(tc);
             Assert.AreEqual(1, go.Components.Count);
         }
+        [TestMethod]
+        public void TestGettingComponentByType() {
+            go.AddComponent(tc);
+            TransformComponent t = go.GetComponent<TransformComponent>() as TransformComponent;
+            Assert.AreEqual("Transform", t.Name);
+        }
     }
 }

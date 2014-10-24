@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace CSharpMinds.Interfaces {
     public interface IComponentCollection {
         IComponent FindByName(string name);
+        IComponent GetComponent<T>() where T : IComponent;
         List<IComponent> Components { get; }
 
         void AddComponent(IComponent comp);
