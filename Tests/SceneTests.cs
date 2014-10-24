@@ -68,7 +68,7 @@ namespace Tests {
             go.AddComponent(tc);
             scene.AddGameObject(go);
 
-            scene.Update();
+            scene.Update(new GameTime());
             Assert.AreEqual(1, (go.GetComponentByName("test") as UpdatingComponent).TestInt);
         }
 

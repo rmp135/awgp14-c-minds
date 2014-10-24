@@ -19,7 +19,7 @@ namespace CSharpMinds.Components {
             return "test string";
         }
 
-        public void Update() {
+        public void Update(GameTime gameTime) {
             testint++;
         }
 

@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CSharpMinds.Systems;
 using CSharpMinds.Managers;
+using CSharpMinds;
 
 namespace Tests {
     [TestClass]
@@ -27,7 +28,7 @@ namespace Tests {
         public void TestNoneUpdatingSystems() {
             RenderSystem cr = new RenderSystem(new ConsoleRenderDriver());
             SystemManager.AddSystem(cr);
-            SystemManager.Update();
+            SystemManager.Update(new GameTime());
         }
     }
 }

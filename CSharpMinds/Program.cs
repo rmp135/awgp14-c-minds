@@ -34,14 +34,15 @@ namespace CSharpMinds
 
 
             for (int i = 0; i < 100000; i++) {
-                SystemManager.Update();
+                SystemManager.Update(_gameTime);
 
                 physics.AddForce(new Vector(0f, -0.5f, 0f));
                 physics2.AddForce(new Vector(0f, 2f, 0f));
 
-                scene.Update();
+                scene.Update(_gameTime);
                 scene.Draw();
-                
+
+                _gameTime.Update();
                 System.Threading.Thread.Sleep(100);
             }
 

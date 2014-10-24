@@ -10,6 +10,6 @@ namespace CSharpMinds {
     /// Allows components to be updated.
     /// </summary>
     public interface IUpdatable {
-        void Update();
+        void Update(GameTime gameTime);
     }
 }

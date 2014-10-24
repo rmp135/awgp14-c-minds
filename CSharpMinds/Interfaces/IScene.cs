@@ -13,7 +13,6 @@ namespace CSharpMinds.Interfaces {
         void RemoveGameObject(GameObject go);
         void LoadContent();
         void Initialise();
-        void Update();
         void Draw();
         void Denitialise();
         void UnloadContent();

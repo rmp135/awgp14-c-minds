@@ -1,11 +1,10 @@
-﻿using CSharpMinds.Components;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpMinds.Interfaces
+namespace CSharpMinds.Components
 {
     public class PhysicsComponent : Component, IUpdatable
     {
@@ -16,7 +15,7 @@ namespace CSharpMinds.Interfaces
             _forceAccumulator = new Vector();
         }
 
-        public void Update() {
+        public void Update(GameTime gameTime) {
             _transform.Position += _forceAccumulator;
             _forceAccumulator.X = 0;
             _forceAccumulator.Y = 0;

@@ -9,10 +9,11 @@ using CSharpMinds.Managers;
 
 namespace CSharpMinds.Components
 {
-    public class TextRenderComponent : Component, IDrawable
+    public class TextRenderComponent : Component, IDrawable, IUpdatable
     {
         RenderSystem _renderSystem;
         TransformComponent _transComp;
+        GameTime _gt;
         public TextRenderComponent() :base ("TextRenderer") { }
 
         public override void Initialise() {
@@ -20,8 +21,12 @@ namespace CSharpMinds.Components
             _transComp = Owner.GetComponent<TransformComponent>() as TransformComponent;
         }
 
+        public void Update(GameTime gameTime) {
+            _gt = gameTime;
+        }
+
         public void Draw() {
-            _renderSystem.DrawText(_transComp.Position.ToString());
+            _renderSystem.DrawText(_gt.DeltaTime + _transComp.Position.ToString());
         }
     }
 }

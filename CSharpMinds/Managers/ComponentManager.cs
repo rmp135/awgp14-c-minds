@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CSharpMinds.Interfaces;
 
 namespace CSharpMinds.Managers {
-    public class ComponentManager : IComponentCollection {
+    public class ComponentManager : IComponentCollection, IUpdatable {
 
         List<IComponent> components;
 
@@ -30,10 +30,10 @@ namespace CSharpMinds.Managers {
             components.Remove(comp);
         }
 
-        public void Update(){
+        public void Update(GameTime gameTime){
             foreach (IComponent comp in components) {
                 if (comp is IUpdatable) {
-                    ((IUpdatable)comp).Update();
+                    ((IUpdatable)comp).Update(gameTime);
                 }
             }
         }

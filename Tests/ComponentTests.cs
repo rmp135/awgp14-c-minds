@@ -98,7 +98,7 @@ namespace Tests
             Scene s = new Scene();
             go.AddComponent(tc);
             s.AddGameObject(go);
-            s.Update();
+            s.Update(new GameTime());
         }
     }
 }

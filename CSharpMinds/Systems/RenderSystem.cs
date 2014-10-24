@@ -24,7 +24,7 @@ namespace CSharpMinds.Systems
             _driver.DrawText(text);
         }
 
-        public void Update() {
+        public void Update(GameTime gameTime) {
             _driver.ClearBuffer();
         }
     }

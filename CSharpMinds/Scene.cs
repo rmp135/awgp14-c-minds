@@ -12,7 +12,7 @@ namespace CSharpMinds {
     /// <summary>
     /// A Scene acts as a collection of Components and GameObject.
     /// </summary>
-    public class Scene : IScene {
+    public class Scene : IScene, IUpdatable {
 
         private ComponentManager _compmanager;
 
@@ -57,8 +57,8 @@ namespace CSharpMinds {
         /// <summary>
         /// Update the scene.
         /// </summary>
-        public void Update() {
-            _compmanager.Update();
+        public void Update(GameTime gameTime) {
+            _compmanager.Update(gameTime);
         }
 
         /// <summary>

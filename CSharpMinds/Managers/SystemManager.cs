@@ -23,10 +23,10 @@ namespace CSharpMinds.Managers {
             return systems.Find(p => p.GetType() == typeof(T));
         }
 
-        public static void Update() {
+        public static void Update(GameTime gameTime) {
             foreach (ISystem system in systems) {
                 if (system is IUpdatable) {
-                    ((IUpdatable)system).Update();
+                    ((IUpdatable)system).Update(gameTime);
                 }
             }
         }

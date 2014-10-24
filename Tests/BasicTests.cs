@@ -27,7 +27,7 @@ namespace CSharpMinds.Tests {
         [TestMethod]
         public void TestComponentsUpdate() {
             go.AddComponent(c);
-            c.Update();
+            c.Update(new GameTime());
             Assert.AreEqual(1, c.TestInt);
         }
 
