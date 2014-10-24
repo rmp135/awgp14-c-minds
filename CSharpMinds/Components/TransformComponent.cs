@@ -7,51 +7,43 @@ using CSharpMinds.Interfaces;
 
 namespace CSharpMinds.Components
 {
-    public class TransformComponent : IComponent
+    public class TransformComponent : Component
     {
 
-        public GameObject owner;
+        public GameObject _owner;
 
-        Vector position;
-        float scale;
-        int rotation;
+        Vector _position;
+        float _scale;
+        int _rotation;
 
 
         public Vector Position
         {
             get {
-                return position; 
+                return _position; 
             }
+            set { _position = value; }
         }
 
         public float Scale
         {
-            get { return scale; }
-            set { scale = value; }
+            get { return _scale; }
+            set { _scale = value; }
         }
 
         public int Rotation {
-            get { return rotation; }
+            get { return _rotation; }
             set
             {
                 int absvalue = Math.Abs(value);
-                rotation = absvalue - 360 * (absvalue / 360);
+                _rotation = absvalue - 360 * (absvalue / 360);
             }
         }
-        public TransformComponent()
+        public TransformComponent() : base("Transform")
         {
-            position = new Vector(0f,0f,0f);
+            _position = new Vector(0f,0f,0f);
             this.Scale = 1;
         }
 
-        public GameObject Owner {
-            get { return owner; }
-            set { owner = value; }
-        }
-
-        public string Name {
-            get { return "Transform"; }
-            set { }
-        }
     }
 }

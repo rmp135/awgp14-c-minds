@@ -31,14 +31,18 @@ namespace CSharpMinds.Managers {
         }
 
         public void Update(){
-            foreach (IUpdatable updatable in components) {
-                updatable.Update();
+            foreach (IComponent comp in components) {
+                if (comp is IUpdatable) {
+                    ((IUpdatable)comp).Update();
+                }
             }
         }
 
         public void Draw() {
-            foreach (IDrawable drawable in components) {
-                drawable.Draw();
+            foreach (IComponent comp in components) {
+                if (comp is IDrawable) {
+                    ((IDrawable)comp).Draw();
+                }
             }
         }
 

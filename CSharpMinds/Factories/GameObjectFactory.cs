@@ -17,7 +17,11 @@ namespace CSharpMinds.Factories
             GameObject go = new GameObject(new Guid().ToString());
 
             foreach (IComponent comp in components) {
+                comp.Owner = go;
                 go.AddComponent(comp);
+            }
+            foreach (IComponent comp in components) {
+                comp.Initialise();
             }
             return go;
         }

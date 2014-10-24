@@ -7,29 +7,28 @@ using CSharpMinds.Interfaces;
 
 namespace CSharpMinds
 {
-    public abstract class Component : IComponent, IUpdatable
+    public abstract class Component : IComponent
 
     {
         // Private members
-        GameObject owner;
-        string name;
+        GameObject _owner;
+        string _name;
 
         //Public accessors
-
         public Component(String name) {
-            this.name = name;
+            _name = name;
         }
 
         public GameObject Owner {
-            get { return owner; }
-            set { owner = value; }
+            get { return _owner; }
+            set { _owner = value; }
         }
 
         public String Name {
-            get { return name; }
-            set { name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
-        public virtual void Update() { }
+        public virtual void Initialise(){}
     }
 }

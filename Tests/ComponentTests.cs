@@ -92,5 +92,13 @@ namespace Tests
             TransformComponent t = go.GetComponent<TransformComponent>() as TransformComponent;
             Assert.AreEqual("Transform", t.Name);
         }
+
+        [TestMethod]
+        public void TestNonUpdatableComps() {
+            Scene s = new Scene();
+            go.AddComponent(tc);
+            s.AddGameObject(go);
+            s.Update();
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace CSharpMinds.Interfaces {
     public interface IScene {
         ComponentManager CompManager { get; }
         void AddGameObject(GameObject go);
+        void RemoveGameObject(GameObject go);
         void LoadContent();
         void Initialise();
         void Update();

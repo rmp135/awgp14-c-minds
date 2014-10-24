@@ -10,5 +10,6 @@ namespace CSharpMinds.Interfaces
     {
         GameObject Owner { get; set; }
         string Name { get; set; }
+        void Initialise();
     }
 }
