@@ -52,6 +52,8 @@
     <Compile Include="Interfaces\IComponentFactory.cs" />
     <Compile Include="Interfaces\IComponentCollection.cs" />
     <Compile Include="Interfaces\IRenderDriver.cs" />
+    <Compile Include="Interfaces\IGameObject.cs" />
+    <Compile Include="Interfaces\IResource.cs" />
     <Compile Include="Interfaces\IScene.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IService.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="Interfaces\PhysicsComponent.cs" />
     <Compile Include="Managers\ComponentManager.cs" />
     <Compile Include="Managers\SystemManager.cs" />
+    <Compile Include="Managers\ResourceManager.cs" />
     <Compile Include="Managers\ServiceManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

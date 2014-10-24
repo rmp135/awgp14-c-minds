@@ -8,6 +8,6 @@ namespace CSharpMinds.Interfaces
 {
     public interface IService
     {
-        string name { get; }
+        static string name { get; }
     }
 }
