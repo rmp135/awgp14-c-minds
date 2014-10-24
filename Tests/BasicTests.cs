@@ -2,24 +2,25 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CSharpMinds;
 using CSharpMinds.Interfaces;
+using CSharpMinds.Components;
 
 namespace CSharpMinds.Tests {
 
     [TestClass]
     public class BasicTests {
         GameObject go;
-        TestComponent c;
+        UpdatingComponent c;
 
         [TestInitialize]
         public void Setup() {
             go = new GameObject("go");
-            c = new TestComponent("comp");
+            c = new UpdatingComponent("comp");
         }
 
         [TestMethod]
         public void TestCanGetComponentByName() {
             go.AddComponent(c);
-            IComponent s = go.GetComponentByName("comp");
+            IComponent s = go.FindByName("comp");
             Assert.AreEqual("comp", s.Name);
         }
 
@@ -33,7 +34,7 @@ namespace CSharpMinds.Tests {
         [TestMethod]
         public void TestCastingComponents() {
             go.AddComponent(c);
-            TestComponent s = go.GetComponentByName("comp") as TestComponent;
+            UpdatingComponent s = go.FindByName("comp") as UpdatingComponent;
             Assert.AreEqual(0, s.TestInt);
         }
 

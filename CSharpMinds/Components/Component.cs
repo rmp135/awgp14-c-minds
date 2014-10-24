@@ -7,7 +7,8 @@ using CSharpMinds.Interfaces;
 
 namespace CSharpMinds
 {
-    public abstract class Component : IComponent
+    public abstract class Component : IComponent, IUpdatable
+
     {
         // Private members
         GameObject owner;

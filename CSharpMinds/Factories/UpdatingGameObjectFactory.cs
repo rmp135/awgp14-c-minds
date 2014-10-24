@@ -5,14 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using CSharpMinds.Managers;
 using CSharpMinds.Interfaces;
+using CSharpMinds.Components;
 
 namespace CSharpMinds.Factories {
-    public class UpdatingGameObjectFactory : GameObjectFactory {
-        public UpdatingGameObjectFactory(ComponentManager compman) : base(compman) { }
+    public class UpdatingGameObjectFactory : IGameObjectFactory {
+        ComponentManager compman;
+        public UpdatingGameObjectFactory(ComponentManager compman)
+        {
+            this.compman = compman;
+        }
 
-        public override IGameObject Build() {
-            GameObject gc =  base.Build() as GameObject;
-            TestComponent tc = new TestComponent("test");
+        public IGameObject Build() {
+            GameObject gc = new GameObject("updating object");
+            UpdatingComponent tc = new UpdatingComponent("test");
             gc.AddComponent(tc);
             compman.AddComponent(tc);
             return gc;

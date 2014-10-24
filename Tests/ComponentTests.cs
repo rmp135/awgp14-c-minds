@@ -14,7 +14,7 @@ namespace Tests
         [TestInitialize]
         public void Setup()
         {
-            tc = new TransformComponent("Transform");
+            tc = new TransformComponent();
             go = new GameObject("go");
         }
 
@@ -75,7 +75,7 @@ namespace Tests
 
         [TestMethod]
         public void TestRemovingNonExistentComponent() {
-            TestComponent tc2 = new TestComponent("tc2");
+            UpdatingComponent tc2 = new UpdatingComponent("tc2");
             go.RemoveComponent(tc2);
             Assert.AreEqual(0, go.Components.Count);
         }

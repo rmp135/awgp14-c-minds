@@ -7,7 +7,7 @@ using CSharpMinds.Managers;
 
 namespace CSharpMinds.Interfaces
 {
-    public interface IGameObject : IGameObjectComponentBridge
+    public interface IGameObject : IComponentCollection
     {
         string Name { get; }
         GameObject Parent { get; }

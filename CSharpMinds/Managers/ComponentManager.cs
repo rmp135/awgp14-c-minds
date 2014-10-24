@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CSharpMinds.Interfaces;
 
 namespace CSharpMinds.Managers {
-    public class ComponentManager : IComponentManager{
+    public class ComponentManager : IComponentCollection {
 
         List<IComponent> components;
 
@@ -23,6 +23,10 @@ namespace CSharpMinds.Managers {
             components.Add(comp);
         }
 
+        public void RemoveComponent(IComponent comp) {
+            components.Remove(comp);
+        }
+
         public void Update(){
             foreach (IUpdatable updatable in components) {
                 updatable.Update();
@@ -35,7 +39,7 @@ namespace CSharpMinds.Managers {
             }
         }
 
-        public IComponent FindWithName(string name)
+        public IComponent FindByName(string name)
         {
             return components.Find(p => p.Name == name);
         }

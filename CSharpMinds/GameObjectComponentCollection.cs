@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using CSharpMinds.Interfaces;
 
 namespace CSharpMinds {
-    public class GameObjectComponentBridge : IGameObjectComponentBridge {
+    public class GameObjectComponentCollection : IComponentCollection {
 
-        List<Component> components;
+        List<IComponent> components;
         GameObject owner;
 
-        public List<Component> Components {
+        public List<IComponent> Components {
             get { return components; }
             set { components = value; }
         }
@@ -21,17 +21,17 @@ namespace CSharpMinds {
             set { owner = value; }
         }
 
-        public Component GetComponentByName(string name) {
+        public IComponent FindByName(string name) {
             return Components.Find(p => p.Name == name);
         }
 
-        public void AddComponent(Component comp) {
+        public void AddComponent(IComponent comp) {
             if (components.Contains(comp)) { return; }
             comp.Owner = this.Owner;
             Components.Add(comp);
         }
 
-        public void RemoveComponent(Component c) {
+        public void RemoveComponent(IComponent c) {
             c.Owner = null;
             Components.Remove(c);
         }
