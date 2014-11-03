@@ -52,11 +52,13 @@
     <Compile Include="ImageResource.cs" />
     <Compile Include="Interfaces\IComponent.cs" />
     <Compile Include="Interfaces\IComponentCollection.cs" />
+    <Compile Include="Interfaces\IInput.cs" />
     <Compile Include="Interfaces\IRenderDriver.cs" />
     <Compile Include="Interfaces\IScene.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IUpdatable.cs" />
     <Compile Include="Components\PhysicsComponent.cs" />
+    <Compile Include="KeyBoardInput.cs" />
     <Compile Include="Managers\ComponentManager.cs" />
     <Compile Include="Managers\SystemManager.cs" />
     <Compile Include="Program.cs" />
