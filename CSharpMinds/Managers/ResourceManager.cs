@@ -16,20 +16,29 @@ namespace CSharpMinds.Managers
             resources = new List<Resource>();
         }
 
-        public Resource LoadBitmap(string filePath)
+        public Resource LoadBitmap(string filePath, string name)
         {
-            Bitmap b = (Bitmap)Image.FromFile(filePath, true);
 
-            Resource r = new Resource(b);
+            Resource r = new ImageResource(filePath, name);
             resources.Add(r);
 
             return r;
         }
 
-        //public Resource LoadTextFile(string filePath)
-        //{
-            
-        //}
+        public void AddResource(Resource resource)
+        {
+            resources.Add(resource);
+        }
+
+        public Resource findByName(string name)
+        {
+            foreach (Resource r in resources) {
+                if (r.name.Equals(name)) {
+                    return r;
+                }
+            }//TODO: throw exception here
+            return null;
+        }
 
         public List<Resource> getResources()
         {
