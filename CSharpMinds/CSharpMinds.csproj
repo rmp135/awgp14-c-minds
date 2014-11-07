@@ -46,6 +46,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,9 +78,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Component.cs" />
+    <Compile Include="Components\ICollidable.cs" />
+    <Compile Include="Components\ICollider.cs" />
+    <Compile Include="Components\SpriteRenderComponent.cs" />
     <Compile Include="Components\TextRenderComponent.cs" />
     <Compile Include="Components\UpdatingComponent.cs" />
     <Compile Include="Components\TransformComponent.cs" />
+    <Compile Include="Components\WASDControlComponent.cs" />
     <Compile Include="Factories\GameObjectFactory.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjectComponentCollection.cs" />
@@ -68,7 +92,6 @@
     <Compile Include="Resources\ImageResource.cs" />
     <Compile Include="Interfaces\IComponent.cs" />
     <Compile Include="Interfaces\IComponentCollection.cs" />
-    <Compile Include="Interfaces\IRenderDriver.cs" />
     <Compile Include="Interfaces\IScene.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IUpdatable.cs" />
@@ -82,12 +105,12 @@
     <Compile Include="Managers\ResourceManager.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Systems\AudioSystem.cs" />
-    <Compile Include="Systems\ConsoleRenderer.cs" />
+    <Compile Include="Systems\InputSystem.cs" />
+    <Compile Include="Systems\PhysicsSystem.cs" />
     <Compile Include="Systems\RenderSystem.cs" />
     <Compile Include="Systems\IAudioDriver.cs" />
     <Compile Include="Systems\ISystem.cs" />
     <Compile Include="Systems\TestAudioDriver.cs" />
-    <Compile Include="Vector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -109,6 +132,28 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\appicns_Chrome.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\appicns_Firefox.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{2381ef98-0cf7-4683-9c1f-1ca423adcd16}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConsoleLibrary\ConsoleLibrary.csproj">
+      <Project>{9fbd92ac-d1fb-4a39-b21c-e17b6f4f21f9}</Project>
+      <Name>ConsoleLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFMLLibrary\SFMLLibrary.csproj">
+      <Project>{262cc8b4-18be-4a71-bbe9-ec53f4eff390}</Project>
+      <Name>SFMLLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

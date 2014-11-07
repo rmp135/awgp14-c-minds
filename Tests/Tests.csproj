@@ -59,6 +59,14 @@
     <Compile Include="SystemTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{2381ef98-0cf7-4683-9c1f-1ca423adcd16}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConsoleLibrary\ConsoleLibrary.csproj">
+      <Project>{9fbd92ac-d1fb-4a39-b21c-e17b6f4f21f9}</Project>
+      <Name>ConsoleLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CSharpMinds\CSharpMinds.csproj">
       <Project>{bbac7dd6-fd9a-48e6-8518-b5e41c2a6a19}</Project>
       <Name>CSharpMinds</Name>

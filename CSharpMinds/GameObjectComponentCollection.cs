@@ -75,8 +75,8 @@ namespace CSharpMinds {
         /// </summary>
         /// <typeparam name="T">The Component type you wish to retrieve.</typeparam>
         /// <returns>The Component if it exists.</returns>
-        public IComponent GetComponent<T>() where T : IComponent {
-            return components.Find(p => p.GetType() == typeof(T));
+        public T GetComponent<T>() where T : IComponent {
+            return (T)components.Find(p => p.GetType() == typeof(T));
         }
     }
 }

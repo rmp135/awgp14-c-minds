@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CSharpMinds;
 using CSharpMinds.Interfaces;
 using CSharpMinds.Components;
+using Common;
 
 namespace CSharpMinds.Tests {
 

@@ -26,7 +26,7 @@ namespace CSharpMinds.Components
         }
 
         public void Draw() {
-            _renderSystem.DrawText(_gt.DeltaTime + _transComp.Position.ToString());
+            _renderSystem.DrawText(_transComp.Position.ToString(), _transComp.Position);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CSharpMinds.Components;
 using CSharpMinds;
+using Common;
 
 namespace Tests
 {
@@ -29,8 +30,7 @@ namespace Tests
         [TestMethod]
         public void TestCanMovePosition()
         {
-            tc.Position.X = 20;
-            tc.Position.Y = 30;
+            tc.Position = new Vector(20, 30);
             Assert.AreEqual(20, tc.Position.X);
             Assert.AreEqual(30, tc.Position.Y);
         }

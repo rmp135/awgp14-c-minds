@@ -18,9 +18,9 @@ namespace CSharpMinds.Managers {
             }
             systems.Add(system);
         }
-        public static ISystem GetSystem<T>() {
+        public static T GetSystem<T>() {
             if (systems == null) { systems = new List<ISystem>(); }
-            return systems.Find(p => p.GetType() == typeof(T));
+            return (T)systems.Find(p => p.GetType() == typeof(T));
         }
 
         public static void Update(GameTime gameTime) {

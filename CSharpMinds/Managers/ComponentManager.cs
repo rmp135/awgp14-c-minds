@@ -50,8 +50,8 @@ namespace CSharpMinds.Managers {
             return components.Find(p => p.Name == name);
         }
 
-        public IComponent GetComponent<T>() where T : IComponent {
-            return components.Find(p => p.GetType() == typeof(T));
+        public T GetComponent<T>() where T : IComponent {
+            return (T)components.Find(p => p.GetType() == typeof(T));
         }
     }
 }

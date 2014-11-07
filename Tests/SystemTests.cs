@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CSharpMinds.Systems;
 using CSharpMinds.Managers;
 using CSharpMinds;
+using ConsoleLibrary.Drivers;
 
 namespace Tests {
     [TestClass]
