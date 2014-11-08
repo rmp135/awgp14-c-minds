@@ -1,7 +1,7 @@
 ﻿using CSharpMinds.Components;
 using CSharpMinds.Interfaces;
 
-namespace Tests.Components
+namespace Tests.Mocks
 {
     internal class MockDrawComponent : Component, IDrawable
     {

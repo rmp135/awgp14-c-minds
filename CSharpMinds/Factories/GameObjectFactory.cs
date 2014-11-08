@@ -1,4 +1,5 @@
-﻿using CSharpMinds.Interfaces;
+﻿using CSharpMinds.Exceptions;
+using CSharpMinds.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -17,7 +18,11 @@ namespace CSharpMinds.Factories
                     comp.Initialise();
                 }
                 catch (ComponentNotFoundException e) {
-                    Console.WriteLine(comp + " is missing a dependancy, disabled.");
+                    Console.WriteLine(comp + " is missing a " + e.ComponentName + " component dependancy.");
+                    comp.Enabled = false;
+                }
+                catch (SystemNotFoundException e) {
+                    Console.WriteLine(comp + " is missing a " + e.SystemName + " system dependancy.");
                     comp.Enabled = false;
                 }
             }

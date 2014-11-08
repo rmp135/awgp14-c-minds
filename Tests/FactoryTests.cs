@@ -4,7 +4,7 @@ using CSharpMinds.Factories;
 using CSharpMinds.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Tests.Components;
+using Tests.Mocks;
 
 namespace Tests
 {
@@ -39,11 +39,18 @@ namespace Tests
         }
 
         [TestMethod]
-        public void ExceptionOnMissingDeps() {
+        public void DisableCompOnMissingRequiredComp() {
             MockReliesOnComponent trc = new MockReliesOnComponent();
 
             GameObject g = GameObjectFactory.Build(new List<IComponent>() { trc });
             Assert.IsFalse(trc.Enabled);
+        }
+
+        [TestMethod]
+        public void DisableCompOnMissingRequiredSystem() {
+            MockReliesOnSystem ros = new MockReliesOnSystem();
+            GameObject g = GameObjectFactory.Build(new List<IComponent>() { ros });
+            Assert.IsFalse(ros.Enabled);
         }
     }
 }

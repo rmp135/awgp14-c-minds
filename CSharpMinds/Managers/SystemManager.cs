@@ -1,4 +1,5 @@
-﻿using CSharpMinds.Interfaces;
+﻿using CSharpMinds.Exceptions;
+using CSharpMinds.Interfaces;
 using CSharpMinds.Systems;
 using System.Collections.Generic;
 
@@ -6,24 +7,26 @@ namespace CSharpMinds.Managers
 {
     public static class SystemManager
     {
-        private static List<ISystem> systems;
+        private static List<ISystem> _systems;
 
         public static void AddSystem(ISystem system) {
-            if (systems == null) { systems = new List<ISystem>(); }
-            ISystem alreadyImplemented = systems.Find(p => p.GetType() == system.GetType());
+            if (_systems == null) { _systems = new List<ISystem>(); }
+            ISystem alreadyImplemented = _systems.Find(p => p.GetType() == system.GetType());
             if (alreadyImplemented != null) {
-                systems.Remove(alreadyImplemented);
+                _systems.Remove(alreadyImplemented);
             }
-            systems.Add(system);
+            _systems.Add(system);
         }
 
         public static T GetSystem<T>() {
-            if (systems == null) { systems = new List<ISystem>(); }
-            return (T)systems.Find(p => p.GetType() == typeof(T));
+            if (_systems == null) { throw new SystemNotFoundException(typeof(T).ToString()); }
+            T ret = (T)_systems.Find(p => p.GetType() == typeof(T));
+            if (ret == null) { throw new SystemNotFoundException(typeof(T).ToString()); }
+            return ret;
         }
 
         public static void Update(GameTime gameTime) {
-            foreach (ISystem system in systems) {
+            foreach (ISystem system in _systems) {
                 if (system is IUpdatable) {
                     ((IUpdatable)system).Update(gameTime);
                 }

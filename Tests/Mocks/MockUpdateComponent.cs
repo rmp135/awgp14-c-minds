@@ -2,7 +2,7 @@
 using CSharpMinds.Components;
 using CSharpMinds.Interfaces;
 
-namespace Tests.Components
+namespace Tests.Mocks
 {
     public class MockUpdateComponent : Component, IUpdatable
     {

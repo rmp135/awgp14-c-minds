@@ -1,4 +1,5 @@
-﻿using CSharpMinds.Interfaces;
+﻿using CSharpMinds.Exceptions;
+using CSharpMinds.Interfaces;
 using System.Collections.Generic;
 
 namespace CSharpMinds
@@ -72,7 +73,7 @@ namespace CSharpMinds
         /// <returns>The Component if it exists.</returns>
         public T GetComponent<T>() where T : IComponent {
             T ret = (T)components.Find(p => p.GetType() == typeof(T));
-            if (ret == null) { throw new ComponentNotFoundException(); }
+            if (ret == null) { throw new ComponentNotFoundException(typeof(T).ToString()); }
             return ret;
         }
     }

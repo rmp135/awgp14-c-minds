@@ -1,6 +1,6 @@
 ﻿using CSharpMinds.Components;
 
-namespace Tests.Components
+namespace Tests.Mocks
 {
     internal class MockReliesOnComponent : Component
     {

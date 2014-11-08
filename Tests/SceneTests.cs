@@ -1,7 +1,7 @@
 ﻿using CSharpMinds;
 using CSharpMinds.Components;
-using Tests.Components;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests.Mocks;
 
 namespace Tests
 {

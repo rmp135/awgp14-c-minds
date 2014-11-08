@@ -77,7 +77,8 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComponentNotFoundException.cs" />
+    <Compile Include="Exceptions\SystemNotFoundException.cs" />
+    <Compile Include="Exceptions\ComponentNotFoundException.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\SpriteRenderComponent.cs" />
     <Compile Include="Components\TextRenderComponent.cs" />

@@ -7,6 +7,8 @@ using CSharpMinds.Systems;
 
 //Import libraries that are required.
 using SFMLLibrary.Drivers;
+
+//
 using System.Collections.Generic;
 
 namespace CSharpMinds
@@ -27,18 +29,18 @@ namespace CSharpMinds
             //Setup a new scene.
             Scene _scene = new Scene();
 
-            PhysicsComponent physics2 = new PhysicsComponent();
+            PhysicsComponent gravity = new PhysicsComponent();
 
-            GameObject gameobject2 = GameObjectFactory.Build(new List<IComponent>() { new TransformComponent(), new SpriteRenderComponent("Resources\\appicns_Chrome.png"), physics2 });
+            GameObject _chrome = GameObjectFactory.Build("chrome", new List<IComponent>() { new TransformComponent(), new SpriteRenderComponent("Resources\\appicns_Chrome.png"), gravity });
 
-            GameObject go3 = GameObjectFactory.Build("player", new List<IComponent>() { new WASDControlComponent(), new TransformComponent(), new SpriteRenderComponent("Resources\\appicns_Firefox.png") });
-            _scene.AddGameObject(gameobject2);
-            _scene.AddGameObject(go3);
+            GameObject _firefox = GameObjectFactory.Build("firefox", new List<IComponent>() { new TransformComponent(), new PhysicsComponent(), new WASDControlComponent(), new SpriteRenderComponent("Resources\\appicns_Firefox.png") });
+            _scene.AddGameObject(_chrome);
+            _scene.AddGameObject(_firefox);
 
             for (int i = 0; i < 100000; i++) {
                 SystemManager.Update(_gameTime);
 
-                physics2.AddForce(new Vector(0f, 1f));
+                gravity.AddForce(new Vector(0f, 9.8f));
 
                 //Update
                 _scene.Update(_gameTime);

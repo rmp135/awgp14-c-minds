@@ -1,17 +1,15 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CSharpMinds;
+﻿using Common;
 using CSharpMinds.Interfaces;
-using CSharpMinds.Components;
-using Common;
-using Tests.Components;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests.Mocks;
 
-namespace CSharpMinds.Tests {
-
+namespace CSharpMinds.Tests
+{
     [TestClass]
-    public class BasicTests {
-        GameObject go;
-        MockUpdateComponent c;
+    public class BasicTests
+    {
+        private GameObject go;
+        private MockUpdateComponent c;
 
         [TestInitialize]
         public void Setup() {
@@ -46,6 +44,5 @@ namespace CSharpMinds.Tests {
             Vector v2 = new Vector(1f, 2f, 3f);
             Assert.AreEqual(new Vector(3f, 5f, 7f), v + v2);
         }
-
     }
 }
