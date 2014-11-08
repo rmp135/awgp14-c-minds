@@ -26,6 +26,15 @@ namespace Tests
         }
 
         [TestMethod]
+        public void TestSetChildComponents() {
+            GameObject go2 = new GameObject();
+            go2.AddComponent(new MockDrawComponent());
+            go.AddChild(go2);
+            Assert.AreEqual(1, go.ChildComponents.Count);
+            Assert.AreEqual(0, go.Components.Count);
+        }
+
+        [TestMethod]
         public void TestCanMovePosition() {
             tc.Position = new Vector(20, 30);
             Assert.AreEqual(20, tc.Position.X);

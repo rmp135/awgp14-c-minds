@@ -17,7 +17,7 @@ namespace CSharpMinds
         /// </summary>
         public List<IComponent> ChildComponents {
             get {
-                List<IComponent> allcomps = components;
+                List<IComponent> allcomps = new List<IComponent>(components);
                 foreach (IComponentCollection child in owner.Children) {
                     allcomps.AddRange(child.ChildComponents);
                 }
