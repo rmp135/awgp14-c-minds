@@ -15,9 +15,9 @@ namespace CSharpMinds
     {
         //Private members.
 
-        string name;
-        GameObject parent;
-        List<GameObject> children;
+        string _name;
+        GameObject _parent;
+        List<GameObject> _children;
 
         //Constructor
 
@@ -28,9 +28,9 @@ namespace CSharpMinds
         public GameObject(string name)
         {
             Owner = this;
-            this.name = name;
+            this._name = name;
             Components = new List<IComponent>();
-            children = new List<GameObject>();
+            _children = new List<GameObject>();
         }
 
         /// <summary>
@@ -44,15 +44,15 @@ namespace CSharpMinds
         /// Return a list of GameObjects that have this object as the parent.
         /// </summary>
         public List<GameObject> Children {
-            get { return children; }
+            get { return _children; }
         }
 
         /// <summary>
         /// Return the name of the game object.
         /// </summary>
         public String Name {
-            get { return name; }
-            set { name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
         /// <summary>
@@ -60,8 +60,8 @@ namespace CSharpMinds
         /// </summary>
         /// <param name="go">The GameObject that you wish to add as a child.</param>
         public void AddChild(GameObject go) {
-            if (!children.Contains(go)) {
-                children.Add(go);
+            if (!_children.Contains(go)) {
+                _children.Add(go);
                 go.Parent = this;
             }
         }
@@ -71,8 +71,8 @@ namespace CSharpMinds
         /// </summary>
         /// <param name="go">The GameObject that you wish to remove.</param>
         public void RemoveChild(GameObject go) {
-            if (children.Contains(go)) {
-                children.Remove(go);
+            if (_children.Contains(go)) {
+                _children.Remove(go);
                 go.Parent = null;
             }
         }
@@ -81,16 +81,16 @@ namespace CSharpMinds
         /// The parent of this GameObject.
         /// </summary>
         public GameObject Parent {
-            get { return parent; }
+            get { return _parent; }
             set {
-                if (parent != null && parent != value) {
-                    parent.RemoveChild(this);
+                if (_parent != null && _parent != value) {
+                    _parent.RemoveChild(this);
                 }
                 if (value != null) {
                     value.AddChild(this);
                 }
 
-                parent = value;
+                _parent = value;
             }
         }
 

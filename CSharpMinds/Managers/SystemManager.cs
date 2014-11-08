@@ -1,15 +1,12 @@
-﻿using CSharpMinds.Systems;
-using System;
 ﻿using CSharpMinds.Interfaces;
+using CSharpMinds.Systems;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CSharpMinds.Managers {
-    public static class SystemManager {
-
-        static List<ISystem> systems;
+namespace CSharpMinds.Managers
+{
+    public static class SystemManager
+    {
+        private static List<ISystem> systems;
 
         public static void AddSystem(ISystem system) {
             if (systems == null) { systems = new List<ISystem>(); }
@@ -19,6 +16,7 @@ namespace CSharpMinds.Managers {
             }
             systems.Add(system);
         }
+
         public static T GetSystem<T>() {
             if (systems == null) { systems = new List<ISystem>(); }
             return (T)systems.Find(p => p.GetType() == typeof(T));
