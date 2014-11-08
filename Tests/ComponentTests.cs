@@ -1,43 +1,39 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CSharpMinds.Components;
+﻿using Common;
 using CSharpMinds;
-using Common;
+using CSharpMinds.Components;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests.Components;
 
 namespace Tests
 {
     [TestClass]
     public class ComponentTests
     {
-        GameObject go;
-        TransformComponent tc;
+        private GameObject go;
+        private TransformComponent tc;
 
         [TestInitialize]
-        public void Setup()
-        {
+        public void Setup() {
             tc = new TransformComponent();
             go = new GameObject("go");
         }
 
         [TestMethod]
-        public void TestInitPosRotScale()
-        {
+        public void TestInitPosRotScale() {
             Assert.AreEqual(0, tc.Position.X);
             Assert.AreEqual(1.0, tc.Scale);
             Assert.AreEqual(0, tc.Rotation);
         }
 
         [TestMethod]
-        public void TestCanMovePosition()
-        {
+        public void TestCanMovePosition() {
             tc.Position = new Vector(20, 30);
             Assert.AreEqual(20, tc.Position.X);
             Assert.AreEqual(30, tc.Position.Y);
         }
 
         [TestMethod]
-        public void TestCanScale()
-        {
+        public void TestCanScale() {
             tc.Scale = 2.5f;
             Assert.AreEqual(2.5f, tc.Scale);
             tc.Scale = -2.5f;
@@ -45,15 +41,13 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestCanRotate()
-        {
+        public void TestCanRotate() {
             tc.Rotation = 275;
             Assert.AreEqual(275, tc.Rotation);
         }
 
         [TestMethod]
-        public void TestRotationBoundaries()
-        {
+        public void TestRotationBoundaries() {
             tc.Rotation = 540;
             Assert.AreEqual(180, tc.Rotation);
             tc.Rotation = -540;
@@ -75,7 +69,7 @@ namespace Tests
 
         [TestMethod]
         public void TestRemovingNonExistentComponent() {
-            UpdatingComponent tc2 = new UpdatingComponent("tc2");
+            MockUpdateComponent tc2 = new MockUpdateComponent();
             go.RemoveComponent(tc2);
             Assert.AreEqual(0, go.Components.Count);
         }
@@ -86,6 +80,7 @@ namespace Tests
             go.AddComponent(tc);
             Assert.AreEqual(1, go.Components.Count);
         }
+
         [TestMethod]
         public void TestGettingComponentByType() {
             go.AddComponent(tc);
@@ -99,6 +94,24 @@ namespace Tests
             go.AddComponent(tc);
             s.AddGameObject(go);
             s.Update(new GameTime());
+        }
+
+        [TestMethod]
+        public void DisabledCompsDoNotUpdate() {
+            Scene s = new Scene();
+            MockUpdateComponent up = new MockUpdateComponent();
+            go.AddComponent(up);
+            tc.Enabled = false;
+            Assert.AreEqual(0, up.TestInt);
+        }
+
+        [TestMethod]
+        public void DisabledCompsDoNotDraw() {
+            Scene s = new Scene();
+            MockDrawComponent dc = new MockDrawComponent();
+            go.AddComponent(dc);
+            tc.Enabled = false;
+            Assert.AreEqual(false, dc.DrawCalled);
         }
     }
 }

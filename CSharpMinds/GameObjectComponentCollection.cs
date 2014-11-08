@@ -1,19 +1,15 @@
-﻿using System;
+﻿using CSharpMinds.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSharpMinds.Interfaces;
 
-namespace CSharpMinds {
-
+namespace CSharpMinds
+{
     /// <summary>
     /// Handled the links between a GameObject and its components.
     /// </summary>
-    public class GameObjectComponentCollection : IComponentCollection {
-
-        List<IComponent> components;
-        GameObject owner;
+    public class GameObjectComponentCollection : IComponentCollection
+    {
+        private List<IComponent> components;
+        private GameObject owner;
 
         /// <summary>
         /// Return all components of the GameObject and all components of the GameObjects children.
@@ -60,7 +56,6 @@ namespace CSharpMinds {
             Components.Add(comp);
         }
 
-
         /// <summary>
         /// Remove a Component from this GameObject.
         /// </summary>
@@ -76,7 +71,9 @@ namespace CSharpMinds {
         /// <typeparam name="T">The Component type you wish to retrieve.</typeparam>
         /// <returns>The Component if it exists.</returns>
         public T GetComponent<T>() where T : IComponent {
-            return (T)components.Find(p => p.GetType() == typeof(T));
+            T ret = (T)components.Find(p => p.GetType() == typeof(T));
+            if (ret == null) { throw new ComponentNotFoundException(); }
+            return ret;
         }
     }
 }

@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CSharpMinds.Factories;
-using CSharpMinds;
-using CSharpMinds.Managers;
-using CSharpMinds.Interfaces;
+﻿using CSharpMinds;
 using CSharpMinds.Components;
+using CSharpMinds.Factories;
+using CSharpMinds.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using Tests.Components;
 
-namespace Tests {
+namespace Tests
+{
     [TestClass]
-    public class FactoryTests {
+    public class FactoryTests
+    {
         [TestMethod]
         public void TestGOFactoryAddsComponent() {
-
             GameObject g = GameObjectFactory.Build(new List<IComponent>() { new TransformComponent() });
 
             Assert.AreEqual("Transform", g.GetComponent<TransformComponent>().Name);
@@ -20,7 +20,6 @@ namespace Tests {
 
         [TestMethod]
         public void TestGOSetsComponentOwner() {
-
             TransformComponent tc = new TransformComponent();
 
             GameObject g = GameObjectFactory.Build(new List<IComponent>() { tc });
@@ -30,14 +29,21 @@ namespace Tests {
 
         [TestMethod]
         public void TestGOSetsCompThatReliesOnAnotherComps() {
-
-            TransformComponent tc = new TransformComponent();
-            TextRenderComponent trc = new TextRenderComponent();
+            MockUpdateComponent tc = new MockUpdateComponent();
+            MockReliesOnComponent trc = new MockReliesOnComponent();
 
             GameObject g = GameObjectFactory.Build(new List<IComponent>() { tc, trc });
 
             Assert.AreEqual(g, tc.Owner);
             Assert.AreEqual(g, trc.Owner);
+        }
+
+        [TestMethod]
+        public void ExceptionOnMissingDeps() {
+            MockReliesOnComponent trc = new MockReliesOnComponent();
+
+            GameObject g = GameObjectFactory.Build(new List<IComponent>() { trc });
+            Assert.IsFalse(trc.Enabled);
         }
     }
 }

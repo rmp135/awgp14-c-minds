@@ -9,7 +9,7 @@ using Common;
 
 namespace CSharpMinds.Systems
 {
-    public class RenderSystem : ISystem, IUpdatable
+    public class RenderSystem : ISystem
     {
 
         IRenderDriver _driver;
@@ -31,10 +31,6 @@ namespace CSharpMinds.Systems
         }
         public void PostRender() {
             _driver.PostRender();
-        }
-
-        public void Update(GameTime gameTime) {
-      //      _driver.Render();
         }
     }
 }

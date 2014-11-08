@@ -51,6 +51,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BasicTests.cs" />
+    <Compile Include="Components\MockDrawComponent.cs" />
+    <Compile Include="Components\MockReliesOnComponent.cs" />
+    <Compile Include="Components\MockUpdateComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ComponentTests.cs" />
     <Compile Include="FactoryTests.cs" />

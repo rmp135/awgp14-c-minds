@@ -32,7 +32,7 @@ namespace CSharpMinds.Managers {
 
         public void Update(GameTime gameTime){
             foreach (IComponent comp in components) {
-                if (comp is IUpdatable) {
+                if (comp.Enabled && comp is IUpdatable) {
                     ((IUpdatable)comp).Update(gameTime);
                 }
             }
@@ -40,7 +40,7 @@ namespace CSharpMinds.Managers {
 
         public void Draw() {
             foreach (IComponent comp in components) {
-                if (comp is IDrawable) {
+                if (comp.Enabled && comp is IDrawable) {
                     ((IDrawable)comp).Draw();
                 }
             }

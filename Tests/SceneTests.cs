@@ -1,14 +1,15 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CSharpMinds;
-using CSharpMinds.Interfaces;
+﻿using CSharpMinds;
 using CSharpMinds.Components;
-namespace Tests {
-    [TestClass]
-    public class SceneTests {
+using Tests.Components;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-        Scene scene;
-        GameObject go;
+namespace Tests
+{
+    [TestClass]
+    public class SceneTests
+    {
+        private Scene scene;
+        private GameObject go;
 
         [TestInitialize]
         public void Setup() {
@@ -43,7 +44,6 @@ namespace Tests {
 
             scene.RemoveGameObject(go);
             Assert.AreEqual(0, scene.CompManager.Components.Count);
-
         }
 
         [TestMethod]
@@ -56,7 +56,6 @@ namespace Tests {
 
             scene.RemoveGameObject(go);
             Assert.AreEqual(0, scene.CompManager.Components.Count);
-
         }
 
         [TestMethod]
@@ -64,13 +63,12 @@ namespace Tests {
             Scene scene = new Scene();
 
             GameObject go = new GameObject();
-            UpdatingComponent tc = new UpdatingComponent("test");
+            MockUpdateComponent tc = new MockUpdateComponent();
             go.AddComponent(tc);
             scene.AddGameObject(go);
 
             scene.Update(new GameTime());
-            Assert.AreEqual(1, (go.GetComponentByName("test") as UpdatingComponent).TestInt);
+            Assert.AreEqual(1, (go.GetComponentByName("UpdatingComp") as MockUpdateComponent).TestInt);
         }
-
     }
 }

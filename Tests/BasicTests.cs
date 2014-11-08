@@ -4,25 +4,26 @@ using CSharpMinds;
 using CSharpMinds.Interfaces;
 using CSharpMinds.Components;
 using Common;
+using Tests.Components;
 
 namespace CSharpMinds.Tests {
 
     [TestClass]
     public class BasicTests {
         GameObject go;
-        UpdatingComponent c;
+        MockUpdateComponent c;
 
         [TestInitialize]
         public void Setup() {
             go = new GameObject("go");
-            c = new UpdatingComponent("comp");
+            c = new MockUpdateComponent();
         }
 
         [TestMethod]
         public void TestCanGetComponentByName() {
             go.AddComponent(c);
-            IComponent s = go.GetComponentByName("comp");
-            Assert.AreEqual("comp", s.Name);
+            IComponent s = go.GetComponentByName("UpdatingComp");
+            Assert.AreEqual("UpdatingComp", s.Name);
         }
 
         [TestMethod]
@@ -35,7 +36,7 @@ namespace CSharpMinds.Tests {
         [TestMethod]
         public void TestCastingComponents() {
             go.AddComponent(c);
-            UpdatingComponent s = go.GetComponentByName("comp") as UpdatingComponent;
+            MockUpdateComponent s = go.GetComponentByName("UpdatingComp") as MockUpdateComponent;
             Assert.AreEqual(0, s.TestInt);
         }
 

@@ -1,28 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSharpMinds.Managers;
-using CSharpMinds.Systems;
+﻿using Common;
+using CSharpMinds.Components;
 using CSharpMinds.Factories;
 using CSharpMinds.Interfaces;
-using CSharpMinds.Components;
-using Common;
+using CSharpMinds.Managers;
+using CSharpMinds.Systems;
 
 //Import libraries that are required.
-using ConsoleLibrary.Drivers;
 using SFMLLibrary.Drivers;
+using System.Collections.Generic;
 
 namespace CSharpMinds
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
-        {
+        private static void Main(string[] args) {
             //Init systems.
             RenderSystem _renderSystem = new RenderSystem(new SFMLGraphicsDriver());
             InputSystem _inputSystem = new InputSystem(new SFMLKeyboardDriver());
+
             GameTime _gameTime = new GameTime();
 
             //Register the systems.
@@ -32,23 +27,17 @@ namespace CSharpMinds
             //Setup a new scene.
             Scene _scene = new Scene();
 
-            PhysicsComponent physics = new PhysicsComponent();
             PhysicsComponent physics2 = new PhysicsComponent();
 
-            GameObject gameobject = GameObjectFactory.Build(new List<IComponent>() { new TransformComponent(), new SpriteRenderComponent("Resources\\appicns_Chrome.png"), physics });
-           
             GameObject gameobject2 = GameObjectFactory.Build(new List<IComponent>() { new TransformComponent(), new SpriteRenderComponent("Resources\\appicns_Chrome.png"), physics2 });
-            GameObject go3 = GameObjectFactory.Build(new List<IComponent>() { new WASDControlComponent(), new PhysicsComponent(), new TransformComponent(), new SpriteRenderComponent("Resources\\appicns_Firefox.png") });
-            _scene.AddGameObject(gameobject);
+
+            GameObject go3 = GameObjectFactory.Build("player", new List<IComponent>() { new WASDControlComponent(), new TransformComponent(), new SpriteRenderComponent("Resources\\appicns_Firefox.png") });
             _scene.AddGameObject(gameobject2);
             _scene.AddGameObject(go3);
-            gameobject.AddChild(go3);
 
-           
             for (int i = 0; i < 100000; i++) {
                 SystemManager.Update(_gameTime);
 
-                physics.AddForce(new Vector(0f, 3f));
                 physics2.AddForce(new Vector(0f, 1f));
 
                 //Update
@@ -64,7 +53,6 @@ namespace CSharpMinds
 
                 System.Threading.Thread.Sleep(16);
             }
-
         }
     }
 }
