@@ -113,5 +113,20 @@ namespace Tests
             tc.Enabled = false;
             Assert.AreEqual(false, dc.DrawCalled);
         }
+
+        [TestMethod]
+        public void ChildObjectsFollowParent() {
+            go.AddComponent(tc);
+            GameObject child = new GameObject();
+            TransformComponent childTrans = new TransformComponent();
+            child.AddComponent(childTrans);
+
+            go.AddChild(child);
+
+            tc.Position = new Vector(1, 0, 0);
+            childTrans.Position = new Vector(1, 1, 0);
+
+            Assert.AreEqual(new Vector(2, 1), childTrans.Position);
+        }
     }
 }

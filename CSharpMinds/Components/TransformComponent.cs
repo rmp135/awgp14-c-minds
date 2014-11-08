@@ -1,50 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSharpMinds.Interfaces;
-using Common;
+﻿using Common;
+using CSharpMinds.Exceptions;
+using System;
 
 namespace CSharpMinds.Components
 {
     public class TransformComponent : Component
     {
+        private Vector _position;
+        private float _scale;
+        private int _rotation;
 
-        public GameObject _owner;
-
-        Vector _position;
-        float _scale;
-        int _rotation;
-
-
-        public Vector Position
-        {
+        public Vector Position {
             get {
-                return _position; 
+                if (Owner != null && Owner.Parent != null) {
+                    TransformComponent parentTrans;
+                    try {
+                        parentTrans = Owner.Parent.GetComponent<TransformComponent>();
+                    }
+                    catch (ComponentNotFoundException) {
+                        return _position;
+                    }
+                    return parentTrans.Position + _position;
+                }
+                return _position;
             }
             set { _position = value; }
         }
 
-        public float Scale
-        {
+        public float Scale {
             get { return _scale; }
             set { _scale = value; }
         }
 
         public int Rotation {
             get { return _rotation; }
-            set
-            {
+            set {
                 int absvalue = Math.Abs(value);
                 _rotation = absvalue - 360 * (absvalue / 360);
             }
         }
-        public TransformComponent() : base("Transform")
-        {
-            _position = new Vector(0f,0f,0f);
+
+        public TransformComponent()
+            : base("Transform") {
+            _position = new Vector(0f, 0f, 0f);
             this.Scale = 1;
         }
-
     }
 }
