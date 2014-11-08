@@ -36,7 +36,7 @@ namespace CSharpMinds
         /// <summary>
         /// Construct a game object, a guid will be placed as the name.
         /// </summary>
-        public GameObject() : this(new Guid().ToString()) { }
+        public GameObject() : this(Guid.NewGuid().ToString()) { }
 
         //Public accessors.
 
