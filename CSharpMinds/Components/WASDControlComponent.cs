@@ -23,16 +23,16 @@ namespace CSharpMinds.Components
 
         public void Update(GameTime gameTime) {
             if (_inputSystem.isKeyDown(Keys.keyboard.D)) {
-                _physComp.AddForce(new Vector(2, 0));
+                _physComp.AddForce(new Vector(0.1f * gameTime.DeltaTime, 0));
             }
             if (_inputSystem.isKeyDown(Keys.keyboard.A)) {
-                _physComp.AddForce(new Vector(-2, 0));
+                _physComp.AddForce(new Vector(-0.1f * gameTime.DeltaTime, 0));
             }
             if (_inputSystem.isKeyDown(Keys.keyboard.W)) {
-                _physComp.AddForce(new Vector(0, -2));
+                _physComp.AddForce(new Vector(0, -0.1f * gameTime.DeltaTime));
             }
             if (_inputSystem.isKeyDown(Keys.keyboard.S)) {
-                _physComp.AddForce(new Vector(0, 2));
+                _physComp.AddForce(new Vector(0, 0.1f * gameTime.DeltaTime));
             }
         }
     }

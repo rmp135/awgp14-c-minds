@@ -34,8 +34,10 @@ namespace CSharpMinds
             GameObject _chrome = GameObjectFactory.Build("chrome", new List<IComponent>() { new TransformComponent(), new SpriteRenderComponent("Resources\\appicns_Chrome.png"), gravity });
 
             GameObject _firefox = GameObjectFactory.Build("firefox", new List<IComponent>() { new TransformComponent(), new PhysicsComponent(), new WASDControlComponent(), new SpriteRenderComponent("Resources\\appicns_Firefox.png") });
+            GameObject _frameRate = GameObjectFactory.Build(new List<IComponent>() { new FrameRateComponent(), new TransformComponent() });
             _scene.AddGameObject(_chrome);
             _scene.AddGameObject(_firefox);
+            _scene.AddGameObject(_frameRate);
 
             for (int i = 0; i < 100000; i++) {
                 SystemManager.Update(_gameTime);
