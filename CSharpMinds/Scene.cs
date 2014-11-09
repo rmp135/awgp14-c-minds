@@ -1,27 +1,25 @@
-﻿using System;
+﻿using CSharpMinds.Factories;
+using CSharpMinds.Interfaces;
+using CSharpMinds.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSharpMinds.Interfaces;
-using CSharpMinds.Managers;
-using CSharpMinds.Factories;
 
-namespace CSharpMinds {
-
+namespace CSharpMinds
+{
     /// <summary>
     /// A Scene acts as a collection of Components and GameObject.
     /// </summary>
-    public class Scene : IScene, IUpdatable {
-
+    public class Scene : IScene, IUpdatable
+    {
         private ComponentManager _compmanager;
-
 
         /// <summary>
         /// Construct a basic scene.
         /// </summary>
-        public Scene()
-        {
+        public Scene() {
             _compmanager = new ComponentManager();
         }
 
@@ -35,7 +33,6 @@ namespace CSharpMinds {
             }
         }
 
-
         /// <summary>
         /// Add a GameObject to the scene.
         /// </summary>
@@ -45,7 +42,6 @@ namespace CSharpMinds {
                 _compmanager.AddComponent(child);
             }
         }
-
 
         /// <summary>
         /// The scenes Component manager.
@@ -67,7 +63,7 @@ namespace CSharpMinds {
         public void Draw() {
             _compmanager.Draw();
         }
-     
+
         /// <summary>
         /// Initialise the scene.
         /// </summary>
@@ -88,7 +84,6 @@ namespace CSharpMinds {
         public void LoadContent() {
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// Unload any content that the scene no longer requires.

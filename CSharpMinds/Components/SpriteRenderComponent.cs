@@ -11,6 +11,10 @@ namespace CSharpMinds.Components
         private TransformComponent _transComp;
         private String _spriteName;
 
+        public String SpriteName {
+            set { _spriteName = value; }
+        }
+
         public SpriteRenderComponent(String spriteName)
             : base("SpriteRenderer") {
             _spriteName = spriteName;

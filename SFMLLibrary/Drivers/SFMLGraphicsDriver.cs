@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace SFMLLibrary.Drivers
 {
-    public class SFMLGraphicsDriver : IRenderDriver
+    public class SFMLRenderDriver : IRenderDriver
     {
         private RenderWindow _window;
         private Dictionary<string, Sprite> _spriteMaps;
@@ -18,7 +18,7 @@ namespace SFMLLibrary.Drivers
             Environment.Exit(0);
         }
 
-        public SFMLGraphicsDriver() {
+        public SFMLRenderDriver() {
             ContextSettings contextSettings = new ContextSettings();
             contextSettings.DepthBits = 32;
             _window = new RenderWindow(new VideoMode(640, 480), "Game", Styles.Titlebar | Styles.Close, contextSettings);
@@ -33,7 +33,9 @@ namespace SFMLLibrary.Drivers
         }
 
         private Sprite CacheSprite(string spriteName) {
-            Sprite sprite = new Sprite(new Texture(spriteName));
+            Texture t = new Texture(spriteName);
+            t.Smooth = true;
+            Sprite sprite = new Sprite(t);
             _spriteMaps.Add(spriteName, sprite);
             return sprite;
         }
@@ -44,14 +46,26 @@ namespace SFMLLibrary.Drivers
             return text;
         }
 
-        public void DrawSprite(string spriteName, Vector position) {
+        public void DrawLine(Vector start, Vector end) {
+            _window.Draw(new Vertex[] {
+                new Vertex(new Vector2f(start.X, start.Y), Color.Black),
+                new Vertex(new Vector2f(end.X, end.Y), Color.Black )
+            }, PrimitiveType.Lines);
+        }
+
+        public void DrawSprite(string spriteName, Vector position, Vector scale) {
             Sprite sprite;
             if (!_spriteMaps.TryGetValue(spriteName, out sprite)) {
                 sprite = CacheSprite(spriteName);
             }
 
             sprite.Position = new Vector2f(position.X, position.Y);
+            sprite.Scale = new Vector2f(scale.X, scale.Y);
             _window.Draw(sprite);
+        }
+
+        public void DrawSprite(string spriteName, Vector pos) {
+            DrawSprite(spriteName, pos, new Vector(1, 1));
         }
 
         public void DrawText(string textToDraw, Vector pos) {

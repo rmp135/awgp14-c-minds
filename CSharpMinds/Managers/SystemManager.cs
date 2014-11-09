@@ -18,6 +18,12 @@ namespace CSharpMinds.Managers
             _systems.Add(system);
         }
 
+        public static void AddSystems(List<ISystem> systems) {
+            foreach (ISystem system in systems) {
+                AddSystem(system);
+            }
+        }
+
         public static T GetSystem<T>() {
             if (_systems == null) { throw new SystemNotFoundException(typeof(T).ToString()); }
             T ret = (T)_systems.Find(p => p.GetType() == typeof(T));

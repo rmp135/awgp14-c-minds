@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Common;
 using Common.Interfaces;
-using Common;
+using System;
 
 namespace ConsoleLibrary.Drivers
 {
     public class ConsoleRenderDriver : IRenderDriver
     {
+        public void DrawSprite(string text, Vector pos, Vector scale) {
+        }
+
         public void DrawSprite(String spriteName, Vector position) {
-            
         }
 
         public void DrawText(string text, Vector pos) {
@@ -21,8 +19,12 @@ namespace ConsoleLibrary.Drivers
         public void PreRender() {
             Console.Clear();
         }
-        public void PostRender() {
 
+        public void PostRender() {
+        }
+
+        public void DrawLine(Vector start, Vector end) {
+            throw new NotImplementedException();
         }
     }
 }

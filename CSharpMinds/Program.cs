@@ -16,46 +16,79 @@ namespace CSharpMinds
     internal class Program
     {
         private static void Main(string[] args) {
-            //Init systems.
-            RenderSystem _renderSystem = new RenderSystem(new SFMLGraphicsDriver());
-            InputSystem _inputSystem = new InputSystem(new SFMLKeyboardDriver());
-
             GameTime _gameTime = new GameTime();
 
-            //Register the systems.
-            SystemManager.AddSystem(_renderSystem);
-            SystemManager.AddSystem(_inputSystem);
+            //Init systems.
+
+            SystemManager.AddSystems(new List<ISystem>() {
+                new RenderSystem(new SFMLRenderDriver()),
+                new InputSystem(new SFMLKeyboardDriver()),
+                new PhysicsSystem()
+            });
 
             //Setup a new scene.
             Scene _scene = new Scene();
 
-            PhysicsComponent gravity = new PhysicsComponent();
+            PhysicsComponent _gravity = new PhysicsComponent();
 
-            GameObject _chrome = GameObjectFactory.Build("chrome", new List<IComponent>() { new TransformComponent(), new SpriteRenderComponent("Resources\\appicns_Chrome.png"), gravity });
+            GameObject _frameRate = GameObjectFactory.Build(new List<IComponent>() {
+                new FrameRateComponent(),
+                new TransformComponent()
+            });
 
-            GameObject _firefox = GameObjectFactory.Build("firefox", new List<IComponent>() { new TransformComponent(), new PhysicsComponent(), new WASDControlComponent(), new SpriteRenderComponent("Resources\\appicns_Firefox.png") });
-            GameObject _frameRate = GameObjectFactory.Build(new List<IComponent>() { new FrameRateComponent(), new TransformComponent() });
-            _scene.AddGameObject(_chrome);
-            _scene.AddGameObject(_firefox);
+            GameObject _bat = GameObjectFactory.Build("bat", new List<IComponent>() {
+                new TransformComponent(),
+                new SpriteRenderComponent("Resources\\bat.png"),
+                new BoxColliderComponent(70, 47)
+            });
+            _bat.GetComponent<TransformComponent>().Position = new Vector(200,200);
+
+            GameObject _player = GameObjectFactory.Build("player", new List<IComponent>() {
+                new TransformComponent(),
+                new PhysicsComponent(),
+                new WASDControlComponent(),
+                new SpriteRenderComponent("Resources\\alienBeige_stand.png"),
+                new PlayerBoxColliderLogic(66, 92)
+            });
+
+            GameObject _fish = GameObjectFactory.Build("fish", new List<IComponent>() {
+                new TransformComponent() {Position = new Vector(100,100)},
+                new BoxColliderComponent(60,45),
+                new SpriteLabelRenderComponent(),
+                new SpriteRenderComponent("Resources\\fishGreen.png")
+            });
+
+            GameObject _medal = GameObjectFactory.Build("medal", new List<IComponent>() {
+                new TransformComponent(),
+                new SpriteRenderComponent("Resources\\flat_medal2.png")
+            });
+            _medal.GetComponent<TransformComponent>().Position = new Vector(-5, 10, 0);
+
+            _player.AddChild(_medal);
+
+            // Add objects to scene. (Note that child objects are automatically added.)
+            _scene.AddGameObject(_bat);
+            _scene.AddGameObject(_player);
             _scene.AddGameObject(_frameRate);
+            _scene.AddGameObject(_fish);
 
             for (int i = 0; i < 100000; i++) {
                 SystemManager.Update(_gameTime);
 
-                gravity.AddForce(new Vector(0f, 9.8f));
+                _gravity.AddForce(new Vector(0f, 3f));
 
                 //Update
                 _scene.Update(_gameTime);
                 _gameTime.Update();
 
                 //Draw
-                _renderSystem.PreRender();
+                SystemManager.GetSystem<RenderSystem>().PreRender();
 
                 _scene.Draw();
 
-                _renderSystem.PostRender();
+                SystemManager.GetSystem<RenderSystem>().PostRender();
 
-                System.Threading.Thread.Sleep(16);
+                //System.Threading.Thread.Sleep(16);
             }
         }
     }

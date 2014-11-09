@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Common.Interfaces
+﻿namespace Common.Interfaces
 {
     public interface IRenderDriver
     {
+        void DrawSprite(string spriteName, Vector pos, Vector scale);
+
         void DrawSprite(string spriteName, Vector position);
+
         void DrawText(string text, Vector pos);
+
+        void DrawLine(Vector start, Vector end);
+
         void PreRender();
+
         void PostRender();
     }
 }
