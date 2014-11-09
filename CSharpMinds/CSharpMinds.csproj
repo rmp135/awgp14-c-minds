@@ -78,13 +78,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\FrameRateComponent.cs" />
-    <Compile Include="Components\PlayerBoxColliderLogic.cs" />
+    <Compile Include="Components\PlayerCollideLogic.cs" />
     <Compile Include="Components\SpriteLabelRenderComponent.cs" />
     <Compile Include="Exceptions\SystemNotFoundException.cs" />
     <Compile Include="Exceptions\ComponentNotFoundException.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\BoxColliderComponent.cs" />
-    <Compile Include="Interfaces\IColliderComponent.cs" />
+    <Compile Include="Interfaces\ColliderComponent.cs" />
     <Compile Include="Components\SpriteRenderComponent.cs" />
     <Compile Include="Components\TextRenderComponent.cs" />
     <Compile Include="Components\TransformComponent.cs" />
@@ -159,6 +159,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\flat_medal2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\laserBlue01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\raygunBig.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

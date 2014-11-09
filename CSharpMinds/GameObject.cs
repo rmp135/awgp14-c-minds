@@ -94,6 +94,10 @@ namespace CSharpMinds
             }
         }
 
+        public ColliderComponent GetCollider() {
+            return (ColliderComponent)Components.Find(p => p.GetType().IsSubclassOf(typeof(ColliderComponent)));
+        }
+
         public override string ToString() {
             return Name;
         }

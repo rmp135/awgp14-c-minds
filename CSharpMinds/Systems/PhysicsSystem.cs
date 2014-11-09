@@ -11,13 +11,13 @@ namespace CSharpMinds.Systems
 {
     public class PhysicsSystem : ISystem, IUpdatable
     {
-        List<IColliderComponent> _colliders;
+        List<ColliderComponent> _colliders;
 
         public PhysicsSystem() {
-            _colliders = new List<IColliderComponent>();
+            _colliders = new List<ColliderComponent>();
         }
 
-        public void AddCollider(IColliderComponent collider) {
+        public void AddCollider(ColliderComponent collider) {
             _colliders.Add(collider);
         }
 
@@ -25,25 +25,33 @@ namespace CSharpMinds.Systems
             for (int i = 0; i < _colliders.Count-1; i++) {
                 for (int j = i+1; j < _colliders.Count; j++) {
                     if (hasCollided(_colliders[i], _colliders[j])) {
-                        _colliders[i].OnCollision(_colliders[j]);
-                        _colliders[j].OnCollision(_colliders[i]);
+                        _colliders[i].OnCollide(_colliders[j]);
+                        _colliders[j].OnCollide(_colliders[i]);
                     }
                 }
             }
-            
         }
-        private bool hasCollided(IColliderComponent col1, IColliderComponent col2) {
 
-                if (col1.Max.X <= col2.Min.X) {
+        private bool hasCollided(ColliderComponent col1, ColliderComponent col2) {
+            if (col1.GetType() == typeof(BoxColliderComponent) && col2.GetType() == typeof(BoxColliderComponent)) {
+                return collideBoxWithBox((BoxColliderComponent)col1, (BoxColliderComponent)col2);
+            }
+            else {
+                return false;
+            }
+        }
+
+        private bool collideBoxWithBox(BoxColliderComponent box1, BoxColliderComponent box2) { 
+                if (box1.Max.X <= box2.Min.X) {
                     return false;
                 }
-                if (col1.Max.Y <= col2.Min.Y) {
+                if (box1.Max.Y <= box2.Min.Y) {
                     return false;
                 }
-                if (col1.Min.X >= col2.Max.X) {
+                if (box1.Min.X >= box2.Max.X) {
                     return false;
                 }
-                if (col1.Min.Y >= col2.Max.Y) {
+                if (box1.Min.Y >= box2.Max.Y) {
                     return false;
                 }
             return true;

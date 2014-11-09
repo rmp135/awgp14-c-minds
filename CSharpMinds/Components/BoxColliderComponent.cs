@@ -6,9 +6,8 @@ using CSharpMinds.Systems;
 
 namespace CSharpMinds.Components
 {
-    internal class BoxColliderComponent : Component, IColliderComponent, IDrawable
+    internal class BoxColliderComponent : ColliderComponent, IDrawable
     {
-
         TransformComponent _transComp;
         private RenderSystem _renderSystem;
         float _width, _height;
@@ -23,20 +22,18 @@ namespace CSharpMinds.Components
             _height = height;
         }
 
-        public Vector Min {
+        public override Vector Min {
             get {
                 return _transComp.Position;
             }
         }
 
-        public Vector Max {
+        public override Vector Max {
             get {
                 return new Vector(_transComp.Position.X + _width, _transComp.Position.Y + _height);
             }
         }
 
-        public virtual void OnCollision(IColliderComponent other) {
-        }
         public void Draw() {
             _renderSystem.DrawLine(new Vector(Min.X, Min.Y), new Vector(Min.X, Max.Y));
             _renderSystem.DrawLine(new Vector(Min.X, Max.Y), new Vector(Max.X, Max.Y));

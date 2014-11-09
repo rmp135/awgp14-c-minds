@@ -48,8 +48,15 @@ namespace CSharpMinds
                 new PhysicsComponent(),
                 new WASDControlComponent(),
                 new SpriteRenderComponent("Resources\\alienBeige_stand.png"),
-                new PlayerBoxColliderLogic(66, 92)
+                new BoxColliderComponent(66, 92),
+                new PlayerCollideLogic()
             });
+
+            GameObject _rayGun = GameObjectFactory.Build("gun", new List<IComponent>() {
+                new TransformComponent(){Position = new Vector(30,23)},
+                new SpriteRenderComponent("Resources\\raygunBig.png")
+            });
+            _rayGun.Parent = _player;
 
             GameObject _fish = GameObjectFactory.Build("fish", new List<IComponent>() {
                 new TransformComponent() {Position = new Vector(100,100)},
@@ -57,14 +64,6 @@ namespace CSharpMinds
                 new SpriteLabelRenderComponent(),
                 new SpriteRenderComponent("Resources\\fishGreen.png")
             });
-
-            GameObject _medal = GameObjectFactory.Build("medal", new List<IComponent>() {
-                new TransformComponent(),
-                new SpriteRenderComponent("Resources\\flat_medal2.png")
-            });
-            _medal.GetComponent<TransformComponent>().Position = new Vector(-5, 10, 0);
-
-            _player.AddChild(_medal);
 
             // Add objects to scene. (Note that child objects are automatically added.)
             _scene.AddGameObject(_bat);
