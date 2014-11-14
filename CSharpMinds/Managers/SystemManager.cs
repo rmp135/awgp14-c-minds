@@ -9,7 +9,7 @@ namespace CSharpMinds.Managers
     {
         private static List<ISystem> _systems;
 
-        public static void AddSystem(ISystem system) {
+        private static void AddSystem(ISystem system) {
             if (_systems == null) { _systems = new List<ISystem>(); }
             ISystem alreadyImplemented = _systems.Find(p => p.GetType() == system.GetType());
             if (alreadyImplemented != null) {
@@ -36,8 +36,9 @@ namespace CSharpMinds.Managers
 
         public static void Update(GameTime gameTime) {
             foreach (ISystem system in _systems) {
-                if (system is IUpdatable) {
-                    ((IUpdatable)system).Update(gameTime);
+                IUpdatable updatable = system as IUpdatable;
+                if (updatable != null) {
+                    updatable.Update(gameTime);
                 }
             }
         }
