@@ -7,7 +7,7 @@ namespace CSharpMinds.Components
     public class TransformComponent : Component
     {
         private Vector _position;
-        private float _scale;
+        private Vector _scale;
         private int _rotation;
 
         public Vector Position {
@@ -27,7 +27,7 @@ namespace CSharpMinds.Components
             set { _position = value; }
         }
 
-        public float Scale {
+        public Vector Scale {
             get { return _scale; }
             set { _scale = value; }
         }
@@ -43,7 +43,7 @@ namespace CSharpMinds.Components
         public TransformComponent()
             : base("Transform") {
             _position = new Vector(0f, 0f, 0f);
-            this.Scale = 1;
+            this.Scale = new Vector(1,1,1);
         }
     }
 }

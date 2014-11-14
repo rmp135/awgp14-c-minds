@@ -26,7 +26,7 @@ namespace CSharpMinds.Components
         }
 
         public void Draw() {
-            _renderSystem.DrawSprite(_spriteName, _transComp.Position);
+            _renderSystem.DrawSprite(_spriteName, _transComp.Position, _transComp.Scale, _transComp.Rotation);
         }
     }
 }
