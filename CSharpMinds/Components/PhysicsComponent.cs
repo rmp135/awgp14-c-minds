@@ -7,6 +7,11 @@ namespace CSharpMinds.Components
     public class PhysicsComponent : Component, IUpdatable
     {
         private Vector _forceAccumulator;
+
+        public Vector CurrentForces {
+            get { return _forceAccumulator; }
+            set { _forceAccumulator = value; }
+        }
         private TransformComponent _transform;
 
         public PhysicsComponent()
