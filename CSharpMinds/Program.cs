@@ -71,9 +71,9 @@ namespace CSharpMinds
             });
 
             // Add objects to scene. (Note that child objects are automatically added.)
-            _scene.AddGameObject(_bat);
-            _scene.AddGameObject(_player);
             _scene.AddGameObject(_frameRate);
+            _scene.AddGameObject(_player);
+            _scene.AddGameObject(_bat);
             _scene.AddGameObject(_fish);
             _scene.AddGameObject(_floor);
 

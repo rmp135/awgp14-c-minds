@@ -6,10 +6,12 @@ namespace ConsoleLibrary.Drivers
 {
     public class ConsoleRenderDriver : IRenderDriver
     {
-        public void DrawSprite(string text, Vector pos, Vector scale) {
+        public void DrawSprite(string spriteName, Vector pos, Vector scale) {
+            DrawSprite(spriteName, pos);
         }
 
-        public void DrawSprite(String spriteName, Vector position) {
+        public void DrawSprite(string spriteName, Vector position) {
+            Console.WriteLine(spriteName + " at position " + position);
         }
 
         public void DrawText(string text, Vector pos) {
@@ -24,11 +26,11 @@ namespace ConsoleLibrary.Drivers
         }
 
         public void DrawLine(Vector start, Vector end) {
-            throw new NotImplementedException();
+            
         }
 
         public void DrawSprite(string spriteName, Vector pos, Vector scale, int rotation) {
-            throw new NotImplementedException();
+            DrawSprite(spriteName, pos);
         }
     }
 }
