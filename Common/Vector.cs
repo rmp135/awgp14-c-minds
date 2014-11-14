@@ -187,6 +187,15 @@ namespace Common
                    Z.GetHashCode();
         }
 
+        public static Vector RotateAroundZByDegrees(Vector v, Vector origin, int degrees) {
+            double rads = degrees * Math.PI / 180;
+            return new Vector()
+                {
+                    X = (float)((v.X - origin.X) * Math.Cos(rads) - (v.Y - origin.Y) * Math.Sin(rads)) + origin.X,
+                    Y = (float)((v.X - origin.X) * Math.Sin(rads) + (v.Y - origin.Y) * Math.Cos(rads)) + origin.Y
+                };
+        }
+
         /// <summary>
         /// X (horizontal) component of the vector.
         /// </summary>
