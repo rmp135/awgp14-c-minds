@@ -53,8 +53,10 @@ namespace CSharpMinds.Components
             if (_inputSystem.isKeyPressed(Keys.keyboard.F)) {
                 SceneManager.AddGameObjectToScene(GameObjectFactory.Build(new List<IComponent>() {
                     new SpriteRenderComponent("Resources\\laserBlue01.png"),
-                    new BoxColliderComponent(9, 54),
-                    new TransformComponent(){Position = new Vector(_tranComp.Position.X, _tranComp.Position.Y)}
+                    new BoxColliderComponent(54, 9),
+                    new TransformComponent(){Position = new Vector(_tranComp.Position.X + 50, _tranComp.Position.Y+50)},
+                    new LaserLogic(),
+                    new PhysicsComponent()
                 }));
             }
         }
