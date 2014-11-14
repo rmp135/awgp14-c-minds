@@ -56,5 +56,9 @@ namespace CSharpMinds.Systems
                 }
             return true;
         }
+
+        public void Initialise() {
+           
+        }
     }
 }

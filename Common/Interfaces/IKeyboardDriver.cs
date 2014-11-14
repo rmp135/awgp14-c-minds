@@ -10,5 +10,7 @@ namespace Common.Interfaces
     public interface IKeyboardDriver
     {
         bool isKeyDown(Keys.keyboard key);
+        bool isKeyPressed(Keys.keyboard key);
+        void Initialise();
     }
 }

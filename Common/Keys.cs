@@ -13,7 +13,9 @@ namespace Common
             W,
             A,
             S,
-            D
+            D,
+            F,
+            Q
         }
         public enum mouse
         {

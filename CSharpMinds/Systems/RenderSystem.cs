@@ -38,5 +38,9 @@ namespace CSharpMinds.Systems
         public void PostRender() {
             _driver.PostRender();
         }
+
+        public void Initialise() {
+           ;
+        }
     }
 }

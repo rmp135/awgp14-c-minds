@@ -5,5 +5,6 @@ using System.Text;
 
 namespace CSharpMinds.Systems {
     public interface ISystem {
+        void Initialise();
     }
 }

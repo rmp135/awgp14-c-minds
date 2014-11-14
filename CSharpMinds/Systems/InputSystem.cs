@@ -17,5 +17,12 @@ namespace CSharpMinds.Systems
         public bool isKeyDown(Keys.keyboard key) {
             return _driver.isKeyDown(key);
         }
+        public bool isKeyPressed(Keys.keyboard key) {
+            return _driver.isKeyPressed(key);
+        }
+
+        public void Initialise() {
+            _driver.Initialise();
+        }
     }
 }

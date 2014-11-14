@@ -22,6 +22,9 @@ namespace CSharpMinds.Managers
             foreach (ISystem system in systems) {
                 AddSystem(system);
             }
+            foreach (ISystem system in _systems) {
+                system.Initialise();
+            }
         }
 
         public static T GetSystem<T>() {
