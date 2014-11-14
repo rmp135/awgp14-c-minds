@@ -8,7 +8,8 @@ namespace CSharpMinds.Components
         private GameTime _gameTime;
 
         public override void Draw() {
-            _renderSystem.DrawText((1000 / _gameTime.DeltaTime).ToString(), new Vector());
+            float framerate = (_gameTime.DeltaTime == 0) ? 0 : 1000 / _gameTime.DeltaTime;
+            _renderSystem.DrawText(framerate.ToString(), new Vector());
         }
 
         public void Update(GameTime gameTime) {
