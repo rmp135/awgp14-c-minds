@@ -16,6 +16,9 @@ namespace CSharpMinds.Components
 
         private bool _enabled;
 
+        /// <summary>
+        /// Determines whether the component will be updated and drawn.
+        /// </summary>
         public bool Enabled {
             get { return _enabled; }
             set {
@@ -37,6 +40,9 @@ namespace CSharpMinds.Components
             _enabled = true;
         }
 
+        /// <summary>
+        /// Builds a new Component with a GUID as a name.
+        /// </summary>
         public Component()
             : this(Guid.NewGuid().ToString()) {
         }
