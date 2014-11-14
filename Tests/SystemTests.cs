@@ -1,35 +1,36 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CSharpMinds.Systems;
 using CSharpMinds.Managers;
 using CSharpMinds;
 using ConsoleLibrary.Drivers;
+using System.Collections.Generic;
+using Tests.Mocks;
+using CSharpMinds.Systems;
 
 namespace Tests {
     [TestClass]
     public class SystemTests {
         [TestMethod]
-        [ExpectedException(typeof(System.NotImplementedException))]
         public void TestGetSystemByType() {
-            AudioSystem ad = new AudioSystem(new TestAudioDriver());
-            SystemManager.AddSystem(ad);
-            (SystemManager.GetSystem<AudioSystem>() as AudioSystem).Play("sd");
+            MockSystem mockSystem = new MockSystem();
+            SystemManager.AddSystems(new List<ISystem>() { mockSystem });
+            Assert.IsTrue(SystemManager.GetSystem<MockSystem>().DoWork());
         }
 
         [TestMethod]
         public void TestAddingTheSameSystem() {
-            AudioSystem ad = new AudioSystem(new TestAudioDriver());
-            AudioSystem ad2 = new AudioSystem(new TestAudioDriver());
-            SystemManager.AddSystem(ad);
-            SystemManager.AddSystem(ad2);
-            Assert.AreEqual(ad2, (SystemManager.GetSystem<AudioSystem>()));
+            MockSystem system1 = new MockSystem();
+            MockSystem system2 = new MockSystem();
+            SystemManager.AddSystems(new List<ISystem>() { system1, system2 });
+            Assert.AreEqual(system2, (SystemManager.GetSystem<MockSystem>()));
         }
 
         [TestMethod]
-        public void TestNoneUpdatingSystems() {
-            RenderSystem cr = new RenderSystem(new ConsoleRenderDriver());
-            SystemManager.AddSystem(cr);
+        public void TestUpdatingSystems() {
+            MockSystem mockSystem = new MockSystem();
+            SystemManager.AddSystems(new List<ISystem>() { mockSystem });
             SystemManager.Update(new GameTime());
+            Assert.IsTrue(mockSystem.Updated);
         }
     }
 }

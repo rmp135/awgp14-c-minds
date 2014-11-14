@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="BasicTests.cs" />
     <Compile Include="Mocks\MockDrawComponent.cs" />
+    <Compile Include="Mocks\MockInputDriver.cs" />
+    <Compile Include="Mocks\MockInputSystem.cs" />
     <Compile Include="Mocks\MockReliesOnSystem.cs" />
     <Compile Include="Mocks\MockReliesOnComponent.cs" />
     <Compile Include="Mocks\MockSystem.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="SceneTests.cs" />
     <Compile Include="GameObjectHierarchyTests.cs" />
     <Compile Include="SystemTests.cs" />
+    <Compile Include="DriverTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
