@@ -1,44 +1,53 @@
-﻿using System;
+﻿using CSharpMinds.Exceptions;
+using CSharpMinds.Interfaces;
+using CSharpMinds.Components;
+using CSharpMinds.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSharpMinds.Interfaces;
-using CSharpMinds.Managers;
 
 namespace CSharpMinds
 {
     /// <summary>
     /// Game Objects have no logic of their own. Offload logic onto components.
     /// </summary>
-    public class GameObject : GameObjectComponentCollection
+    public class GameObject
     {
         //Private members.
 
-        string _name;
-        GameObject _parent;
-        List<GameObject> _children;
+        private string _name;
+        private GameObject _parent;
+        private List<GameObject> _children;
+        private List<IComponent> _components;
 
         //Constructor
 
         /// <summary>
-        /// Construct game object with a given name.
+        /// Return all components of this GameObject.
         /// </summary>
-        /// <param name="name">The name that the GameObject should be called.</param>
-        public GameObject(string name)
-        {
-            Owner = this;
-            this._name = name;
-            Components = new List<IComponent>();
-            _children = new List<GameObject>();
+        public List<IComponent> Components {
+            get { return _components; }
+            set { _components = value; }
         }
 
         /// <summary>
-        /// Construct a game object, a guid will be placed as the name.
+        /// The parent of this GameObject.
         /// </summary>
-        public GameObject() : this(Guid.NewGuid().ToString()) { }
+        public GameObject Parent {
+            get { return _parent; }
+            set {
+                if (_parent != null && _parent != value) {
+                    _parent.RemoveChild(this);
+                }
+                if (value != null) {
+                    value.AddChild(this);
+                }
 
-        //Public accessors.
+                _parent = value;
+            }
+        }
 
         /// <summary>
         /// Return a list of GameObjects that have this object as the parent.
@@ -47,12 +56,30 @@ namespace CSharpMinds
             get { return _children; }
         }
 
+        //Public accessors.
         /// <summary>
         /// Return the name of the game object.
         /// </summary>
         public String Name {
             get { return _name; }
             set { _name = value; }
+        }
+
+        /// <summary>
+        /// Construct game object with a given name.
+        /// </summary>
+        /// <param name="name">The name that the GameObject should be called.</param>
+        public GameObject(string name) {
+            _name = name;
+            _components = new List<IComponent>();
+            _children = new List<GameObject>();
+        }
+
+        /// <summary>
+        /// Construct a game object, a guid will be placed as the name.
+        /// </summary>
+        public GameObject()
+            : this(Guid.NewGuid().ToString()) {
         }
 
         /// <summary>
@@ -78,29 +105,72 @@ namespace CSharpMinds
         }
 
         /// <summary>
-        /// The parent of this GameObject.
+        /// Return a particular components by its name.
         /// </summary>
-        public GameObject Parent {
-            get { return _parent; }
-            set {
-                if (_parent != null && _parent != value) {
-                    _parent.RemoveChild(this);
-                }
-                if (value != null) {
-                    value.AddChild(this);
-                }
+        /// <param name="name">The Component name that you wish to retrieve.</param>
+        /// <returns>The Component if it exists.</returns>
+        public IComponent GetComponentByName(string name) {
+            return Components.Find(p => p.Name == name);
+        }
 
-                _parent = value;
+        /// <summary>
+        /// Add a Component to the GameObject.
+        /// </summary>
+        /// <param name="comp">The Component you wish to add.</param>
+        public void AddComponent(IComponent comp) {
+            if (Components.Contains(comp)) { return; }
+            comp.Owner = this;
+            Components.Add(comp);
+        }
+
+        /// <summary>
+        /// Remove a Component from this GameObject.
+        /// </summary>
+        /// <param name="c">The Component you wish to remove.</param>
+        public void RemoveComponent(IComponent c) {
+            c.Owner = null;
+            Components.Remove(c);
+        }
+
+        public ColliderComponent Collider {
+            get { return (ColliderComponent)Components.Find(p => p.GetType().IsSubclassOf(typeof(ColliderComponent))); }
+        }
+
+        /// <summary>
+        /// Return all components of the GameObject and all components of the GameObjects children.
+        /// </summary>
+        public List<IComponent> ChildComponents {
+            get {
+                List<IComponent> allcomps = new List<IComponent>(_components);
+                foreach (GameObject child in Children) {
+                    allcomps.AddRange(child.ChildComponents);
+                }
+                return allcomps;
             }
         }
 
-        public ColliderComponent GetCollider() {
-            return (ColliderComponent)Components.Find(p => p.GetType().IsSubclassOf(typeof(ColliderComponent)));
+        /// <summary>
+        /// Return a particular Component from this GameObject.
+        /// </summary>
+        /// <typeparam name="T">The Component type you wish to retrieve.</typeparam>
+        /// <returns>The Component if it exists.</returns>
+        public T GetComponent<T>() where T : IComponent {
+            T ret = (T)Components.Find(p => p.GetType() == typeof(T));
+            if (ret == null) { throw new ComponentNotFoundException(typeof(T).ToString()); }
+            return ret;
         }
 
         public override string ToString() {
             return Name;
         }
 
+        public void Destroy() {
+            foreach (GameObject child in _children) {
+                child.Destroy();
+            }
+            foreach (IComponent comp in _components) {
+                comp.Destroy();
+            };
+        }
     }
 }

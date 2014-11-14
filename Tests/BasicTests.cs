@@ -28,14 +28,14 @@ namespace CSharpMinds.Tests
         public void TestComponentsUpdate() {
             go.AddComponent(c);
             c.Update(new GameTime());
-            Assert.AreEqual(1, c.TestInt);
+            Assert.IsTrue(c.Updated);
         }
 
         [TestMethod]
         public void TestCastingComponents() {
             go.AddComponent(c);
             MockUpdateComponent s = go.GetComponentByName("UpdatingComp") as MockUpdateComponent;
-            Assert.AreEqual(0, s.TestInt);
+            Assert.IsFalse(s.Updated);
         }
 
         [TestMethod]

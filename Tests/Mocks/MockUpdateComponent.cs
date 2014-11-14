@@ -6,21 +6,17 @@ namespace Tests.Mocks
 {
     public class MockUpdateComponent : Component, IUpdatable
     {
-        private int testint;
-
-        public int TestInt { get { return testint; } }
+        public bool Updated;
 
         public MockUpdateComponent()
-            : base("UpdatingComp") {
-            testint = 0;
-        }
+            : base("UpdatingComp") { }
 
         public string GetTestSring() {
             return "test string";
         }
 
         public void Update(GameTime gameTime) {
-            testint++;
+           Updated = true;
         }
     }
 }

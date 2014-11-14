@@ -20,6 +20,8 @@ namespace CSharpMinds.Systems
         public void AddCollider(ColliderComponent collider) {
             _colliders.Add(collider);
         }
+        public void RemoveCollider(ColliderComponent toremove) {
+        }
 
         public void Update(GameTime gameTime) {
             for (int i = 0; i < _colliders.Count-1; i++) {

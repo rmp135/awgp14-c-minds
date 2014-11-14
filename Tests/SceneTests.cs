@@ -22,7 +22,8 @@ namespace Tests
             TransformComponent tc = new TransformComponent();
             go.AddComponent(tc);
             scene.AddGameObject(go);
-            Assert.AreEqual(1, scene.CompManager.Components.Count);
+            scene.Update(new GameTime());
+            Assert.AreEqual(1, scene.GameObjects.Count);
         }
 
         [TestMethod]
@@ -31,7 +32,7 @@ namespace Tests
             go.AddComponent(tc);
             scene.AddGameObject(go);
             scene.RemoveGameObject(go);
-            Assert.AreEqual(0, scene.CompManager.Components.Count);
+            Assert.AreEqual(0, scene.GameObjects.Count);
         }
 
         [TestMethod]
@@ -40,10 +41,12 @@ namespace Tests
             child.Parent = go;
             child.AddComponent(new TransformComponent());
             scene.AddGameObject(go);
-            Assert.AreEqual(1, scene.CompManager.Components.Count);
+            scene.Update(new GameTime());
+            Assert.AreEqual(1, scene.GameObjects.Count);
 
             scene.RemoveGameObject(go);
-            Assert.AreEqual(0, scene.CompManager.Components.Count);
+            scene.Update(new GameTime());
+            Assert.AreEqual(0, scene.GameObjects.Count);
         }
 
         [TestMethod]
@@ -52,15 +55,16 @@ namespace Tests
             child.Parent = go;
             child.AddComponent(new TransformComponent());
             scene.AddGameObject(go);
-            Assert.AreEqual(1, scene.CompManager.Components.Count);
+            scene.Update(new GameTime());
+            Assert.AreEqual(1, scene.GameObjects.Count);
 
             scene.RemoveGameObject(go);
-            Assert.AreEqual(0, scene.CompManager.Components.Count);
+            scene.Update(new GameTime());
+            Assert.AreEqual(0, scene.GameObjects.Count);
         }
 
         [TestMethod]
         public void TestSceneUpdates() {
-            Scene scene = new Scene();
 
             GameObject go = new GameObject();
             MockUpdateComponent tc = new MockUpdateComponent();
@@ -68,7 +72,30 @@ namespace Tests
             scene.AddGameObject(go);
 
             scene.Update(new GameTime());
-            Assert.AreEqual(1, (go.GetComponentByName("UpdatingComp") as MockUpdateComponent).TestInt);
+            Assert.IsTrue((go.GetComponentByName("UpdatingComp") as MockUpdateComponent).Updated);
+        }
+
+        [TestMethod]
+        public void TestFindGameObjectByName() {
+            go.Name = "test";
+            scene.AddGameObject(go);
+            scene.Update(new GameTime());
+            Assert.AreEqual(scene.FindGameObjectByName("test"), go);
+        }
+
+        [TestMethod]
+        public void TestSceneDestroys() {
+            scene.Destroy();
+            Assert.IsNull(scene.GameObjects);
+        }
+        [TestMethod]
+        public void TestSceneUpdatesChildComp() {
+            GameObject child = new GameObject();
+            child.AddComponent(new MockUpdateComponent());
+            go.AddChild(child);
+            scene.AddGameObject(go);
+            scene.Update(new GameTime());
+            Assert.IsTrue(child.GetComponent<MockUpdateComponent>().Updated);
         }
     }
 }

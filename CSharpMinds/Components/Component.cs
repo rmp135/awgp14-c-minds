@@ -66,5 +66,12 @@ namespace CSharpMinds.Components
         public override string ToString() {
             return (Owner != null) ? _name + " on " + Owner.ToString() : _name;
         }
+
+        /// <summary>
+        /// Destroy the Component. Perform cleanup here.
+        /// </summary>
+        public virtual void Destroy() {
+            _owner = null;
+        }
     }
 }

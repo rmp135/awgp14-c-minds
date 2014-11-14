@@ -111,7 +111,7 @@ namespace Tests
             MockUpdateComponent up = new MockUpdateComponent();
             go.AddComponent(up);
             tc.Enabled = false;
-            Assert.AreEqual(0, up.TestInt);
+            Assert.IsFalse(up.Updated);
         }
 
         [TestMethod]

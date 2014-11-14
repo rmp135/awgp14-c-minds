@@ -10,7 +10,6 @@ namespace CSharpMinds.Components
     class PlayerCollideLogic : Component
     {
         public override void Initialise() {
-            Owner.GetCollider().Collide += new ColliderComponent.CollisionHandler(OnCollision);
         }
 
         public void OnCollision(ColliderComponent other) {
