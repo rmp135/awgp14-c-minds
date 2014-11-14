@@ -12,7 +12,7 @@ namespace CSharpMinds.Components
         private RenderSystem _renderSystem;
         float _width, _height;
         public override void Initialise() {
-            SystemManager.GetSystem<PhysicsSystem>().AddCollider(this);
+            base.Initialise();
             _transComp = Owner.GetComponent<TransformComponent>();
             _renderSystem = SystemManager.GetSystem<RenderSystem>();
         }

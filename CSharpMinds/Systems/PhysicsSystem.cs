@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CSharpMinds.Interfaces;
 using CSharpMinds.Components;
+using Common;
 
 
 namespace CSharpMinds.Systems
@@ -18,9 +19,10 @@ namespace CSharpMinds.Systems
         }
 
         public void AddCollider(ColliderComponent collider) {
-            _colliders.Add(collider);
+           _colliders.Add(collider);
         }
         public void RemoveCollider(ColliderComponent toremove) {
+            _colliders.Remove(toremove);
         }
 
         public void Update(GameTime gameTime) {
@@ -35,12 +37,40 @@ namespace CSharpMinds.Systems
         }
 
         private bool hasCollided(ColliderComponent col1, ColliderComponent col2) {
-            if (col1.GetType() == typeof(BoxColliderComponent) && col2.GetType() == typeof(BoxColliderComponent)) {
+            Type col1Type = col1.GetType();
+            Type col2Type = col2.GetType();
+            // Box with Box
+            if (col1Type == typeof(BoxColliderComponent) && col2Type == typeof(BoxColliderComponent)) {
                 return collideBoxWithBox((BoxColliderComponent)col1, (BoxColliderComponent)col2);
             }
+            // Box with Point.
+            else if (col1Type == typeof(PointCollider) && col2Type == typeof(BoxColliderComponent)) {
+                return collidePointWithBox((PointCollider)col1, (BoxColliderComponent)col2);
+            }
+            // Point with Box.
+            else if (col1Type == typeof(BoxColliderComponent) && col2Type == typeof(PointCollider)) {
+                return collidePointWithBox((PointCollider)col2, (BoxColliderComponent)col1);
+            }
+            // Not implemented collision.
             else {
                 return false;
             }
+        }
+
+        private bool collidePointWithBox(PointCollider point, BoxColliderComponent box) {
+                if (point.Max.X <= box.Min.X) {
+                    return false;
+                }
+                if (point.Max.Y <= box.Min.Y) {
+                    return false;
+                }
+                if (point.Min.X >= box.Max.X) {
+                    return false;
+                }
+                if (point.Min.Y >= box.Max.Y) {
+                    return false;
+                }
+            return true;
         }
 
         private bool collideBoxWithBox(BoxColliderComponent box1, BoxColliderComponent box2) { 

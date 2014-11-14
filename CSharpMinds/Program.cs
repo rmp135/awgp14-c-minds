@@ -45,7 +45,7 @@ namespace CSharpMinds
 
             GameObject _player = GameObjectFactory.Build("player", new List<IComponent>() {
                 new TransformComponent(),
-                new PhysicsComponent(),
+                _gravity,
                 new WASDControlComponent(),
                 new SpriteRenderComponent("Resources\\alienBeige_stand.png"),
                 new BoxColliderComponent(66, 92),
@@ -65,25 +65,35 @@ namespace CSharpMinds
                 new SpriteRenderComponent("Resources\\fishGreen.png")
             });
 
+            GameObject _floor = GameObjectFactory.Build(new List<IComponent>() {
+                new TransformComponent() {Position = new Vector(0,400)},
+                new BoxColliderComponent(800, 20)
+            });
+
             // Add objects to scene. (Note that child objects are automatically added.)
             _scene.AddGameObject(_bat);
             _scene.AddGameObject(_player);
             _scene.AddGameObject(_frameRate);
             _scene.AddGameObject(_fish);
+            _scene.AddGameObject(_floor);
+
+            SceneManager.TransitionToScene(_scene);
 
             for (int i = 0; i < 100000; i++) {
-                SystemManager.Update(_gameTime);
 
-                _gravity.AddForce(new Vector(0f, 3f));
-
+        //        _gravity.AddForce(new Vector(0f, 3f));
+                
                 //Update
-                _scene.Update(_gameTime);
+
+                SystemManager.Update(_gameTime);
+                SceneManager.Update(_gameTime);
+
                 _gameTime.Update();
 
                 //Draw
                 SystemManager.GetSystem<RenderSystem>().PreRender();
 
-                _scene.Draw();
+                SceneManager.Render();
 
                 SystemManager.GetSystem<RenderSystem>().PostRender();
 
