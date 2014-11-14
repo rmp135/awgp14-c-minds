@@ -1,4 +1,5 @@
-﻿namespace CSharpMinds.Interfaces
+﻿using Common;
+namespace Common.Interfaces
 {
     /// <summary>
     /// Allows components to be updated.

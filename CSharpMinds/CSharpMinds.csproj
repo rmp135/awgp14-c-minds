@@ -92,12 +92,10 @@
     <Compile Include="Components\WASDControlComponent.cs" />
     <Compile Include="Factories\GameObjectFactory.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="GameTime.cs" />
     <Compile Include="Managers\SceneManager.cs" />
     <Compile Include="Resources\ImageResource.cs" />
     <Compile Include="Interfaces\IComponent.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
-    <Compile Include="Interfaces\IUpdatable.cs" />
     <Compile Include="Components\PhysicsComponent.cs" />
     <Compile Include="Interfaces\IResource.cs" />
     <Compile Include="Managers\SystemManager.cs" />

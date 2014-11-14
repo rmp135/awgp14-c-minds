@@ -1,13 +1,12 @@
 ﻿using Common;
+using ConsoleLibrary.Drivers;
 using CSharpMinds.Components;
 using CSharpMinds.Factories;
 using CSharpMinds.Interfaces;
 using CSharpMinds.Managers;
 using CSharpMinds.Systems;
-
 //Import libraries that are required.
 using SFMLLibrary.Drivers;
-
 //
 using System.Collections.Generic;
 

@@ -1,8 +1,9 @@
 ﻿using Common;
-using CSharpMinds.Interfaces;
+using Common.Interfaces;
 using CSharpMinds.Managers;
 using System;
 using CSharpMinds.Systems;
+using CSharpMinds.Interfaces;
 
 namespace CSharpMinds.Components
 {

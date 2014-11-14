@@ -1,9 +1,10 @@
 ﻿using Common;
 using CSharpMinds.Factories;
-using CSharpMinds.Interfaces;
+using Common.Interfaces;
 using CSharpMinds.Managers;
 using CSharpMinds.Systems;
 using System.Collections.Generic;
+using CSharpMinds.Interfaces;
 
 namespace CSharpMinds.Components
 {

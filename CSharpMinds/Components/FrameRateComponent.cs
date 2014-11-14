@@ -1,5 +1,5 @@
 ﻿using Common;
-using CSharpMinds.Interfaces;
+using Common.Interfaces;
 
 namespace CSharpMinds.Components
 {

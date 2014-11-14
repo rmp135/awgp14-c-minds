@@ -2,6 +2,8 @@
 using CSharpMinds.Interfaces;
 using CSharpMinds.Systems;
 using System.Collections.Generic;
+using Common;
+using Common.Interfaces;
 
 namespace CSharpMinds.Managers
 {

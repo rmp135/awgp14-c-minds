@@ -1,5 +1,5 @@
 ﻿using Common;
-using CSharpMinds.Interfaces;
+using Common.Interfaces;
 using CSharpMinds.Systems;
 
 namespace CSharpMinds.Components
@@ -33,7 +33,5 @@ namespace CSharpMinds.Components
         public override void Initialise() {
             _transform = Owner.GetComponent<TransformComponent>();
         }
-
-
     }
 }

@@ -39,9 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameTime.cs" />
     <Compile Include="Interfaces\IAudioDriver.cs" />
     <Compile Include="Interfaces\IKeyboardDriver.cs" />
     <Compile Include="Interfaces\IRenderDriver.cs" />
+    <Compile Include="Interfaces\IUpdatable.cs" />
     <Compile Include="Keys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vector.cs" />
