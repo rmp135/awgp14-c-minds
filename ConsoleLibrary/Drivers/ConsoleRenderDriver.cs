@@ -26,5 +26,9 @@ namespace ConsoleLibrary.Drivers
         public void DrawLine(Vector start, Vector end) {
             throw new NotImplementedException();
         }
+
+        public void DrawSprite(string spriteName, Vector pos, Vector scale, int rotation) {
+            throw new NotImplementedException();
+        }
     }
 }

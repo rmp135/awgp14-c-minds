@@ -2,6 +2,8 @@
 {
     public interface IRenderDriver
     {
+        void DrawSprite(string spriteName, Vector pos, Vector scale, int rotation);
+
         void DrawSprite(string spriteName, Vector pos, Vector scale);
 
         void DrawSprite(string spriteName, Vector position);

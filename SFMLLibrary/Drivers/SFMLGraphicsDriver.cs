@@ -9,7 +9,7 @@ namespace SFMLLibrary.Drivers
 {
     public class SFMLRenderDriver : IRenderDriver
     {
-        private RenderWindow _window;
+        internal static RenderWindow _window;
         private Dictionary<string, Sprite> _spriteMaps;
         private Dictionary<string, Text> _textMaps;
         private Font _font;
@@ -27,11 +27,11 @@ namespace SFMLLibrary.Drivers
             _font = new Font(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Fonts) + "/arial.ttf");
             // Make it the active window for OpenGL calls
             _window.SetVerticalSyncEnabled(true);
+            _window.SetFramerateLimit(60);
             _window.SetActive();
             // Toolkit.Init();
             _window.Closed += new EventHandler(onclose);
         }
-
         private Sprite CacheSprite(string spriteName) {
             Texture t = new Texture(spriteName);
             t.Smooth = true;
@@ -53,7 +53,7 @@ namespace SFMLLibrary.Drivers
             }, PrimitiveType.Lines);
         }
 
-        public void DrawSprite(string spriteName, Vector position, Vector scale) {
+        public void DrawSprite(string spriteName, Vector position, Vector scale, int rotation) {
             Sprite sprite;
             if (!_spriteMaps.TryGetValue(spriteName, out sprite)) {
                 sprite = CacheSprite(spriteName);
@@ -61,7 +61,12 @@ namespace SFMLLibrary.Drivers
 
             sprite.Position = new Vector2f(position.X, position.Y);
             sprite.Scale = new Vector2f(scale.X, scale.Y);
+            sprite.Rotation = rotation;
             _window.Draw(sprite);
+        }
+
+        public void DrawSprite(string spriteName, Vector position, Vector scale) {
+            DrawSprite(spriteName, position, scale, 1);
         }
 
         public void DrawSprite(string spriteName, Vector pos) {
@@ -87,5 +92,6 @@ namespace SFMLLibrary.Drivers
             _window.DispatchEvents();
             _window.Display();
         }
+
     }
 }
