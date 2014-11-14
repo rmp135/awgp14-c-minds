@@ -10,7 +10,7 @@ using Common;
 
 namespace CSharpMinds.Systems
 {
-    public class PhysicsSystem : ISystem, IUpdatable
+    public class PhysicsSystem : ISystem
     {
         List<ColliderComponent> _colliders;
 

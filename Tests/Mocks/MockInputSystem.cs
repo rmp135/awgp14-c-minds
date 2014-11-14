@@ -12,6 +12,7 @@ namespace Tests.Mocks
     class MockInputSystem : ISystem
     {
         public MockInputDriver Driver;
+        public bool Updated;
         public void Initialise() {
             
         }
@@ -20,5 +21,9 @@ namespace Tests.Mocks
             Driver = driver;
         }
 
+
+        public void Update(CSharpMinds.GameTime gameTime) {
+            Updated = true;
+        }
     }
 }

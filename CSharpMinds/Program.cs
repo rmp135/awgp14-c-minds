@@ -84,8 +84,8 @@ namespace CSharpMinds
                 
                 //Update
 
-                SystemManager.Update(_gameTime);
                 SceneManager.Update(_gameTime);
+                SystemManager.Update(_gameTime);
 
                 _gameTime.Update();
 

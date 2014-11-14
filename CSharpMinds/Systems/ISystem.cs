@@ -5,7 +5,7 @@ using System.Text;
 using Common.Interfaces;
 
 namespace CSharpMinds.Systems {
-    public interface ISystem {
+    public interface ISystem : IUpdatable {
         void Initialise();
     }
 }

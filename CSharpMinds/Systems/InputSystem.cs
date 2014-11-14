@@ -25,5 +25,12 @@ namespace CSharpMinds.Systems
         public void Initialise() {
             _driver.Initialise();
         }
+
+        public void Update(GameTime gameTime) {
+            IUpdatable updatable = _driver as IUpdatable;
+            if (updatable != null) {
+                updatable.Update(gameTime);
+            }
+        }
     }
 }
