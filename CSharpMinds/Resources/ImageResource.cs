@@ -6,30 +6,17 @@ using System.Threading.Tasks;
 using CSharpMinds;
 using System.Drawing;
 
-
-namespace CSharpMinds
+namespace CSharpMinds.Resources
 {
     public class ImageResource : Resource
     {
-
+        private Bitmap img;
         public ImageResource(string filepath, string name) : base(filepath, name)
         {
-            img = (Bitmap)Image.FromFile(filePath);
+            img = (Bitmap)Image.FromFile(filepath);
         }
 
-        public string name
-        {
-            get { return name; }
-            set { this.name = value; }
-        }
-
-        public string filePath
-        {
-            get { return filePath; }
-            set { this.filePath = value; }
-        }
-
-        public Bitmap img
+        public Bitmap Img
         {
             get { return img; }
             set { this.img = value; }

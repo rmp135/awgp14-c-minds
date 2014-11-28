@@ -8,7 +8,7 @@ namespace CSharpMinds.Interfaces
 {
     public interface IResource
     {
-        string name { get; set; }
-        string filePath { get; set; }
+        string Name { get; set; }
+        string FilePath { get; set; }
     }
 }

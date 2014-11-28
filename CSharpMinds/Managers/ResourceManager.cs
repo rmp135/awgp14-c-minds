@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using CSharpMinds.Interfaces;
+using CSharpMinds.Resources;
 
 namespace CSharpMinds.Managers
 {
-    class ResourceManager
+    public class ResourceManager
     {
         List<Resource> resources;
         public ResourceManager()
@@ -33,7 +34,7 @@ namespace CSharpMinds.Managers
         public Resource findByName(string name)
         {
             foreach (Resource r in resources) {
-                if (r.name.Equals(name)) {
+                if (r.Name.Equals(name)) {
                     return r;
                 }
             }//TODO: throw exception here
