@@ -72,16 +72,22 @@ namespace SFMLLibrary.Drivers
         public void DrawSprite(string spriteName, Vector pos) {
             DrawSprite(spriteName, pos, new Vector(1, 1));
         }
-
-        public void DrawText(string textToDraw, Vector pos) {
+        public void DrawText(string textToDraw, int size, Vector pos)
+        {
             Text text;
-            if (!_textMaps.TryGetValue(textToDraw, out text)) {
+            if (!_textMaps.TryGetValue(textToDraw, out text))
+            {
                 text = CacheText(textToDraw);
             }
             text.Position = new Vector2f(pos.X, pos.Y);
             text.Origin = new Vector2f(0.0f, 0.0f);
             text.Color = Color.Black;
+            text.CharacterSize = (uint)size;
             _window.Draw(text);
+        }
+
+        public void DrawText(string textToDraw, Vector pos) {
+            DrawText(textToDraw, 10, pos);
         }
 
         public void PreRender() {
@@ -92,6 +98,8 @@ namespace SFMLLibrary.Drivers
             _window.DispatchEvents();
             _window.Display();
         }
+
+
 
     }
 }

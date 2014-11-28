@@ -24,7 +24,13 @@ namespace SFMLLibrary.Drivers
                 { Keys.keyboard.S, Keyboard.Key.S},
                 { Keys.keyboard.W, Keyboard.Key.W},
                 { Keys.keyboard.F, Keyboard.Key.F},
-                { Keys.keyboard.Q, Keyboard.Key.Q}
+                { Keys.keyboard.Q, Keyboard.Key.Q},
+                { Keys.keyboard.UP, Keyboard.Key.Up},
+                { Keys.keyboard.DOWN, Keyboard.Key.Down},
+                { Keys.keyboard.LEFT, Keyboard.Key.Left},
+                { Keys.keyboard.RIGHT, Keyboard.Key.Right},
+                { Keys.keyboard.RETURN, Keyboard.Key.Return},
+                { Keys.keyboard.ESC, Keyboard.Key.Escape},
             };
 
             _pressedKeys = new List<Keyboard.Key>();

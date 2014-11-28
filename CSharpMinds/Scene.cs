@@ -16,9 +16,16 @@ namespace CSharpMinds
     /// </summary>
     public class Scene : IUpdatable, IDrawable
     {
-        List<GameObject> _gameObjects;
-        List<GameObject> _toAdd;
-        List<GameObject> _toRemove;
+        private List<GameObject> _gameObjects;
+        private List<GameObject> _toAdd;
+        private List<GameObject> _toRemove;
+        private bool _paused;
+
+        public bool Paused
+        {
+            get { return _paused; }
+            set { _paused = value; }
+        }
 
         public List<GameObject> GameObjects {
             get { return _gameObjects; }
@@ -59,11 +66,12 @@ namespace CSharpMinds
         }
 
         /// <summary>
-        /// Update all components of all game objects in the scene, if enabled.
+        /// Update all components of all game objects in the scene, if enabled and not paused. If this is overridden you *must* put the base after your code.
         /// </summary>
-        public void Update(GameTime gameTime) {
+        public virtual void Update(GameTime gameTime) {
             performAdditions();
             performRemovals();
+            if (_paused) return;
             foreach (GameObject go in _gameObjects) {
                 foreach (IComponent comp in go.ChildComponents) {
                     IUpdatable updatable = comp as IUpdatable;

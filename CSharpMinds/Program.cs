@@ -26,7 +26,7 @@ namespace CSharpMinds
             });
 
             //Setup a new scene.
-            Scene _scene = new Scene();
+            GameScene _scene = new GameScene();
 
             PhysicsComponent _gravity = new PhysicsComponent();
 
@@ -76,7 +76,9 @@ namespace CSharpMinds
             _scene.AddGameObject(_fish);
             _scene.AddGameObject(_floor);
 
-            SceneManager.TransitionToScene(_scene);
+            MenuScene _menuScene = new MenuScene();
+            SceneManager.AddScene(_scene, "game");
+            SceneManager.TransitionToScene(_menuScene);
 
             for (int i = 0; i < 100000; i++) {
 
