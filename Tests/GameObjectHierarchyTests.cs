@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CSharpMinds;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CSharpMinds;
 
-namespace Tests {
+namespace Tests
+{
     [TestClass]
-    public class GameObjectHierarchyTests {
-        GameObject go, go2, go3;
+    public class GameObjectHierarchyTests
+    {
+        private GameObject go, go2, go3;
 
         [TestInitialize]
         public void Setup() {
@@ -51,6 +52,5 @@ namespace Tests {
             Assert.AreEqual(null, go2.Parent);
             Assert.AreEqual(0, go.Children.Count);
         }
-
     }
 }

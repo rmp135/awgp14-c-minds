@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Common;
+using Common.Interfaces;
+using CSharpMinds.Systems;
 
 namespace CSharpMinds.Components
 {
     public class PhysicsComponent : Component, IUpdatable
     {
-        Vector _forceAccumulator;
-        TransformComponent _transform;
+        private Vector _forceAccumulator;
 
-        public PhysicsComponent() : base("PhysicsComponent") {
+        public Vector CurrentForces {
+            get { return _forceAccumulator; }
+            set { _forceAccumulator = value; }
+        }
+        private TransformComponent _transform;
+
+        public PhysicsComponent()
+            : base("PhysicsComponent") {
             _forceAccumulator = new Vector();
         }
 
@@ -21,11 +25,13 @@ namespace CSharpMinds.Components
             _forceAccumulator.Y = 0;
             _forceAccumulator.Z = 0;
         }
+
         public void AddForce(Vector forceToAdd) {
             _forceAccumulator += forceToAdd;
         }
+
         public override void Initialise() {
-            _transform = Owner.GetComponent<TransformComponent>() as TransformComponent;
+            _transform = Owner.GetComponent<TransformComponent>();
         }
     }
 }

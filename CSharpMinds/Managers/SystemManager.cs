@@ -1,32 +1,46 @@
-﻿using CSharpMinds.Systems;
-using System;
+﻿using CSharpMinds.Exceptions;
+using CSharpMinds.Interfaces;
+using CSharpMinds.Systems;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Common;
+using Common.Interfaces;
 
-namespace CSharpMinds.Managers {
-    public static class SystemManager {
+namespace CSharpMinds.Managers
+{
+    public static class SystemManager
+    {
+        private static List<ISystem> _systems;
 
-        static List<ISystem> systems;
-
-        public static void AddSystem(ISystem system) {
-            if (systems == null) { systems = new List<ISystem>(); }
-            ISystem alreadyImplemented = systems.Find(p => p.GetType() == system.GetType());
+        private static void AddSystem(ISystem system) {
+            if (_systems == null) { _systems = new List<ISystem>(); }
+            ISystem alreadyImplemented = _systems.Find(p => p.GetType() == system.GetType());
             if (alreadyImplemented != null) {
-                systems.Remove(alreadyImplemented);
+                _systems.Remove(alreadyImplemented);
             }
-            systems.Add(system);
+            _systems.Add(system);
         }
-        public static ISystem GetSystem<T>() {
-            if (systems == null) { systems = new List<ISystem>(); }
-            return systems.Find(p => p.GetType() == typeof(T));
+
+        public static void AddSystems(List<ISystem> systems) {
+            foreach (ISystem system in systems) {
+                AddSystem(system);
+            }
+            foreach (ISystem system in _systems) {
+                system.Initialise();
+            }
+        }
+
+        public static T GetSystem<T>() {
+            if (_systems == null) { throw new SystemNotFoundException(typeof(T).ToString()); }
+            T ret = (T)_systems.Find(p => p.GetType() == typeof(T));
+            if (ret == null) { throw new SystemNotFoundException(typeof(T).ToString()); }
+            return ret;
         }
 
         public static void Update(GameTime gameTime) {
-            foreach (ISystem system in systems) {
-                if (system is IUpdatable) {
-                    ((IUpdatable)system).Update(gameTime);
+            foreach (ISystem system in _systems) {
+                IUpdatable updatable = system as IUpdatable;
+                if (updatable != null) {
+                    updatable.Update(gameTime);
                 }
             }
         }

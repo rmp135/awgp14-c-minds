@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CSharpMinds
+namespace Common
 {
     public class GameTime
     {
@@ -13,26 +9,22 @@ namespace CSharpMinds
         private long _deltaTime;
         private long _lastUpdate;
 
-        public long TotalTime
-        {
-            get { return _totalTime; }
+        public long TotalTime {
+            get { return TimeSpan.FromTicks(_deltaTime).Milliseconds; }
         }
 
-        public long DeltaTime
-        {
-            get { return _deltaTime; }
+        public long DeltaTime {
+            get { return TimeSpan.FromTicks(_deltaTime).Milliseconds; }
         }
 
-        public GameTime()
-        {
+        public GameTime() {
             _startTime = DateTime.Now.Ticks;
             _deltaTime = 0;
             _totalTime = 0;
             _lastUpdate = _startTime;
         }
 
-        public void Update()
-        {
+        public void Update() {
             _deltaTime = DateTime.Now.Ticks - _lastUpdate;
             _totalTime = DateTime.Now.Ticks - _startTime;
             _lastUpdate = DateTime.Now.Ticks;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpMinds {
+namespace CSharpMinds.Interfaces {
     public interface IDrawable {
         void Draw();
     }

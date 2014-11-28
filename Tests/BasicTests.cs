@@ -1,41 +1,41 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CSharpMinds;
+﻿using Common;
 using CSharpMinds.Interfaces;
-using CSharpMinds.Components;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests.Mocks;
 
-namespace CSharpMinds.Tests {
-
+namespace CSharpMinds.Tests
+{
     [TestClass]
-    public class BasicTests {
-        GameObject go;
-        UpdatingComponent c;
+    public class BasicTests
+    {
+        private GameObject go;
+        private MockUpdateComponent c;
 
         [TestInitialize]
         public void Setup() {
             go = new GameObject("go");
-            c = new UpdatingComponent("comp");
+            c = new MockUpdateComponent();
         }
 
         [TestMethod]
         public void TestCanGetComponentByName() {
             go.AddComponent(c);
-            IComponent s = go.GetComponentByName("comp");
-            Assert.AreEqual("comp", s.Name);
+            IComponent s = go.GetComponentByName("UpdatingComp");
+            Assert.AreEqual("UpdatingComp", s.Name);
         }
 
         [TestMethod]
         public void TestComponentsUpdate() {
             go.AddComponent(c);
             c.Update(new GameTime());
-            Assert.AreEqual(1, c.TestInt);
+            Assert.IsTrue(c.Updated);
         }
 
         [TestMethod]
         public void TestCastingComponents() {
             go.AddComponent(c);
-            UpdatingComponent s = go.GetComponentByName("comp") as UpdatingComponent;
-            Assert.AreEqual(0, s.TestInt);
+            MockUpdateComponent s = go.GetComponentByName("UpdatingComp") as MockUpdateComponent;
+            Assert.IsFalse(s.Updated);
         }
 
         [TestMethod]
@@ -44,6 +44,5 @@ namespace CSharpMinds.Tests {
             Vector v2 = new Vector(1f, 2f, 3f);
             Assert.AreEqual(new Vector(3f, 5f, 7f), v + v2);
         }
-
     }
 }

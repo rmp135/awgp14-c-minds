@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpMinds.Systems {
+namespace Common.Interfaces {
     public interface IAudioDriver {
         bool SoundEnabled { get; set; }
         void SoundVolume(int vol);

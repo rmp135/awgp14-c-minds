@@ -1,51 +1,103 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSharpMinds.Managers;
-using CSharpMinds.Systems;
+﻿using Common;
+using ConsoleLibrary.Drivers;
+using CSharpMinds.Components;
 using CSharpMinds.Factories;
 using CSharpMinds.Interfaces;
-using CSharpMinds.Components;
+using CSharpMinds.Managers;
+using CSharpMinds.Systems;
+//Import libraries that are required.
+using SFMLLibrary.Drivers;
+//
+using System.Collections.Generic;
 
 namespace CSharpMinds
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
-        {
-
+        private static void Main(string[] args) {
             GameTime _gameTime = new GameTime();
 
-            SystemManager.AddSystem(new RenderSystem(new ConsoleRenderDriver()));
+            //Init systems.
 
-            Scene scene = new Scene();
+            SystemManager.AddSystems(new List<ISystem>() {
+                new RenderSystem(new SFMLRenderDriver()),
+                new InputSystem(new SFMLKeyboardDriver()),
+                new PhysicsSystem()
+            });
 
-            PhysicsComponent physics = new PhysicsComponent();
-            PhysicsComponent physics2 = new PhysicsComponent();
+            //Setup a new scene.
+            Scene _scene = new Scene();
 
-            GameObject gameobject = GameObjectFactory.Build(new List<IComponent>() { new TransformComponent(), new TextRenderComponent(), physics });
-           
-            GameObject gameobject2 = GameObjectFactory.Build(new List<IComponent>() { new TransformComponent(), new TextRenderComponent(), physics2 });
-          
-            scene.AddGameObject(gameobject);
-            scene.AddGameObject(gameobject2);
+            PhysicsComponent _gravity = new PhysicsComponent();
 
+            GameObject _frameRate = GameObjectFactory.Build(new List<IComponent>() {
+                new FrameRateComponent(),
+                new TransformComponent()
+            });
+
+            GameObject _bat = GameObjectFactory.Build("bat", new List<IComponent>() {
+                new TransformComponent(),
+                new SpriteRenderComponent("Resources\\bat.png"),
+                new BoxColliderComponent(70, 47)
+            });
+            _bat.GetComponent<TransformComponent>().Position = new Vector(200,200);
+
+            GameObject _player = GameObjectFactory.Build("player", new List<IComponent>() {
+                new TransformComponent(),
+                _gravity,
+                new WASDControlComponent(),
+                new SpriteRenderComponent("Resources\\alienBeige_stand.png"),
+                new BoxColliderComponent(66, 92),
+                new PlayerCollideLogic()
+            });
+
+            GameObject _rayGun = GameObjectFactory.Build("gun", new List<IComponent>() {
+                new TransformComponent(){Position = new Vector(30,23)},
+                new SpriteRenderComponent("Resources\\raygunBig.png")
+            });
+            _rayGun.Parent = _player;
+
+            GameObject _fish = GameObjectFactory.Build("fish", new List<IComponent>() {
+                new TransformComponent() {Position = new Vector(100,100)},
+                new BoxColliderComponent(60,45),
+                new SpriteLabelRenderComponent(),
+                new SpriteRenderComponent("Resources\\fishGreen.png")
+            });
+
+            GameObject _floor = GameObjectFactory.Build(new List<IComponent>() {
+                new TransformComponent() {Position = new Vector(0,400)},
+                new BoxColliderComponent(800, 20)
+            });
+
+            // Add objects to scene. (Note that child objects are automatically added.)
+            _scene.AddGameObject(_frameRate);
+            _scene.AddGameObject(_player);
+            _scene.AddGameObject(_bat);
+            _scene.AddGameObject(_fish);
+            _scene.AddGameObject(_floor);
+
+            SceneManager.TransitionToScene(_scene);
 
             for (int i = 0; i < 100000; i++) {
+
+        //        _gravity.AddForce(new Vector(0f, 3f));
+                
+                //Update
+
+                SceneManager.Update(_gameTime);
                 SystemManager.Update(_gameTime);
 
-                physics.AddForce(new Vector(0f, -0.5f, 0f));
-                physics2.AddForce(new Vector(0f, 2f, 0f));
-
-                scene.Update(_gameTime);
-                scene.Draw();
-
                 _gameTime.Update();
-                System.Threading.Thread.Sleep(100);
-            }
 
+                //Draw
+                SystemManager.GetSystem<RenderSystem>().PreRender();
+
+                SceneManager.Render();
+
+                SystemManager.GetSystem<RenderSystem>().PostRender();
+
+                //System.Threading.Thread.Sleep(16);
+            }
         }
     }
 }
