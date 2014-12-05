@@ -8,13 +8,13 @@ using CSharpMinds.Interfaces;
 
 namespace CSharpMinds.Components
 {
-    public class WASDControlComponent : Component, IUpdatable
+    public class PlayerControlComponent : Component, IUpdatable
     {
         private InputSystem _inputSystem;
         private TransformComponent _tranComp;
         private PhysicsComponent _physComp;
 
-        public WASDControlComponent()
+        public PlayerControlComponent()
             : base("WASDControl") {
         }
 
@@ -33,24 +33,24 @@ namespace CSharpMinds.Components
         private bool _delete;
 
         public void Update(GameTime gameTime) {
-            if (_inputSystem.isKeyDown(Keys.keyboard.D)) {
+            if (_inputSystem.isActionDown("WALKRIGHT")) {
                 _physComp.AddForce(new Vector(0.2f * gameTime.DeltaTime, 0));
             }
-            if (_inputSystem.isKeyDown(Keys.keyboard.A)) {
+            if (_inputSystem.isActionDown("WALKLEFT")) {
                 _physComp.AddForce(new Vector(-0.2f * gameTime.DeltaTime, 0));
             }
-            if (_inputSystem.isKeyDown(Keys.keyboard.W)) {
+            if (_inputSystem.isActionDown("WALKUP")) {
                 _physComp.AddForce(new Vector(0, -0.2f * gameTime.DeltaTime));
             }
-            if (_inputSystem.isKeyDown(Keys.keyboard.S)) {
+            if (_inputSystem.isActionDown("WALKDOWN")) {
                 _physComp.AddForce(new Vector(0, 0.2f * gameTime.DeltaTime));
             }
-            if (_inputSystem.isKeyPressed(Keys.keyboard.Q)) {
+            if (_inputSystem.isActionPressed("DELETETOGGLE")) {
                 _delete = !_delete;
                 System.Console.WriteLine(_delete);
             }
 
-            if (_inputSystem.isKeyPressed(Keys.keyboard.F)) {
+            if (_inputSystem.isActionPressed("FIRE")) {
                 SceneManager.AddGameObjectToScene(GameObjectFactory.Build(new List<IComponent>() {
                     new SpriteRenderComponent("Resources\\laserBlue01.png"),
                     new BoxColliderComponent(54, 9),

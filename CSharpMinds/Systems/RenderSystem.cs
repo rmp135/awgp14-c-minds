@@ -24,8 +24,14 @@ namespace CSharpMinds.Systems
             _driver.DrawSprite(spritename, position, scale);
         }
 
-        public void DrawText(string text, Vector pos) {
+        public void DrawText(string text, Vector pos)
+        {
             _driver.DrawText(text, pos);
+        }
+     
+        public void DrawText(string text, int size, Vector pos)
+        {
+            _driver.DrawText(text, size, pos);
         }
 
         public void DrawLine(Vector start, Vector end) {

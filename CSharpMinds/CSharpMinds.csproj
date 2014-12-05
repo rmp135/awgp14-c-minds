@@ -81,6 +81,7 @@
     <Compile Include="Components\Colliders\PointCollider.cs" />
     <Compile Include="Components\FrameRateComponent.cs" />
     <Compile Include="Components\LaserLogic.cs" />
+    <Compile Include="Components\MenuItemComponent.cs" />
     <Compile Include="Components\PlayerCollideLogic.cs" />
     <Compile Include="Components\SpriteLabelRenderComponent.cs" />
     <Compile Include="Exceptions\SystemNotFoundException.cs" />
@@ -90,10 +91,12 @@
     <Compile Include="Components\SpriteRenderComponent.cs" />
     <Compile Include="Components\TextRenderComponent.cs" />
     <Compile Include="Components\TransformComponent.cs" />
-    <Compile Include="Components\WASDControlComponent.cs" />
+    <Compile Include="Components\PlayerControlComponent.cs" />
     <Compile Include="Factories\GameObjectFactory.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameScene.cs" />
     <Compile Include="Managers\SceneManager.cs" />
+    <Compile Include="MenuScene.cs" />
     <Compile Include="Resources\ImageResource.cs" />
     <Compile Include="Interfaces\IComponent.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />

@@ -8,9 +8,16 @@ namespace CSharpMinds.Components
     {
         protected RenderSystem _renderSystem;
         protected TransformComponent _transComp;
+        private string _text;
 
         public TextRenderComponent()
             : base("TextRenderer") {
+                _text = "";
+        }
+        public TextRenderComponent(string text)
+            : this()
+        {
+            _text = text;
         }
 
         public override void Initialise() {
@@ -19,6 +26,7 @@ namespace CSharpMinds.Components
         }
 
         public virtual void Draw() {
+            _renderSystem.DrawText(_text, 30, _transComp.Position);
         }
     }
 }

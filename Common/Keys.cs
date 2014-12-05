@@ -10,6 +10,7 @@ namespace Common
     {
         public enum keyboard
         {
+            NONE,
             A,
             B,
             C,
@@ -51,10 +52,16 @@ namespace Common
             SHIFT,
             CONTROL,
             ALT,
-            CMD
+            CMD,
+            UP,
+            DOWN,
+            LEFT,
+            RIGHT,
+            ESC
         }
         public enum mouse
         {
+            NONE,
             LEFT,
             RIGHT
         }

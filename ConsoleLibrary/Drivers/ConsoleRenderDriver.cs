@@ -32,5 +32,11 @@ namespace ConsoleLibrary.Drivers
         public void DrawSprite(string spriteName, Vector pos, Vector scale, int rotation) {
             DrawSprite(spriteName, pos);
         }
+
+
+        public void DrawText(string text, int size, Vector pos)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

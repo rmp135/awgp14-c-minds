@@ -40,6 +40,12 @@ namespace CSharpMinds.Components
             }
         }
 
+        public TransformComponent(Vector pos) :base("Transform")
+        {
+            _position = pos;
+            this.Scale = new Vector(1, 1);
+        }
+
         public TransformComponent()
             : base("Transform") {
             _position = new Vector(0f, 0f, 0f);

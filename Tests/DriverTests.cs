@@ -4,6 +4,7 @@ using Tests.Mocks;
 using CSharpMinds.Managers;
 using CSharpMinds.Systems;
 using System.Collections.Generic;
+using Common;
 
 namespace Tests
 {
@@ -28,8 +29,19 @@ namespace Tests
         [TestMethod]
         public void TestUpdatingDriver() {
             SystemManager.AddSystems(new List<ISystem>() { mockInputSystem });
-            SystemManager.Update(new CSharpMinds.GameTime());
+            SystemManager.Update(new GameTime());
             Assert.IsTrue(mockInputDriver.Updated);
+        }
+
+        [TestMethod]
+        public void TestInputActions() {
+            CSharpMinds.Systems.InputSystem input = new CSharpMinds.Systems.InputSystem(mockInputDriver);
+            input.setBinding("UP", Keys.keyboard.A);
+            SystemManager.AddSystems(new List<ISystem> { input });
+            Assert.IsTrue(input.isActionDown("UP"));
+            Assert.IsTrue(input.isActionPressed("UP"));
+            Assert.IsFalse(input.isActionDown("DOWN"));
+            Assert.IsFalse(input.isActionPressed("DOWN"));
         }
     }
 }

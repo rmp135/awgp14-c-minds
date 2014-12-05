@@ -12,8 +12,26 @@ namespace CSharpMinds.Managers
     {
         static Dictionary<string, Scene> _scenes;
         static Scene _currentScene;
+        static bool _paused;
+
+        public static bool Paused
+        {
+            get { return _currentScene.Paused; }
+            set { _currentScene.Paused = value; }
+        }
         public static void TransitionToScene(Scene nextScene) {
             _currentScene = nextScene;
+        }
+
+        public static void TransitionToScene(String scene)
+        {
+            _currentScene = _scenes.First(p => p.Key == scene.ToLower()).Value;
+        }
+
+        public static void AddScene(Scene sceneToAdd, string name)
+        {
+            if (_scenes == null) { _scenes = new Dictionary<string, Scene>(); }
+            _scenes.Add(name, sceneToAdd);
         }
 
         public static void AddGameObjectToScene(GameObject go) {

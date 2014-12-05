@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CSharpMinds.Systems;
 using CSharpMinds.Managers;
 using CSharpMinds.Interfaces;
+using Common;
 
 namespace Tests.Mocks
 {
@@ -22,7 +23,8 @@ namespace Tests.Mocks
         }
 
 
-        public void Update(CSharpMinds.GameTime gameTime) {
+        public void Update(GameTime gameTime) {
+            Driver.Update(gameTime);
             Updated = true;
         }
     }

@@ -8,6 +8,8 @@
 
         void DrawSprite(string spriteName, Vector position);
 
+        void DrawText(string text, int size, Vector pos);
+
         void DrawText(string text, Vector pos);
 
         void DrawLine(Vector start, Vector end);

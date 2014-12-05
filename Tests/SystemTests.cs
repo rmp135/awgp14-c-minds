@@ -6,6 +6,7 @@ using ConsoleLibrary.Drivers;
 using System.Collections.Generic;
 using Tests.Mocks;
 using CSharpMinds.Systems;
+using Common;
 
 namespace Tests {
     [TestClass]
