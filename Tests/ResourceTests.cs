@@ -25,7 +25,7 @@ namespace Tests
         {
             Directory.SetCurrentDirectory("C:\\Users\\jack\\Documents\\awgp14-c-minds\\CSharpMinds\\Images");
             Console.Out.WriteLine("The current directory is {0}", Directory.GetCurrentDirectory());
-
+            
             resources = new ResourceManager();
             r = new Resource("testDirectory","testName");
             i = new ImageResource("citadel.jpg","testImage");

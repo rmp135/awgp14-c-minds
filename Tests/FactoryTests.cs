@@ -12,6 +12,16 @@ namespace Tests
     public class FactoryTests
     {
         [TestMethod]
+        public void TestXmlFactory()
+        {
+            MockPlayer p = XMLFactory.CreateFromXml<MockPlayer>(@"Mocks\MockPLayerSample.xml");
+
+            Assert.AreEqual(p.lives, 3);
+            Assert.AreEqual(p.name, "Jack");
+            Assert.AreEqual(p.score, 2039);
+        }
+
+        [TestMethod]
         public void TestGOFactoryAddsComponent() {
             GameObject g = GameObjectFactory.Build(new List<IComponent>() { new TransformComponent() });
 

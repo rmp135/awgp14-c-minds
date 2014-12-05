@@ -55,6 +55,7 @@
     <Compile Include="Mocks\MockDrawComponent.cs" />
     <Compile Include="Mocks\MockInputDriver.cs" />
     <Compile Include="Mocks\MockInputSystem.cs" />
+    <Compile Include="Mocks\MockPlayer.cs" />
     <Compile Include="Mocks\MockReliesOnSystem.cs" />
     <Compile Include="Mocks\MockReliesOnComponent.cs" />
     <Compile Include="Mocks\MockSystem.cs" />
@@ -81,6 +82,11 @@
       <Project>{bbac7dd6-fd9a-48e6-8518-b5e41c2a6a19}</Project>
       <Name>CSharpMinds</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Mocks\MockPLayerSample.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
