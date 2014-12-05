@@ -2,6 +2,7 @@
 using CSharpMinds.Components;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.Mocks;
+using Common;
 
 namespace Tests
 {

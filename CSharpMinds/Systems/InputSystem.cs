@@ -9,12 +9,39 @@ using CSharpMinds.Interfaces;
 
 namespace CSharpMinds.Systems
 {
-    class InputSystem : ISystem
+    public class InputSystem : ISystem
     {
         IKeyboardDriver _driver;
+
+        Dictionary<String, Keys.keyboard> _bindings;
+
         public InputSystem(IKeyboardDriver driver) {
             _driver = driver;
+            _bindings = new Dictionary<string, Keys.keyboard>();
         }
+
+        public void setBinding(String actionName, Keys.keyboard key) {
+            _bindings.Add(actionName, key);
+        }
+
+        public bool isActionDown(String action) {
+            Keys.keyboard key;
+            _bindings.TryGetValue(action, out key);
+            if (key != Keys.keyboard.NONE) {
+                return isKeyDown(key);
+            }
+            return false;
+        }
+
+        public bool isActionPressed(String action) {
+            Keys.keyboard key;
+            _bindings.TryGetValue(action, out key);
+            if (key != Keys.keyboard.NONE) {
+                return isKeyPressed(key);
+            }
+            return false;
+        }
+
         public bool isKeyDown(Keys.keyboard key) {
             return _driver.isKeyDown(key);
         }

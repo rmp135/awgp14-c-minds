@@ -91,7 +91,7 @@
     <Compile Include="Components\SpriteRenderComponent.cs" />
     <Compile Include="Components\TextRenderComponent.cs" />
     <Compile Include="Components\TransformComponent.cs" />
-    <Compile Include="Components\WASDControlComponent.cs" />
+    <Compile Include="Components\PlayerControlComponent.cs" />
     <Compile Include="Factories\GameObjectFactory.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameScene.cs" />

@@ -1,5 +1,7 @@
 ﻿using CSharpMinds.Systems;
 using CSharpMinds.Interfaces;
+using Common;
+using Common.Interfaces;
 
 namespace Tests.Mocks
 {
@@ -14,7 +16,7 @@ namespace Tests.Mocks
             return true;
         }
 
-        public void Update(CSharpMinds.GameTime gameTime) {
+        public void Update(GameTime gameTime) {
             Updated = true;
         }
     }

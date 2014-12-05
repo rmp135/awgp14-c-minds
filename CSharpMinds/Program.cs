@@ -19,11 +19,20 @@ namespace CSharpMinds
 
             //Init systems.
 
+            InputSystem _is = new InputSystem(new SFMLKeyboardDriver());
+            _is.setBinding("WALKUP", Keys.keyboard.W);
+            _is.setBinding("WALKDOWN", Keys.keyboard.S);
+            _is.setBinding("WALKLEFT", Keys.keyboard.A);
+            _is.setBinding("WALKRIGHT", Keys.keyboard.D);
+            _is.setBinding("FIRE", Keys.keyboard.F);
+            _is.setBinding("DELETETOGGLE", Keys.keyboard.Q);
+
             SystemManager.AddSystems(new List<ISystem>() {
                 new RenderSystem(new SFMLRenderDriver()),
-                new InputSystem(new SFMLKeyboardDriver()),
+                _is,
                 new PhysicsSystem()
             });
+
 
             //Setup a new scene.
             GameScene _scene = new GameScene();
@@ -45,7 +54,7 @@ namespace CSharpMinds
             GameObject _player = GameObjectFactory.Build("player", new List<IComponent>() {
                 new TransformComponent(),
                 _gravity,
-                new WASDControlComponent(),
+                new PlayerControlComponent(),
                 new SpriteRenderComponent("Resources\\alienBeige_stand.png"),
                 new BoxColliderComponent(66, 92),
                 new PlayerCollideLogic()
