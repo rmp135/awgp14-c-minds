@@ -12,13 +12,37 @@ namespace Tests
     public class FactoryTests
     {
         [TestMethod]
-        public void TestXmlFactory()
+        public void TestXmlFactoryCreate()
         {
             MockPlayer p = XMLFactory.CreateFromXml<MockPlayer>(@"Mocks\MockPLayerSample.xml");
 
             Assert.AreEqual(p.lives, 3);
             Assert.AreEqual(p.name, "Jack");
             Assert.AreEqual(p.score, 2039);
+        }
+
+        [TestMethod]
+        public void TestXmlFactoryReadAndUpdate()
+        {
+            MockPlayer p = XMLFactory.CreateFromXml<MockPlayer>(@"Mocks\MockPLayerSample.xml");
+
+            p.lives = 101;
+            p.name = "name change";
+            p.score = 765345;
+
+            XMLFactory.ReadAndUpdateFromXml<MockPlayer>(@"Mocks\MockPLayerSample.xml", p);
+        }
+
+        [TestMethod]
+        public void TestXmlFactoryWriteToXml()
+        {
+            MockPlayer p = XMLFactory.CreateFromXml<MockPlayer>(@"Mocks\MockPLayerSample.xml");
+
+            p.lives = 1;
+            p.name = "new name";
+            p.score = 0;
+
+            XMLFactory.WriteToXml<MockPlayer>(@"Mocks\NewMockPlayer.xml", p);
         }
 
         [TestMethod]
