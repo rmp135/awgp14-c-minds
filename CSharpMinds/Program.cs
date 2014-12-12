@@ -5,6 +5,7 @@ using CSharpMinds.Factories;
 using CSharpMinds.Interfaces;
 using CSharpMinds.Managers;
 using CSharpMinds.Systems;
+using CSharpMinds.Behaviours;
 //Import libraries that are required.
 using SFMLLibrary.Drivers;
 //
@@ -26,11 +27,9 @@ namespace CSharpMinds
             _is.setBinding("WALKRIGHT", Keys.keyboard.D);
             _is.setBinding("FIRE", Keys.keyboard.F);
             _is.setBinding("DELETETOGGLE", Keys.keyboard.Q);
-
-            SystemManager.AddSystems(new List<ISystem>() {
+            SystemManager.AddSystems(new List<ISystem>(){
                 new RenderSystem(new SFMLRenderDriver()),
-                _is,
-                new PhysicsSystem()
+                _is
             });
 
 
@@ -44,12 +43,8 @@ namespace CSharpMinds
                 new TransformComponent()
             });
 
-            GameObject _bat = GameObjectFactory.Build("bat", new List<IComponent>() {
-                new TransformComponent(),
-                new SpriteRenderComponent("Resources\\bat.png"),
-                new BoxColliderComponent(70, 47)
-            });
-            _bat.GetComponent<TransformComponent>().Position = new Vector(200,200);
+            
+            
 
             GameObject _player = GameObjectFactory.Build("player", new List<IComponent>() {
                 new TransformComponent(),
@@ -59,6 +54,16 @@ namespace CSharpMinds
                 new BoxColliderComponent(66, 92),
                 new PlayerCollideLogic()
             });
+
+            GameObject _bat = GameObjectFactory.Build("bat", new List<IComponent>() {
+                new TransformComponent(),
+                new PhysicsComponent(),
+                new SpriteRenderComponent("Resources\\bat.png"),
+                new BoxColliderComponent(70, 47),
+                new TrackingBehaviour(_player)
+            });
+
+            _bat.GetComponent<TransformComponent>().Position = new Vector(200,200);
 
             GameObject _rayGun = GameObjectFactory.Build("gun", new List<IComponent>() {
                 new TransformComponent(){Position = new Vector(30,23)},
@@ -70,7 +75,7 @@ namespace CSharpMinds
                 new TransformComponent() {Position = new Vector(100,100)},
                 new BoxColliderComponent(60,45),
                 new SpriteLabelRenderComponent(),
-                new SpriteRenderComponent("Resources\\fishGreen.png")
+                new SpriteRenderComponent("Resources\\fishGreen.png"),
             });
 
             GameObject _floor = GameObjectFactory.Build(new List<IComponent>() {

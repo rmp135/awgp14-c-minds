@@ -77,6 +77,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviours\TrackingBehaviour.cs" />
     <Compile Include="Components\BoxColliderComponent.cs" />
     <Compile Include="Components\Colliders\PointCollider.cs" />
     <Compile Include="Components\FrameRateComponent.cs" />
@@ -188,6 +189,7 @@
   <ItemGroup>
     <Content Include="Images\citadel.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

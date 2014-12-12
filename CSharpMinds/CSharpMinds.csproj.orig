@@ -77,10 +77,12 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviours\TrackingBehaviour.cs" />
     <Compile Include="Components\BoxColliderComponent.cs" />
     <Compile Include="Components\Colliders\PointCollider.cs" />
     <Compile Include="Components\FrameRateComponent.cs" />
     <Compile Include="Components\LaserLogic.cs" />
+    <Compile Include="Components\MenuItemComponent.cs" />
     <Compile Include="Components\PlayerCollideLogic.cs" />
     <Compile Include="Components\SpriteLabelRenderComponent.cs" />
     <Compile Include="Exceptions\SystemNotFoundException.cs" />
@@ -90,10 +92,13 @@
     <Compile Include="Components\SpriteRenderComponent.cs" />
     <Compile Include="Components\TextRenderComponent.cs" />
     <Compile Include="Components\TransformComponent.cs" />
-    <Compile Include="Components\WASDControlComponent.cs" />
+    <Compile Include="Components\PlayerControlComponent.cs" />
     <Compile Include="Factories\GameObjectFactory.cs" />
+    <Compile Include="Factories\XMLFactory.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameScene.cs" />
     <Compile Include="Managers\SceneManager.cs" />
+    <Compile Include="MenuScene.cs" />
     <Compile Include="Resources\ImageResource.cs" />
     <Compile Include="Interfaces\IComponent.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
@@ -104,6 +109,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.cs" />
     <Compile Include="Managers\ResourceManager.cs" />
+    <Compile Include="Resources\TextResource.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Systems\AudioSystem.cs" />
     <Compile Include="Systems\InputSystem.cs" />
@@ -133,11 +139,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-<<<<<<< HEAD
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="Images\citadel.jpg" />
-=======
   <ItemGroup>
     <Content Include="Resources\alienBeige_stand.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -183,8 +184,14 @@
       <Project>{262cc8b4-18be-4a71-bbe9-ec53f4eff390}</Project>
       <Name>SFMLLibrary</Name>
     </ProjectReference>
->>>>>>> origin/dev
   </ItemGroup>
+  <ItemGroup />
+<<<<<<< Updated upstream
+  <ItemGroup>
+    <Content Include="Images\citadel.jpg" />
+  </ItemGroup>
+=======
+>>>>>>> Stashed changes
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
