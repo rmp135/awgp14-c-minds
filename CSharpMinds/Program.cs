@@ -29,7 +29,8 @@ namespace CSharpMinds
             _is.setBinding("DELETETOGGLE", Keys.keyboard.Q);
             SystemManager.AddSystems(new List<ISystem>(){
                 new RenderSystem(new SFMLRenderDriver()),
-                _is
+                _is,
+                new PhysicsSystem()
             });
 
 
@@ -43,17 +44,21 @@ namespace CSharpMinds
                 new TransformComponent()
             });
 
-            
-            
 
-            GameObject _player = GameObjectFactory.Build("player", new List<IComponent>() {
-                new TransformComponent(),
-                _gravity,
-                new PlayerControlComponent(),
-                new SpriteRenderComponent("Resources\\alienBeige_stand.png"),
-                new BoxColliderComponent(66, 92),
-                new PlayerCollideLogic()
-            });
+            GameObject _player;
+
+            //    _player = GameObjectFactory.Build("player", new List<IComponent>() {
+            //    new TransformComponent(),
+            //    _gravity,
+            //    new PlayerControlComponent(),
+            //    new SpriteRenderComponent("Resources\\alienBeige_stand.png"),
+            //    new BoxColliderComponent(66, 92),
+            //    new PlayerCollideLogic()
+            //});
+
+            //XMLSerialisation.ConstructXML(_player, "Resources\\player.xml");
+
+            _player = GameObjectFactory.BuildFromXML("Resources\\player.xml");
 
             GameObject _bat = GameObjectFactory.Build("bat", new List<IComponent>() {
                 new TransformComponent(),

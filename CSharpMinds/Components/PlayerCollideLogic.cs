@@ -8,7 +8,7 @@ using CSharpMinds.Managers;
 
 namespace CSharpMinds.Components
 {
-    class PlayerCollideLogic : Component
+    public class PlayerCollideLogic : Component
     {
         PhysicsComponent _phys;
         TransformComponent _trans;

@@ -2,7 +2,7 @@
 
 namespace Tests.Mocks
 {
-    internal class MockReliesOnComponent : Component
+    public class MockReliesOnComponent : Component
     {
         private MockUpdateComponent _update;
 

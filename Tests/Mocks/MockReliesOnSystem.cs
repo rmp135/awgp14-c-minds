@@ -3,12 +3,12 @@ using CSharpMinds.Managers;
 
 namespace Tests.Mocks
 {
-    internal class MockReliesOnSystem : Component
+    public class MockReliesOnSystem : Component
     {
-        private MockSystem _update;
+        public MockSystem System;
 
         public override void Initialise() {
-            _update = SystemManager.GetSystem<MockSystem>();
+            System = SystemManager.GetSystem<MockSystem>();
         }
     }
 }
