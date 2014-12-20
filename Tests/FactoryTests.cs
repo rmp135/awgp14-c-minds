@@ -2,6 +2,7 @@
 using CSharpMinds.Components;
 using CSharpMinds.Factories;
 using CSharpMinds.Interfaces;
+using CSharpMinds.Managers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Tests.Mocks;

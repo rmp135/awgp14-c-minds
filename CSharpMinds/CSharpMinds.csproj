@@ -81,10 +81,10 @@
     <Compile Include="Components\Colliders\BoxColliderComponent.cs" />
     <Compile Include="Components\Colliders\PointCollider.cs" />
     <Compile Include="Components\FrameRateComponent.cs" />
-    <Compile Include="Components\IComponentList.cs" />
     <Compile Include="Components\LaserLogic.cs" />
     <Compile Include="Components\MenuItemComponent.cs" />
     <Compile Include="Components\PlayerCollideLogic.cs" />
+    <Compile Include="Components\SceneListComponent.cs" />
     <Compile Include="Components\SpriteLabelRenderComponent.cs" />
     <Compile Include="Exceptions\SystemNotFoundException.cs" />
     <Compile Include="Exceptions\ComponentNotFoundException.cs" />

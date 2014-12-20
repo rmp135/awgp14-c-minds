@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Interfaces;
 using System.Xml.Serialization;
+using Common;
 
 namespace CSharpMinds
 {
@@ -22,14 +23,14 @@ namespace CSharpMinds
         private string _name;
         private GameObject _parent;
         private List<GameObject> _children;
-        private IComponentList _components;
+        private SerialisableInterfaceList<IComponent> _components;
 
         //Constructor
 
         /// <summary>
         /// Return all components of this GameObject.
         /// </summary>
-        public IComponentList Components {
+        public SerialisableInterfaceList<IComponent> Components {
             get { return _components; }
             set { _components = value; }
         }
@@ -75,7 +76,7 @@ namespace CSharpMinds
         /// <param name="name">The name that the GameObject should be called.</param>
         public GameObject(string name) {
             _name = name;
-            _components = new IComponentList();
+            _components = new SerialisableInterfaceList<IComponent>();
             _children = new List<GameObject>();
         }
 
