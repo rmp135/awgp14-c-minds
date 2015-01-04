@@ -48,10 +48,10 @@ namespace CSharpMinds.Components
         }
 
         public void Draw() {
-            _renderSystem.DrawLine(new Vector(Min.X, Min.Y), new Vector(Min.X, Max.Y));
-            _renderSystem.DrawLine(new Vector(Min.X, Max.Y), new Vector(Max.X, Max.Y));
-            _renderSystem.DrawLine(new Vector(Max.X, Max.Y), new Vector(Max.X, Min.Y));
-            _renderSystem.DrawLine(new Vector(Max.X, Min.Y), new Vector(Min.X, Min.Y));
+            //_renderSystem.DrawLine(new Vector(Min.X, Min.Y), new Vector(Min.X, Max.Y));
+            //_renderSystem.DrawLine(new Vector(Min.X, Max.Y), new Vector(Max.X, Max.Y));
+            //_renderSystem.DrawLine(new Vector(Max.X, Max.Y), new Vector(Max.X, Min.Y));
+            //_renderSystem.DrawLine(new Vector(Max.X, Min.Y), new Vector(Min.X, Min.Y));
         }
     }
 }
