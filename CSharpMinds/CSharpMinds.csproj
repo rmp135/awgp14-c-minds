@@ -98,6 +98,14 @@
     <Compile Include="Factories\XMLFactory.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameScene.cs" />
+    <Compile Include="Hellstorm\EnemyLogic.cs" />
+    <Compile Include="Hellstorm\EnemySpawner.cs" />
+    <Compile Include="Hellstorm\Health.cs" />
+    <Compile Include="Hellstorm\HellstormScene.cs" />
+    <Compile Include="Hellstorm\HellstormControlComponent.cs" />
+    <Compile Include="Hellstorm\HellstormLaserLogic.cs" />
+    <Compile Include="Hellstorm\LaserHitLogic.cs" />
+    <Compile Include="Hellstorm\PowerupSpawner.cs" />
     <Compile Include="Managers\SceneManager.cs" />
     <Compile Include="Resources\ImageResource.cs" />
     <Compile Include="Interfaces\IComponent.cs" />
@@ -141,6 +149,48 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Hellstorm\Resources\bold_silver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\bolt_gold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\darkPurple.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\enemyBlack1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\enemyBlack2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\enemyBlack3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\enemyBlack4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\enemyBlack5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\laserBlue01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\laserBlue08.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\laserRed01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\laserRed10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\playerShip1_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Hellstorm\Resources\powerupYellow_bolt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\alienBeige_stand.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
