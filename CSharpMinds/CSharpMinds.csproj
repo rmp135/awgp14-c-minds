@@ -77,7 +77,10 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviours\FleeBehaviour.cs" />
+    <Compile Include="Behaviours\PatrollingBehaviour.cs" />
     <Compile Include="Behaviours\TrackingBehaviour.cs" />
+    <Compile Include="Behaviours\WanderBehaviour.cs" />
     <Compile Include="Components\BoxColliderComponent.cs" />
     <Compile Include="Components\Colliders\PointCollider.cs" />
     <Compile Include="Components\FrameRateComponent.cs" />

@@ -29,7 +29,8 @@ namespace CSharpMinds
             _is.setBinding("DELETETOGGLE", Keys.keyboard.Q);
             SystemManager.AddSystems(new List<ISystem>(){
                 new RenderSystem(new SFMLRenderDriver()),
-                _is
+                _is,
+                new PhysicsSystem()
             });
 
 
@@ -43,27 +44,14 @@ namespace CSharpMinds
                 new TransformComponent()
             });
 
-            
-            
-
             GameObject _player = GameObjectFactory.Build("player", new List<IComponent>() {
-                new TransformComponent(),
+                new TransformComponent(){Position = new Vector(200,200)},
                 _gravity,
                 new PlayerControlComponent(),
                 new SpriteRenderComponent("Resources\\alienBeige_stand.png"),
-                new BoxColliderComponent(66, 92),
+                new BoxColliderComponent(66,92),
                 new PlayerCollideLogic()
             });
-
-            GameObject _bat = GameObjectFactory.Build("bat", new List<IComponent>() {
-                new TransformComponent(),
-                new PhysicsComponent(),
-                new SpriteRenderComponent("Resources\\bat.png"),
-                new BoxColliderComponent(70, 47),
-                new TrackingBehaviour(_player)
-            });
-
-            _bat.GetComponent<TransformComponent>().Position = new Vector(200,200);
 
             GameObject _rayGun = GameObjectFactory.Build("gun", new List<IComponent>() {
                 new TransformComponent(){Position = new Vector(30,23)},
@@ -72,15 +60,26 @@ namespace CSharpMinds
             _rayGun.Parent = _player;
 
             GameObject _fish = GameObjectFactory.Build("fish", new List<IComponent>() {
-                new TransformComponent() {Position = new Vector(100,100)},
+                new TransformComponent() {Position = new Vector(500,200)},
                 new BoxColliderComponent(60,45),
                 new SpriteLabelRenderComponent(),
                 new SpriteRenderComponent("Resources\\fishGreen.png"),
+                new FleeBehaviour(_player),
+                new PhysicsComponent()
+            });
+
+            GameObject _bat = GameObjectFactory.Build("bat", new List<IComponent>() {
+                new TransformComponent(){Position = new Vector(0,100)},
+                new BoxColliderComponent(70, 47),
+                new SpriteLabelRenderComponent(),
+                new SpriteRenderComponent("Resources\\bat.png"),
+                new PatrollingBehaviour(0,570),
+                new PhysicsComponent(),
             });
 
             GameObject _floor = GameObjectFactory.Build(new List<IComponent>() {
                 new TransformComponent() {Position = new Vector(0,400)},
-                new BoxColliderComponent(800, 20)
+                new BoxColliderComponent(640, 20)
             });
 
             // Add objects to scene. (Note that child objects are automatically added.)
@@ -95,9 +94,6 @@ namespace CSharpMinds
             SceneManager.TransitionToScene(_menuScene);
 
             for (int i = 0; i < 100000; i++) {
-
-        //        _gravity.AddForce(new Vector(0f, 3f));
-                
                 //Update
 
                 SceneManager.Update(_gameTime);
@@ -111,8 +107,6 @@ namespace CSharpMinds
                 SceneManager.Render();
 
                 SystemManager.GetSystem<RenderSystem>().PostRender();
-
-                //System.Threading.Thread.Sleep(16);
             }
         }
     }

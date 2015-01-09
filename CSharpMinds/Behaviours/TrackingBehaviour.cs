@@ -12,19 +12,21 @@ namespace CSharpMinds.Behaviours
 {
     class TrackingBehaviour : Component, IUpdatable
     {
-        private GameObject player;
+        private GameObject gameObj;
         private TransformComponent _target, AI;
         private PhysicsComponent aiPos;
-        public TrackingBehaviour(GameObject p)
-        {
-            player = p;
-            _target = p.GetComponent<TransformComponent>();
-           
 
+        /// <summary>
+        /// Behaviour to make any GameObject Track another GameObject
+        /// </summary>
+        /// <param name="go"></param>
+        public TrackingBehaviour(GameObject go)
+        {
+            gameObj = go;
+            _target = go.GetComponent<TransformComponent>();
         }
         public override void Initialise()
         {
-            
             AI = Owner.GetComponent<TransformComponent>();
             aiPos = Owner.GetComponent<PhysicsComponent>();
         }
