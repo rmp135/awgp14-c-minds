@@ -23,9 +23,6 @@ namespace CSharpMinds.Components
         public bool Enabled {
             get { return _enabled; }
             set {
-                if (!value) {
-                    Console.WriteLine(ToString() + " has been disabled.");
-                }
                 _enabled = value;
             }
         }

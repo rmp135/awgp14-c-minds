@@ -6,6 +6,7 @@ using CSharpMinds.Systems;
 using System.Collections.Generic;
 using CSharpMinds.Interfaces;
 using CSharpMinds.Components;
+using CSharpMinds;
 
 namespace Hellstorm
 {
@@ -43,11 +44,11 @@ namespace Hellstorm
 
                 if (_healthMonitor.Health == 0)
                 {
-                    SceneManager.CurrentScene.Paused = true;
                     SceneManager.AddGameObjectToScene(GameObjectFactory.Build(new List<IComponent>() {
                         new TransformComponent(new Common.Vector(230, 200)),
                         new TextRenderComponent("Game Over")
                     }));
+                    (SceneManager.CurrentScene as GameScene).Paused = true;
                 }
 
             }

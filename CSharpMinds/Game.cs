@@ -23,17 +23,18 @@ namespace CSharpMinds
             LoadScenes();
             Run();
         }
+        
         /// <summary>
         /// Used for loading the systems. Runs at the start of game generation.
         /// </summary>
-        public abstract void LoadSystems() {
+        public virtual void LoadSystems() {
 
         }
 
         /// <summary>
         /// Used for loading scenes. Runs near the start of game generation, after system loading.
         /// </summary>
-        public abstract void LoadScenes() {
+        public virtual void LoadScenes() {
 
         }
 

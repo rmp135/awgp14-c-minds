@@ -19,13 +19,6 @@ namespace CSharpMinds
         private List<GameObject> _gameObjects;
         private List<GameObject> _toAdd;
         private List<GameObject> _toRemove;
-        private bool _paused;
-
-        public bool Paused
-        {
-            get { return _paused; }
-            set { _paused = value; }
-        }
 
         public List<GameObject> GameObjects {
             get { return _gameObjects; }
@@ -71,7 +64,6 @@ namespace CSharpMinds
         public virtual void Update(GameTime gameTime) {
             performAdditions();
             performRemovals();
-            if (_paused) return;
             foreach (GameObject go in _gameObjects) {
                 foreach (IComponent comp in go.ChildComponents) {
                     IUpdatable updatable = comp as IUpdatable;
@@ -85,7 +77,7 @@ namespace CSharpMinds
         /// <summary>
         /// Add new queued game objects to the scene.
         /// </summary>
-        private void performAdditions() {
+        protected void performAdditions() {
             if (_toAdd.Count > 0) {
                 _gameObjects.AddRange(_toAdd);
                 _toAdd = new List<GameObject>();
@@ -95,7 +87,7 @@ namespace CSharpMinds
         /// <summary>
         /// Remove queued removals from the scene.
         /// </summary>
-        private void performRemovals() {
+        protected void performRemovals() {
             if (_toRemove.Count > 0) {
                 foreach (GameObject toremove in _toRemove) {
                     toremove.Destroy();
