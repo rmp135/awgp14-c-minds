@@ -12,12 +12,10 @@ namespace CSharpMinds.Managers
     {
         static Dictionary<string, Scene> _scenes;
         static Scene _currentScene;
-        static bool _paused;
 
-        public static bool Paused
+        public static Scene CurrentScene
         {
-            get { return _currentScene.Paused; }
-            set { _currentScene.Paused = value; }
+            get { return SceneManager._currentScene; }
         }
         public static void TransitionToScene(Scene nextScene) {
             _currentScene = nextScene;

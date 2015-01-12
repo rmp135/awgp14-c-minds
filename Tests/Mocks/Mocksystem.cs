@@ -5,7 +5,7 @@ using Common.Interfaces;
 
 namespace Tests.Mocks
 {
-    internal class MockSystem : ISystem, IUpdatable
+    public class MockSystem : ISystem, IUpdatable
     {
         public bool Initialised;
         public bool Updated;

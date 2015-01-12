@@ -1,6 +1,7 @@
 ﻿using CSharpMinds.Exceptions;
 using CSharpMinds.Interfaces;
 using System;
+using System.Xml.Serialization;
 
 namespace CSharpMinds.Components
 {
@@ -22,9 +23,6 @@ namespace CSharpMinds.Components
         public bool Enabled {
             get { return _enabled; }
             set {
-                if (!value) {
-                    Console.WriteLine(ToString() + " has been disabled.");
-                }
                 _enabled = value;
             }
         }
@@ -50,6 +48,7 @@ namespace CSharpMinds.Components
         /// <summary>
         /// The components Owner (GameObject that this component belogs to.)
         /// </summary>
+        [XmlIgnore]
         public GameObject Owner {
             get { return _owner; }
             set { _owner = value; }

@@ -7,16 +7,28 @@ using CSharpMinds.Interfaces;
 
 namespace CSharpMinds.Components
 {
-    internal class BoxColliderComponent : ColliderComponent, IDrawable
+    public class BoxColliderComponent : ColliderComponent, IDrawable
     {
         TransformComponent _transComp;
         private RenderSystem _renderSystem;
         float _width, _height;
+
+        public float Height {
+            get { return _height; }
+            set { _height = value; }
+        }
+
+        public float Width {
+            get { return _width; }
+            set { _width = value; }
+        }
         public override void Initialise() {
             base.Initialise();
             _transComp = Owner.GetComponent<TransformComponent>();
             _renderSystem = SystemManager.GetSystem<RenderSystem>();
         }
+
+        public BoxColliderComponent() { }
 
         public BoxColliderComponent(float width, float height) {
             _width = width;
@@ -36,10 +48,10 @@ namespace CSharpMinds.Components
         }
 
         public void Draw() {
-            _renderSystem.DrawLine(new Vector(Min.X, Min.Y), new Vector(Min.X, Max.Y));
-            _renderSystem.DrawLine(new Vector(Min.X, Max.Y), new Vector(Max.X, Max.Y));
-            _renderSystem.DrawLine(new Vector(Max.X, Max.Y), new Vector(Max.X, Min.Y));
-            _renderSystem.DrawLine(new Vector(Max.X, Min.Y), new Vector(Min.X, Min.Y));
+            //_renderSystem.DrawLine(new Vector(Min.X, Min.Y), new Vector(Min.X, Max.Y));
+            //_renderSystem.DrawLine(new Vector(Min.X, Max.Y), new Vector(Max.X, Max.Y));
+            //_renderSystem.DrawLine(new Vector(Max.X, Max.Y), new Vector(Max.X, Min.Y));
+            //_renderSystem.DrawLine(new Vector(Max.X, Min.Y), new Vector(Min.X, Min.Y));
         }
     }
 }

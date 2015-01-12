@@ -10,11 +10,11 @@ namespace Common
         private long _lastUpdate;
 
         public long TotalTime {
-            get { return TimeSpan.FromTicks(_deltaTime).Milliseconds; }
+            get { return (long) TimeSpan.FromTicks(_totalTime).TotalMilliseconds; }
         }
 
         public long DeltaTime {
-            get { return TimeSpan.FromTicks(_deltaTime).Milliseconds; }
+            get { return (long) TimeSpan.FromTicks(_deltaTime).Milliseconds; }
         }
 
         public GameTime() {
