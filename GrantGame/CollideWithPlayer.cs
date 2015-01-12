@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using CSharpMinds.Components;
 using Common;
 using CSharpMinds.Managers;
+using CSharpMinds.Factories;
+using CSharpMinds.Components;
+using CSharpMinds;
+using CSharpMinds.Interfaces;
 
 namespace GrantGame
 {
@@ -26,7 +30,13 @@ namespace GrantGame
             if(cc.Owner.Name == "player")
             {
                 SceneManager.RemoveGameObjectFromScene(cc.Owner);
-                Console.WriteLine("Game Over");
+                GameObject _GameOver = GameObjectFactory.Build("score", new List<IComponent>()
+                    {
+                        new TransformComponent(){Position = new Vector(300,250)},
+                        new TextRenderComponent("Game Over!"),
+                
+                    });
+                SceneManager.AddGameObjectToScene(_GameOver);
 
             }
         }
