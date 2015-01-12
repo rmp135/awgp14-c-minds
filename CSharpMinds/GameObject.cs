@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Interfaces;
+using System.Xml.Serialization;
+using Common;
 
 namespace CSharpMinds
 {
@@ -20,14 +23,14 @@ namespace CSharpMinds
         private string _name;
         private GameObject _parent;
         private List<GameObject> _children;
-        private List<IComponent> _components;
+        private SerialisableInterfaceList<IComponent> _components;
 
         //Constructor
 
         /// <summary>
         /// Return all components of this GameObject.
         /// </summary>
-        public List<IComponent> Components {
+        public SerialisableInterfaceList<IComponent> Components {
             get { return _components; }
             set { _components = value; }
         }
@@ -35,6 +38,7 @@ namespace CSharpMinds
         /// <summary>
         /// The parent of this GameObject.
         /// </summary>
+        [XmlIgnore]
         public GameObject Parent {
             get { return _parent; }
             set {
@@ -52,6 +56,7 @@ namespace CSharpMinds
         /// <summary>
         /// Return a list of GameObjects that have this object as the parent.
         /// </summary>
+        //[XmlIgnore]
         public List<GameObject> Children {
             get { return _children; }
         }
@@ -71,7 +76,7 @@ namespace CSharpMinds
         /// <param name="name">The name that the GameObject should be called.</param>
         public GameObject(string name) {
             _name = name;
-            _components = new List<IComponent>();
+            _components = new SerialisableInterfaceList<IComponent>();
             _children = new List<GameObject>();
         }
 
@@ -132,6 +137,7 @@ namespace CSharpMinds
             Components.Remove(c);
         }
 
+        [XmlIgnore]
         public ColliderComponent Collider {
             get { return (ColliderComponent)Components.Find(p => p.GetType().IsSubclassOf(typeof(ColliderComponent))); }
         }
@@ -139,6 +145,7 @@ namespace CSharpMinds
         /// <summary>
         /// Return all components of the GameObject and all components of the GameObjects children.
         /// </summary>
+        [XmlIgnore]
         public List<IComponent> ChildComponents {
             get {
                 List<IComponent> allcomps = new List<IComponent>(_components);
@@ -171,6 +178,32 @@ namespace CSharpMinds
             foreach (IComponent comp in _components) {
                 comp.Destroy();
             };
+        }
+
+
+        /// <summary>
+        /// Initialises this, children and all components.
+        /// </summary>
+        public void Initialise() {
+            foreach (GameObject child in Children) {
+                child.Parent = this;
+                child.Initialise();
+            }
+            foreach (IComponent comp in Components) {
+                comp.Owner = this;
+                try {
+                    comp.Initialise();
+                }
+                catch (ComponentNotFoundException e) {
+                    Console.WriteLine(comp + " is missing a " + e.ComponentName + " component dependancy.");
+                    comp.Enabled = false;
+                }
+                catch (SystemNotFoundException e) {
+                    Console.WriteLine(comp + " is missing a " + e.SystemName + " system dependancy.");
+                    comp.Enabled = false;
+                }
+            }
+
         }
     }
 }

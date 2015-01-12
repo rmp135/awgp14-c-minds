@@ -2,30 +2,32 @@
 using CSharpMinds.Interfaces;
 using System;
 using System.Collections.Generic;
+using CSharpMinds;
 
 namespace CSharpMinds.Factories
 {
     public static class GameObjectFactory
     {
+
+        public static GameObject BuildFromXML(string xmlFile) {
+            GameObject go;
+            try {
+                go = (GameObject)XMLSerialisation.ConstructFromXml<GameObject>(xmlFile);
+            }
+            catch (System.IO.FileNotFoundException e ) {
+                Console.WriteLine("The file " + xmlFile + " could not be found. A placeholder GameObject has been created.");
+                go = GameObjectFactory.Build(new List<IComponent>());
+            }
+            go.Initialise();
+            return go;
+        }
+
         public static GameObject Build(string name, List<IComponent> components) {
             GameObject go = new GameObject(name);
             foreach (IComponent comp in components) {
-                comp.Owner = go;
                 go.AddComponent(comp);
             }
-            foreach (IComponent comp in components) {
-                try {
-                    comp.Initialise();
-                }
-                catch (ComponentNotFoundException e) {
-                    Console.WriteLine(comp + " is missing a " + e.ComponentName + " component dependancy.");
-                    comp.Enabled = false;
-                }
-                catch (SystemNotFoundException e) {
-                    Console.WriteLine(comp + " is missing a " + e.SystemName + " system dependancy.");
-                    comp.Enabled = false;
-                }
-            }
+            go.Initialise();
             return go;
         }
 

@@ -6,8 +6,9 @@ using CSharpMinds.Components;
 using Common;
 using Common.Interfaces;
 using System.Threading.Tasks;
+using CSharpMinds;
 
-namespace CSharpMinds.Behaviours
+namespace GrantGame.Behaviours
 {
     class FleeBehaviour : Component, IUpdatable
     {
@@ -56,8 +57,8 @@ namespace CSharpMinds.Behaviours
                 }
             }
 
-            if (AI.Position.X + rangeBox.X < _target.Position.X) { }//|| _target.Position.Y > AI.Position.Y + rangeBox.Y 
-            else if (AI.Position.Y + rangeBox.Y < _target.Position.Y)
+            if (AI.Position.X - rangeBox.X < _target.Position.X) { }//|| _target.Position.Y > AI.Position.Y + rangeBox.Y 
+            else if (AI.Position.Y - rangeBox.Y < _target.Position.Y)
             { }
             else
             {

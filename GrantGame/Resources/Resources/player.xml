@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GameObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Components>
+    <IComponent AssemblyQualifiedName="CSharpMinds.Components.TransformComponent, CSharpMinds, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <TransformComponent>
+        <Enabled>true</Enabled>
+        <Name>Transform</Name>
+        <Centre>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Centre>
+        <RelativePosition>
+          <X>200</X>
+          <Y>400</Y>
+          <Z>0</Z>
+        </RelativePosition>
+        <Scale>
+          <X>1</X>
+          <Y>1</Y>
+          <Z>1</Z>
+        </Scale>
+        <Rotation>0</Rotation>
+      </TransformComponent>
+    </IComponent>
+    <IComponent AssemblyQualifiedName="CSharpMinds.Components.PhysicsComponent, CSharpMinds, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <PhysicsComponent>
+        <Enabled>true</Enabled>
+        <Name>PhysicsComponent</Name>
+        <CurrentForces>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </CurrentForces>
+      </PhysicsComponent>
+    </IComponent>
+    <IComponent AssemblyQualifiedName="CSharpMinds.Components.PlayerControlComponent, CSharpMinds, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <PlayerControlComponent>
+        <Enabled>true</Enabled>
+        <Name>WASDControl</Name>
+      </PlayerControlComponent>
+    </IComponent>
+    <IComponent AssemblyQualifiedName="CSharpMinds.Components.SpriteRenderComponent, CSharpMinds, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpriteRenderComponent>
+        <Enabled>true</Enabled>
+        <Name>SpriteRenderComponent</Name>
+        <SpriteName>Resources\alienBeige_stand.png</SpriteName>
+      </SpriteRenderComponent>
+    </IComponent>
+    <IComponent AssemblyQualifiedName="CSharpMinds.Components.BoxColliderComponent, CSharpMinds, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <BoxColliderComponent>
+        <Enabled>false</Enabled>
+        <Name>bd87eb06-b84e-4193-9e26-2c38bbfd7f66</Name>
+        <Height>92</Height>
+        <Width>66</Width>
+      </BoxColliderComponent>
+    </IComponent>
+    <IComponent AssemblyQualifiedName="CSharpMinds.Components.PlayerCollideLogic, CSharpMinds, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <PlayerCollideLogic>
+        <Enabled>true</Enabled>
+        <Name>fbd039a1-aa2c-4dca-bf00-e2cd8b54c0ab</Name>
+      </PlayerCollideLogic>
+    </IComponent>
+  </Components>
+  <Children />
+  <Name>player</Name>
+</GameObject>

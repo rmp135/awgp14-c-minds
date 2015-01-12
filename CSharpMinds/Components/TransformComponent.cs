@@ -1,6 +1,7 @@
 ﻿using Common;
 using CSharpMinds.Exceptions;
 using System;
+using System.Xml.Serialization;
 
 namespace CSharpMinds.Components
 {
@@ -9,7 +10,19 @@ namespace CSharpMinds.Components
         private Vector _position;
         private Vector _scale;
         private int _rotation;
+        private Vector _centre;
 
+        public Vector Centre {
+            get { return _centre; }
+            set { _centre = value; }
+        }
+
+        public Vector RelativePosition {
+            get { return _position;  }
+            set { _position = value;  }
+        }
+
+        [XmlIgnore]
         public Vector Position {
             get {
                 if (Owner != null && Owner.Parent != null) {
@@ -18,11 +31,11 @@ namespace CSharpMinds.Components
                         parentTrans = Owner.Parent.GetComponent<TransformComponent>();
                     }
                     catch (ComponentNotFoundException) {
-                        return _position;
+                        return RelativePosition;
                     }
-                    return parentTrans.Position + _position;
+                    return parentTrans.Position + RelativePosition;
                 }
-                return _position;
+                return RelativePosition;
             }
             set { _position = value; }
         }
@@ -44,6 +57,7 @@ namespace CSharpMinds.Components
         {
             _position = pos;
             this.Scale = new Vector(1, 1);
+            Centre = pos;
         }
 
         public TransformComponent()

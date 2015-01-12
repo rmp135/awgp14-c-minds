@@ -5,7 +5,7 @@ using System;
 
 namespace CSharpMinds.Components
 {
-    internal class SpriteRenderComponent : Component, IDrawable
+    public class SpriteRenderComponent : Component, IDrawable
     {
         private RenderSystem _renderSystem;
         private TransformComponent _transComp;
@@ -13,10 +13,11 @@ namespace CSharpMinds.Components
 
         public String SpriteName {
             set { _spriteName = value; }
+            get { return _spriteName; }
         }
-
+        public SpriteRenderComponent() : base("SpriteRenderComponent") { }
         public SpriteRenderComponent(String spriteName)
-            : base("SpriteRenderer") {
+            : this() {
             _spriteName = spriteName;
         }
 

@@ -7,7 +7,7 @@ using Common;
 using Common.Interfaces;
 using System.Threading.Tasks;
 
-namespace CSharpMinds.Behaviours
+namespace GrantGame.Behaviours
 {
     class WanderBehaviour : Component, IUpdatable
     {

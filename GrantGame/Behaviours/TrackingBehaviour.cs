@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using CSharpMinds.Components;
 using Common;
 using Common.Interfaces;
+using CSharpMinds;
 
 
-namespace CSharpMinds.Behaviours
+namespace GrantGame.Behaviours
 {
     class TrackingBehaviour : Component, IUpdatable
     {
