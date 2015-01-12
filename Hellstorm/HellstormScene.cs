@@ -23,12 +23,12 @@ namespace Hellstorm
                 new PhysicsComponent(),
                 new BoxColliderComponent(75, 99)
             });
+            //GameObject _player = GameObjectFactory.BuildFromXML("Hellstorm\\Resources\\player.xml");
             AddGameObject(GameObjectFactory.Build("background", new List<IComponent>() {
                 new TransformComponent(),
                 new SpriteRenderComponent("Resources\\darkPurple.png")
             }));
-            XMLSerialisation.ConstructXML(_player, "Resources\\player.xml");
-            //GameObject _player = GameObjectFactory.BuildFromXML("Hellstorm\\Resources\\player.xml");
+            XMLSerialisation.ConstructXML(_player, "Hellstorm\\Resources\\player.xml");
             GameObject _health = GameObjectFactory.Build("health", new List<IComponent>() { new HealthComponent() });
             AddGameObject(_player);
             AddGameObject(_health);

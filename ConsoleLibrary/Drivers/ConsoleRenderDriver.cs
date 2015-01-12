@@ -36,7 +36,7 @@ namespace ConsoleLibrary.Drivers
 
         public void DrawText(string text, int size, Vector pos)
         {
-            throw new NotImplementedException();
+            DrawText(text, pos);
         }
     }
 }
