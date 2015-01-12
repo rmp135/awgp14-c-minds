@@ -10,6 +10,12 @@ namespace CSharpMinds.Components
         protected TransformComponent _transComp;
         private string _text;
 
+        public string Text
+        {
+            get { return _text; }
+            set { _text = value; }
+        }
+
         public TextRenderComponent()
             : base("TextRenderer") {
                 _text = "";

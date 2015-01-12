@@ -34,7 +34,8 @@ namespace CSharpMinds
         /// <summary>
         /// Used for loading scenes. Runs near the start of game generation, after system loading.
         /// </summary>
-        public virtual void LoadScenes() {
+        public virtual void LoadScenes()
+        {
 
         }
 

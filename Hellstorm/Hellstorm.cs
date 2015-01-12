@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSharpMinds;
-using CSharpMinds.Managers;
 using CSharpMinds.Systems;
+using CSharpMinds.Managers;
 using SFMLLibrary.Drivers;
 
 namespace Hellstorm
@@ -16,16 +16,18 @@ namespace Hellstorm
             Hellstorm game = new Hellstorm();
         }
 
+        public override void LoadScenes()
+        {
+            SceneManager.AddScene(new HellstormScene(), "game");
+            SceneManager.TransitionToScene("game");
+        }
+
         public override void LoadSystems() {
             SystemManager.AddSystems(new List<ISystem>(){
                 new RenderSystem(new SFMLRenderDriver()),
                 new InputSystem(new SFMLKeyboardDriver()),
                 new PhysicsSystem()
             });
-        }
-        public override void LoadScenes() {
-            SceneManager.AddScene(new HellstormScene(), "game");
-            SceneManager.TransitionToScene("game");
         }
     }
 }
