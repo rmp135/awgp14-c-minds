@@ -52,6 +52,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BasicTests.cs" />
+    <Compile Include="Mocks\MockDetails.cs" />
     <Compile Include="Mocks\MockDrawComponent.cs" />
     <Compile Include="Mocks\MockInputDriver.cs" />
     <Compile Include="Mocks\MockInputSystem.cs" />

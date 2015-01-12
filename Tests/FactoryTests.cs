@@ -15,9 +15,14 @@ namespace Tests
         public void TestXmlFactoryCreate()
         {
             MockPlayer p = XMLFactory.CreateFromXml<MockPlayer>(@"Mocks\MockPLayerSample.xml");
+            MockDetails d = new MockDetails();
+            d.name = "Jack Hames";
+            d.age = "21";
+
+            p.details = d;
 
             Assert.AreEqual(p.lives, 3);
-            Assert.AreEqual(p.name, "Jack");
+            Assert.AreEqual(p.details.name, "Jack Hames");
             Assert.AreEqual(p.score, 2039);
         }
 
@@ -27,7 +32,7 @@ namespace Tests
             MockPlayer p = XMLFactory.CreateFromXml<MockPlayer>(@"Mocks\MockPLayerSample.xml");
 
             p.lives = 101;
-            p.name = "name change";
+            p.details.name = "name change";
             p.score = 765345;
 
             XMLFactory.ReadAndUpdateFromXml<MockPlayer>(@"Mocks\MockPLayerSample.xml", p);
@@ -39,7 +44,8 @@ namespace Tests
             MockPlayer p = XMLFactory.CreateFromXml<MockPlayer>(@"Mocks\MockPLayerSample.xml");
 
             p.lives = 1;
-            p.name = "new name";
+            p.details.age = "21";
+            p.details.name = "Jack";
             p.score = 0;
 
             XMLFactory.WriteToXml<MockPlayer>(@"Mocks\NewMockPlayer.xml", p);

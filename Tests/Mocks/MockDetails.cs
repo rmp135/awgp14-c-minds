@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Tests.Mocks
 {
-    public class MockPlayer
+    public class MockDetails
     {
-        public MockDetails details;
-        public int lives;
-        public int score;
+        public string name;
+        public string age;
+
+        public MockDetails() { }
     }
 }

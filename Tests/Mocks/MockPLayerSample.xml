@@ -1,5 +1,7 @@
 <MockPlayer>
-    <name>Jack</name>
+	<MockDetails>
+    	<name>Jack</name>
+    </MockDetails>
     <lives>3</lives>
     <score>2039</score>
 </MockPlayer>
