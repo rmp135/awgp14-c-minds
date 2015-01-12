@@ -8,7 +8,7 @@ using Common.Interfaces;
 using System.Threading.Tasks;
 using CSharpMinds;
 
-namespace GrantGame.Behaviours
+namespace CSharpMinds.Behaviours
 {
     class FleeBehaviour : Component, IUpdatable
     {

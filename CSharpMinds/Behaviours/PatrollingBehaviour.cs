@@ -7,7 +7,7 @@ using Common;
 using Common.Interfaces;
 using System.Threading.Tasks;
 
-namespace GrantGame.Behaviours
+namespace CSharpMinds.Behaviours
 {
     class PatrollingBehaviour : Component, IUpdatable
     {

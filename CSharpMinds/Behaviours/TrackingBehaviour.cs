@@ -9,7 +9,7 @@ using Common.Interfaces;
 using CSharpMinds;
 
 
-namespace GrantGame.Behaviours
+namespace CSharpMinds.Behaviours
 {
     class TrackingBehaviour : Component, IUpdatable
     {
