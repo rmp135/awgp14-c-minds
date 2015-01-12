@@ -42,7 +42,6 @@ namespace GrantGame
             if(cc.Owner.Name == "player")
             {
                 score++;
-                Console.WriteLine("Score: " + score);
                 _score.Text = "Score: " + score;
                 _trans.Position = new Vector(rNum.Next(600), rNum.Next(480));
             }  

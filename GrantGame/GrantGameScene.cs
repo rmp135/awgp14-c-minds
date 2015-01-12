@@ -36,11 +36,9 @@ namespace GrantGame
                 _is
             });
 
-            PhysicsComponent _gravity = new PhysicsComponent();
-
             GameObject _player = GameObjectFactory.Build("player", new List<IComponent>() {
                 new TransformComponent(),
-                _gravity,
+                new PhysicsComponent(),
                 new PlayerControlComponent(),
                 new SpriteRenderComponent("Resources\\alienBeige_stand.png"),
                 new BoxColliderComponent(66, 92),
@@ -88,12 +86,13 @@ namespace GrantGame
                 
             });
 
-            AddGameObject(_score);
+            
             // Add objects to scene. (Note that child objects are automatically added.)
             AddGameObject(_player);
             AddGameObject(_bat);
             AddGameObject(_fish);
             AddGameObject(_medal);
+            AddGameObject(_score);
         }
     }
 }
