@@ -13,6 +13,7 @@ namespace GrantGame
     {
         private TransformComponent _trans;
         private ColliderComponent _collider;
+        private TextRenderComponent _score;
         private Random rNum;
         private int score;
 
@@ -36,10 +37,13 @@ namespace GrantGame
 
         public void isHit(ColliderComponent cc)
         {
+            if(_score == null)
+                _score = SceneManager.CurrentScene.FindGameObjectByName("score").GetComponent<TextRenderComponent>();
             if(cc.Owner.Name == "player")
             {
                 score++;
                 Console.WriteLine("Score: " + score);
+                _score.Text = "Score: " + score;
                 _trans.Position = new Vector(rNum.Next(600), rNum.Next(480));
             }  
         }

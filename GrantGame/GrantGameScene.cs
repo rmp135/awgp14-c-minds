@@ -81,6 +81,14 @@ namespace GrantGame
                     mc,
                 });
 
+            GameObject _score = GameObjectFactory.Build("score", new List<IComponent>()
+            {
+                new TransformComponent(),
+                new TextRenderComponent("Score: 0")
+                
+            });
+
+            AddGameObject(_score);
             // Add objects to scene. (Note that child objects are automatically added.)
             AddGameObject(_player);
             AddGameObject(_bat);

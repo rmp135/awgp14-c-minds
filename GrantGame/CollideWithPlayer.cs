@@ -27,6 +27,7 @@ namespace GrantGame
             {
                 SceneManager.RemoveGameObjectFromScene(cc.Owner);
                 Console.WriteLine("Game Over");
+
             }
         }
     }
