@@ -23,6 +23,7 @@ namespace CSharpMinds
             LoadScenes();
             Run();
         }
+        
         /// <summary>
         /// Used for loading the systems. Runs at the start of game generation.
         /// </summary>
