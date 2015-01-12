@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSharpMinds.Behaviours
 {
-    class PatrollingBehaviour : Component, IUpdatable
+    public class PatrollingBehaviour : Component, IUpdatable
     {
         private bool atTarget = false;
         private float start;

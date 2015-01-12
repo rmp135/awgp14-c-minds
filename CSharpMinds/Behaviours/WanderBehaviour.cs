@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSharpMinds.Behaviours
 {
-    class WanderBehaviour : Component, IUpdatable
+    public class WanderBehaviour : Component, IUpdatable
     {
         private float wanderRadius, wanderDist, wanderJitter, randX, randY;
         private Random rNum;

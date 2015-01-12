@@ -10,14 +10,26 @@ using SFMLLibrary.Drivers;
 
 namespace JackGame
 {
-    class Program : GameObject
+    class JackGame : Game
     {
         static void Main(string[] args)
         {
-            GameTime _gameTime = new GameTime();
+            JackGame game = new JackGame();
+        }
 
-            //Setup a new scene.
-            GameScene _scene = new GameScene();
+        public override void LoadScenes()
+        {
+            SceneManager.AddScene(new JackGameScene(), "game");
+            SceneManager.TransitionToScene("game");
+        }
+
+        public override void LoadSystems()
+        {
+            SystemManager.AddSystems(new List<ISystem>(){
+                new RenderSystem(new SFMLRenderDriver()),
+                new InputSystem(new SFMLKeyboardDriver()),
+                new PhysicsSystem()
+            });
         }
     }
 }

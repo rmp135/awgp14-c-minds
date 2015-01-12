@@ -10,7 +10,7 @@ using CSharpMinds;
 
 namespace CSharpMinds.Behaviours
 {
-    class FleeBehaviour : Component, IUpdatable
+    public class FleeBehaviour : Component, IUpdatable
     {
         private GameObject gameObj;
         private TransformComponent _target, AI;

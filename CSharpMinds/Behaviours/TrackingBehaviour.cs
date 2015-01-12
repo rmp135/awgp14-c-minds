@@ -11,7 +11,7 @@ using CSharpMinds;
 
 namespace CSharpMinds.Behaviours
 {
-    class TrackingBehaviour : Component, IUpdatable
+    public class TrackingBehaviour : Component, IUpdatable
     {
         private GameObject gameObj;
         private TransformComponent _target, AI;
