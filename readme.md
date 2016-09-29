@@ -1,3 +1,7 @@
+## About
+
+Created for Advanced Windows Game Programming at Stafford University in collaboration with students Jack Hames and Grant Siddall.
+
 ## How to Run
 
 After loading the solution, the individual games will be listed in the solution explorer as projects (Hellstorm, GrantGame and JackGame).
